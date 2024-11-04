@@ -19,7 +19,7 @@ const HeroSection = () => {
 
   return (
     <div className="min-h-screen hero-bg">
-      <div className="container mx-auto px-6 md:px-8 pt-28 md:pt-40 pb-8 md:pb-16">
+      <div className="container mx-auto px-6 md:px-8 pt-24 md:pt-40 pb-8 md:pb-16">
         {/* Hero Content */}
         <div className="max-w-4xl mx-auto text-center space-y-1">
           <h2 className="text-3xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]">
