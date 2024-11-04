@@ -114,13 +114,20 @@ const SearchBar = ({
   return (
     <div className={cn("relative mx-auto", width, className)} ref={commandRef}>
       <Command className={cn("rounded-t-lg border", shadow)}>
-        <CommandInput
-          placeholder="Search homes by city, project name, or developer..."
-          className={cn("pl-2 w-full text-[11px] md:text-sm", padding)}
-          onFocus={() => setOpen(true)}
-          value={searchQuery}
-          onValueChange={setSearchQuery}
-        />
+        <div style={{ transform: "scale(1)", transformOrigin: "left top" }}>
+          <CommandInput
+            placeholder="Search homes by city, project name, or developer..."
+            className={cn("pl-2 w-full cmd-input", padding)}
+            onFocus={() => setOpen(true)}
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+            style={{
+              fontSize: "16px",
+              transform: "scale(1)",
+              transformOrigin: "left top",
+            }}
+          />
+        </div>
         {open && (
           <CommandList className="absolute w-full bg-white rounded-b-lg border-x border-b top-[96%] left-0 shadow-lg mt-[2px] z-[100] max-h-[300px] overflow-y-auto">
             {loading ? (
