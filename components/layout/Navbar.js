@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Menu, X } from "lucide-react";
+import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import {
   Sheet,
@@ -37,10 +38,10 @@ const Navbar = () => {
 
       {/* Search Section - Always visible */}
       <div className="flex-1 max-w-xs mx-4 me-auto hidden sm:block">
-        <Input
-          type="text"
-          placeholder="homes by city or name of the project.."
-          className="pl-2 py-4 w-full text-xs"
+        <SearchBar
+          padding="py-3 md:py-5"
+          width="w-[200px] md:w-[400px]"
+          shadow="shadow-none border"
         />
       </div>
 

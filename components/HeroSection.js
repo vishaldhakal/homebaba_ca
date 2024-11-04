@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import SearchBar from "@/components/SearchBar";
 
 const HeroSection = () => {
   const cities = [
@@ -27,21 +28,15 @@ const HeroSection = () => {
             <span className="text-red-500">.</span>
           </h2>
 
-          <div className="max-w-2xl mx-auto px-4 md:px-0 mt-0 pt-0">
-            <Input
-              type="text"
-              placeholder="search homes by city or name of the project.."
-              className="pl-4 py-4 md:py-8 w-full text-[11px] md:text-xs"
-            />
-          </div>
+          <SearchBar padding="py-4 md:py-8" width="w-[330px] md:w-[750px]" />
 
           {/* City Links */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 px-4 md:px-0 max-w-2xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-1 md:gap-1 px-4 md:px-0 max-w-2xl mx-auto">
             {cities.map((city) => (
               <Button
                 key={city}
                 variant="link"
-                className="text-xs md:text-sm text-gray-700 hover:text-gray-900 underline-offset-4 underline px-1.5 md:px-2 py-0.5 md:py-1"
+                className="text-xs md:text-xs text-gray-700 hover:text-gray-900 underline-offset-4 underline px-1.5 md:px-2 py-0.5 md:py-1"
               >
                 {city}
               </Button>
@@ -50,7 +45,7 @@ const HeroSection = () => {
         </div>
 
         {/* Builders Section */}
-        <div className="mt-20 md:mt-16 text-center">
+        <div className="mt-20 md:mt-40 text-center">
           <h3 className="text-base md:text-lg mb-4 md:mb-8">
             Homes from trusted builders across the country
           </h3>
