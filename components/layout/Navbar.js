@@ -27,12 +27,20 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-50">
       {/* Logo Section */}
       <div className="flex items-center">
-        <span className="text-xl md:text-2xl font-bold">homebaba</span>
+        <span className="text-sm md:text-2xl font-bold">homebaba</span>
         <Image
           src="/maple-leaf.svg"
           alt="Maple Leaf Icon for Logo"
           width={20}
           height={20}
+          className="hidden md:block"
+        />
+        <Image
+          src="/maple-leaf.svg"
+          alt="Maple Leaf Icon for Logo"
+          width={15}
+          height={15}
+          className="block md:hidden"
         />
       </div>
 
@@ -40,7 +48,7 @@ const Navbar = () => {
       <div className="flex-1 max-w-xs mx-4 me-auto hidden sm:block">
         <SearchBar
           padding="py-3 md:py-5"
-          width="w-[250px] md:w-[400px]"
+          width="w-[200px] md:w-[400px]"
           shadow="shadow-none border"
         />
       </div>
@@ -66,13 +74,13 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className="lg:hidden flex items-center gap-4">
+      <div className="lg:hidden flex items-center justify-between gap-4">
         {/* Search toggle for mobile */}
-        <div className="sm:hidden">
-          <Input
-            type="text"
-            placeholder="Search..."
-            className="pl-2 py-4 w-[150px] text-xs"
+        <div className="flex-1 max-w-xs mx-4 me-auto sm:hidden">
+          <SearchBar
+            padding="py-1 md:py-5 h-9"
+            width="w-[200px] md:w-[400px]"
+            shadow="shadow-none border"
           />
         </div>
 

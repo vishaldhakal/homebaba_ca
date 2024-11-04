@@ -110,7 +110,4 @@ body {
     font-size: 16px !important; /* Prevents zoom on iOS */
   }
   
-  .cmd-input {
-    font-size: 16px !important;
-  }
 }

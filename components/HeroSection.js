@@ -31,7 +31,7 @@ const HeroSection = () => {
           <SearchBar padding="py-4 md:py-8" width="w-[330px] md:w-[750px]" />
 
           {/* City Links */}
-          <div className="flex flex-wrap justify-center gap-1 md:gap-1 px-4 md:px-0 max-w-2xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-0 md:gap-1 px-4 md:px-0 max-w-2xl mx-auto">
             {cities.map((city) => (
               <Button
                 key={city}
