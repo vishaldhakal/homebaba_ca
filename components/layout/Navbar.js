@@ -40,7 +40,7 @@ const Navbar = () => {
       <div className="flex-1 max-w-xs mx-4 me-auto hidden sm:block">
         <SearchBar
           padding="py-3 md:py-5"
-          width="w-[200px] md:w-[400px]"
+          width="w-[250px] md:w-[400px]"
           shadow="shadow-none border"
         />
       </div>
