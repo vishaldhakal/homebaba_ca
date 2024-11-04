@@ -52,7 +52,7 @@ const NewsLetter = () => {
       {/* Content Container */}
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight bg-gradient-to-r from-rose-600 to-red-400 bg-clip-text text-transparent pb-2">
+          <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2] bg-gradient-to-r from-rose-600 to-red-400 bg-clip-text text-transparent pb-2">
             Notify Me of New Projects
           </h2>
           <p className="mt-4 text-lg leading-6 text-gray-700">

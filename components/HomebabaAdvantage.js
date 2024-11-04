@@ -10,9 +10,8 @@ const HomebabaAdvantage = () => {
   return (
     <section className="py-12 md:py-16 px-6 md:px-4 max-w-7xl mx-auto">
       <div className="text-center mb-8 md:mb-12">
-        <h2 className="text-xl md:text-4xl font-normal mb-2 md:mb-4">
-          The Homebaba Advantage -{" "}
-          <span className="font-bold">Always people at heart</span>
+        <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]  text-center mb-3">
+          The Homebaba Advantage - Always people at heart
         </h2>
         <p className="text-gray-600 text-sm md:text-lg max-w-2xl mx-auto">
           Working hand in hand with leading Pre construction Homes, Condos

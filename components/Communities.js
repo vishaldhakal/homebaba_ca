@@ -53,7 +53,7 @@ const Communities = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-20">
-      <h1 className="text-xl md:text-3xl lg:text-6xl font-extrabold text-center text-black/90 mb-8 md:mb-12">
+      <h1 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]  text-center mb-10">
         GTA Communities
       </h1>
 

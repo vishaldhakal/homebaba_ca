@@ -36,9 +36,8 @@ const propertyTypes = [
 const PropertyTypes = () => {
   return (
     <section className="container mx-auto px-6 md:px-8 py-16 md:py-20 overflow-x-hidden">
-      <h2 className="text-xl md:text-4xl font-light text-center mb-8 md:mb-12">
-        Townhomes, Singles & Condos{" "}
-        <span className="text-black font-bold">for your family</span>
+      <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]  text-center mb-5">
+        Townhomes, Singles & Condos for your family
       </h2>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-5xl mx-auto">

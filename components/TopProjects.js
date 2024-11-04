@@ -58,7 +58,7 @@ const PropertyCard = ({ property }) => (
 const TopProjects = () => {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-7xl font-black tracking-tight mb-4 text-center text-black/90">
+      <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2] text-center mb-3">
         Top 10 GTA Projects
       </h2>
       <p className="text-center text-sm underline mb-12 underline-offset-4">

@@ -58,10 +58,10 @@ const RecentBlogs = () => {
   return (
     <section className="py-12 px-4 max-w-7xl mx-auto mt-10">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-6xl font-extrabold mb-4 text-black/90">
+        <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]">
           The Homebaba Insights
         </h2>
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-600 text-sm md:text-lg">
           Read our latest articles and never miss out on the latest trends in
           the real estate industry
         </p>
