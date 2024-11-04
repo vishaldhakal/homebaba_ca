@@ -48,7 +48,7 @@ const Navbar = () => {
       <div className="flex-1 max-w-xs mx-4 me-auto hidden sm:block">
         <SearchBar
           padding="py-3 md:py-5"
-          width="w-[200px] md:w-[400px]"
+          width="w-[200px] md:w-[350px]"
           shadow="shadow-none border"
         />
       </div>
@@ -79,7 +79,7 @@ const Navbar = () => {
         <div className="flex-1 max-w-xs mx-4 me-auto sm:hidden">
           <SearchBar
             padding="py-1 md:py-5 h-9"
-            width="w-[200px] md:w-[400px]"
+            width="w-[200px] md:w-[200px]"
             shadow="shadow-none border"
           />
         </div>

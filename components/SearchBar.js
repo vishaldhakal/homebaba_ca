@@ -101,9 +101,7 @@ const SearchBar = ({
     localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updatedSearches));
 
     if (type === "cities") {
-      router.push(
-        `/pre-construction-homes/${item.name.split(",")[0].toLowerCase()}`
-      );
+      router.push(`/${item.name.split(",")[0].toLowerCase()}`);
     } else if (type === "projects") {
       router.push(`/pre-construction-homes/${item.slug}`);
     } else if (type === "developers") {
@@ -112,10 +110,7 @@ const SearchBar = ({
   };
 
   return (
-    <div
-      className={cn("relative mx-auto", "w-full md:w-[700px]", className)}
-      ref={commandRef}
-    >
+    <div className={cn("relative mx-auto", width, className)} ref={commandRef}>
       <Command className={cn("rounded-t-lg border", shadow)}>
         <div className="w-full">
           <CommandInput

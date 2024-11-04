@@ -17,7 +17,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-pink-50 to-rose-100">
+    <section className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-pink-50 to-rose-100 mt-40">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">

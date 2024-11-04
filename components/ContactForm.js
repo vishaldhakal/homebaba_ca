@@ -17,23 +17,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="max-w-[700px] mx-auto px-4 py-8 my-12 md:my-20">
-      <div className="flex flex-col items-center mb-8 md:mb-12">
-        <Image
-          src="/contact-person.png"
-          alt="Real Estate Agent"
-          width={300}
-          height={300}
-          className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
-        />
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
-          Looking to buy a preconstruction home?
-        </h1>
-        <p className="text-gray-600 text-center text-sm md:text-base">
-          Don't know where to start? Contact Homebaba now!
-        </p>
-      </div>
-
+    <div className="max-w-[700px] mx-auto px-4 py-5">
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="relative">
           <input
@@ -148,7 +132,7 @@ export default function ContactForm() {
           </label>
         </div>
 
-        <div className="text-[0.5rem] md:text-xs text-gray-500 leading-relaxed text-center px-4 md:px-10">
+        <div className="text-[0.5rem] md:text-[0.5rem] text-gray-500 leading-relaxed text-center">
           Homebaba is an online pre-construction homes database. Homebaba
           curates the list of projects that are publicly available on internet
           and does not take part in any real estate transactions. Be advised the
