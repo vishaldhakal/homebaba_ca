@@ -36,7 +36,7 @@ const Navbar = () => {
       </div>
 
       {/* Search Section - Always visible */}
-      <div className="flex-1 max-w-xl mx-4 hidden sm:block">
+      <div className="flex-1 max-w-xs mx-4 me-auto hidden sm:block">
         <Input
           type="text"
           placeholder="homes by city or name of the project.."
