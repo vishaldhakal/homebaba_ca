@@ -27,7 +27,7 @@ const Navbar = () => {
     <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-50">
       {/* Logo Section */}
       <div className="flex items-center">
-        <span className="text-2xl font-bold">homebaba</span>
+        <span className="text-xl md:text-2xl font-bold">homebaba</span>
         <Image
           src="/maple-leaf.svg"
           alt="Maple Leaf Icon for Logo"
