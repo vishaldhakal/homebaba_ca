@@ -36,7 +36,7 @@ const propertyTypes = [
 const PropertyTypes = () => {
   return (
     <section className="container mx-auto px-6 md:px-8 py-16 md:py-20 overflow-x-hidden">
-      <h2 className="text-2xl md:text-4xl font-light text-center mb-12">
+      <h2 className="text-xl md:text-4xl font-light text-center mb-8 md:mb-12">
         Townhomes, Singles & Condos{" "}
         <span className="text-black font-bold">for your family</span>
       </h2>
@@ -47,7 +47,6 @@ const PropertyTypes = () => {
             key={property.title}
             href={property.href}
             className={`group ${
-              // Center the last item when there's an odd number in 2-column layout
               index === propertyTypes.length - 1 &&
               propertyTypes.length % 2 === 1
                 ? "col-span-full sm:col-auto flex justify-center sm:justify-start"
@@ -56,7 +55,7 @@ const PropertyTypes = () => {
           >
             <div
               className={`
-               relative overflow-hidden rounded-xl h-[120px] md:h-[140px]
+               relative overflow-hidden rounded-xl h-[100px] md:h-[140px]
               bg-slate-50 
               transition-all duration-300
               group-hover:shadow-sm group-hover:scale-105
@@ -66,21 +65,21 @@ const PropertyTypes = () => {
             `}
             >
               <div
-                className="text-4xl md:text-5xl mb-4
+                className="text-3xl md:text-5xl mb-2 md:mb-4
                 transition-transform duration-300 
                 group-hover:scale-110"
               >
                 {property.icon}
               </div>
               <h3
-                className="text-slate-700 text-xs md:text-sm font-semibold text-center
+                className="text-[11px] md:text-sm font-semibold text-center
                 transition-all duration-300
                 group-hover:text-slate-900
                 group-hover:transform group-hover:-translate-y-1"
               >
                 {property.title}
               </h3>
-              <p className="text-slate-500 text-[10px] md:text-xs text-center">
+              <p className="text-[9px] md:text-xs text-center text-slate-500">
                 {property.quantity} properties
               </p>
             </div>

@@ -53,21 +53,21 @@ const Communities = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-20">
-      <h1 className="text-2xl md:text-3xl lg:text-6xl font-extrabold text-center text-black/90 mb-12">
+      <h1 className="text-xl md:text-3xl lg:text-6xl font-extrabold text-center text-black/90 mb-8 md:mb-12">
         GTA Communities
       </h1>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-3xl mx-auto">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 max-w-3xl mx-auto">
         {Object.entries(communities).map(([city, properties]) => (
-          <div key={city} className="space-y-3">
-            <h2 className="text-lg font-semibold text-gray-900 text-center md:text-left">
+          <div key={city} className="space-y-2 md:space-y-3">
+            <h2 className="text-base md:text-lg font-semibold text-gray-900 text-center md:text-left">
               {city}
             </h2>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 md:space-y-2">
               {properties.map((property) => (
                 <li
                   key={property}
-                  className="text-sm text-gray-600 hover:text-gray-900 transition-colors cursor-pointer text-center md:text-left"
+                  className="text-xs md:text-sm text-gray-600 hover:text-gray-900 transition-colors cursor-pointer text-center md:text-left"
                 >
                   {property}
                 </li>

@@ -33,9 +33,9 @@ const properties = [
 ];
 
 const PropertyCard = ({ property }) => (
-  <div className="group relative h-[500px] overflow-hidden">
+  <div className="group relative h-[400px] md:h-[500px] overflow-hidden">
     <div
-      className="absolute inset-0 bg-cover bg-center"
+      className="absolute inset-0 bg-cover bg-bottom"
       style={{ backgroundImage: `url(${property.image})` }}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-white to-slate-800/10" />
