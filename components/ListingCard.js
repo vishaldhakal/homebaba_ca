@@ -19,7 +19,7 @@ export default function ListingCard({ city, listing, index }) {
       >
         <div className="relative">
           <Link
-            href={`/${city}/${listing.url_slug}`}
+            href={`/${city}/${listing.slug}`}
             className="block h-[250px]"
             target="_blank"
           >
@@ -72,7 +72,7 @@ export default function ListingCard({ city, listing, index }) {
           )}
         </div>
         <Link
-          href={`/${city}/${listing.url_slug}`}
+          href={`/${city}/${listing.slug}`}
           className="block p-4 bg-white shadow-md rounded-b-lg no-underline"
           target="_blank"
         >

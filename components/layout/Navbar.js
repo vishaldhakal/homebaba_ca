@@ -24,7 +24,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-50">
+    <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-50 shadow-nav">
       {/* Logo Section */}
       <div className="flex items-center">
         <span className="text-sm md:text-2xl font-bold">homebaba</span>

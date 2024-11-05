@@ -16,7 +16,7 @@ function nFormatter(num, digits) {
     .find(function (item) {
       return num >= item.value;
     });
-  return (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol;
+  return num / item.value + item.symbol;
 }
 
 export default nFormatter;

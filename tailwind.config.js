@@ -85,6 +85,8 @@ module.exports = {
       },
       boxShadow: {
         card: "0 .125rem .25rem rgba(0, 0, 0, .075)",
+        nav: "0 0 1rem 1px rgb(0 0 0/3%)",
+        badge: "0 .5rem 1rem rgba(0,0,0,.15)",
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

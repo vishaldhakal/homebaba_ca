@@ -89,9 +89,9 @@
   }
 }
 
-*{
+/* *{
   letter-spacing: -0.1px;
-}
+} */
 
 .hero-bg {
   background-image: url('/hero-bg.png');
