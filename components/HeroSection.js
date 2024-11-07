@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 
 const HeroSection = () => {
@@ -33,13 +32,13 @@ const HeroSection = () => {
           {/* City Links */}
           <div className="flex flex-wrap justify-center gap-0 md:gap-1 px-4 md:px-0 max-w-2xl mx-auto">
             {cities.map((city) => (
-              <Button
+              <Link
                 key={city}
-                variant="link"
+                href={`/${city.toLowerCase()}`}
                 className="text-xs md:text-xs text-gray-700 hover:text-gray-900 underline-offset-4 underline px-1.5 md:px-2 py-0.5 md:py-1"
               >
                 {city}
-              </Button>
+              </Link>
             ))}
           </div>
         </div>

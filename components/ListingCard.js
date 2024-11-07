@@ -13,11 +13,17 @@ export default function ListingCard({ city, listing, index }) {
   return (
     <>
       <div
-        className={`rounded-lg my-3 md:my-0 shadow-card ${
-          listing.is_featured ? "border-b" : "border-0"
+        className={`rounded-lg my-3 md:my-0 ${
+          listing.is_featured ? "md:col-span-2 shadow-featured" : "shadow-card"
         }`}
       >
-        <div className="relative">
+        <div
+          className={`relative ${
+            listing.is_featured
+              ? "border-blue-500 border-t border-l border-r rounded-t-lg"
+              : "border-0"
+          }`}
+        >
           <Link
             href={`/${city}/${listing.slug}`}
             className="block h-[250px]"
@@ -73,11 +79,15 @@ export default function ListingCard({ city, listing, index }) {
         </div>
         <Link
           href={`/${city}/${listing.slug}`}
-          className="block p-4 bg-white shadow-md rounded-b-lg no-underline"
+          className={`block p-4 bg-white shadow-md rounded-b-lg no-underline ${
+            listing.is_featured
+              ? "border-blue-500 border-b border-l border-r"
+              : "border-0"
+          }`}
           target="_blank"
         >
           <div className="space-y-1">
-            <h3 className="text-[1.2rem] font-bold my-0">
+            <h3 className="text-[1.2rem] font-bold my-0 leading-tight">
               {index && index + ". "}
               {listing.project_name}
             </h3>

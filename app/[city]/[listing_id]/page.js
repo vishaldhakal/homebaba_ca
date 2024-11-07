@@ -37,9 +37,9 @@ export default async function ListingPage({ params }) {
             {/*  <WalkScore
               address={house_detail.project_address}
               projectName={house_detail.project_name}
-            />
+            /> */}
 
-            <LocationMap
+            {/* <LocationMap
               latitude={house_detail.latitute}
               longitude={house_detail.longitude}
               address={house_detail.project_address}

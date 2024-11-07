@@ -86,20 +86,16 @@ export default async function CityPage({ params }) {
           </h2>
         </div>
 
-        {/* Featured Listings Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {featuredListings.data.results.map((listing) => (
-            <ListingCard
-              key={listing.slug}
-              listing={listing}
-              isFeatured={true}
-            />
-          ))}
-        </div>
-
         {/* Selling Projects Section */}
         <div className="mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-x-4 gap-y-5">
+            {featuredListings.data.results.map((listing) => (
+              <ListingCard
+                key={listing.slug}
+                listing={listing}
+                isFeatured={true}
+              />
+            ))}
             {filteredprojects("Selling").map((listing, index) => (
               <ListingCard
                 key={listing.slug}

@@ -3,19 +3,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import ContactModal from "@/components/modals/ContactModal";
-import { Card } from "@/components/ui/card";
+import WalkScore from "@/components/listing/WalkScore";
+import ProjectLocation from "@/components/listing/ProjectLocation";
+import Neighbourhood from "@/components/listing/Neighbourhood";
 import nFormatter from "@/helpers/nFormatter";
-import { Calendar, Building2, MapPin, Home, Tag, Info } from "lucide-react";
 import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const ListingInfo = ({ house_detail }) => {
-  const [expanded, setExpanded] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [requestType, setRequestType] = useState("");
 
@@ -23,34 +17,6 @@ const ListingInfo = ({ house_detail }) => {
     setRequestType(type);
     setShowContactModal(true);
   };
-
-  const features = [
-    {
-      icon: <Building2 className="h-4 w-4" />,
-      label: "Project Type",
-      value: house_detail.project_type,
-    },
-    {
-      icon: <MapPin className="h-4 w-4" />,
-      label: "Location",
-      value: house_detail.project_address,
-    },
-    {
-      icon: <Tag className="h-4 w-4" />,
-      label: "Postal Code",
-      value: house_detail.postalcode,
-    },
-    {
-      icon: <Calendar className="h-4 w-4" />,
-      label: "Occupancy",
-      value: house_detail.occupancy,
-    },
-    {
-      icon: <Home className="h-4 w-4" />,
-      label: "Status",
-      value: house_detail.status,
-    },
-  ];
 
   return (
     <>
@@ -186,65 +152,64 @@ const ListingInfo = ({ house_detail }) => {
               </Button>
             </div>
           </div>
-
-          {/* Description */}
-          <Card className="p-6 mt-10">
-            <h2 className="text-xl font-semibold mb-4">
-              About {house_detail.project_name}
+          <div className="mt-20">
+            <h2 className="text-3xl font-[700] mb-2">
+              Information about {house_detail.project_name} in{" "}
+              {house_detail.city.name}
             </h2>
-            <div
-              className={`prose max-w-none ${!expanded && "line-clamp-3"}`}
-              dangerouslySetInnerHTML={{
-                __html: house_detail.description,
-              }}
-            />
-            <Button
-              variant="link"
-              onClick={() => setExpanded(!expanded)}
-              className="mt-2"
-            >
-              {expanded ? "Show less" : "Read more"}
-            </Button>
-          </Card>
-
-          {/* Additional Info Accordion */}
-          <Card className="p-6">
-            <Accordion type="single" collapsible>
-              <AccordionItem value="deposit">
-                <AccordionTrigger>Deposit Structure</AccordionTrigger>
-                <AccordionContent>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: house_detail.deposit_structure,
-                    }}
-                  />
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="features">
-                <AccordionTrigger>Facts and Features</AccordionTrigger>
-                <AccordionContent>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: house_detail.facts_about,
-                    }}
-                  />
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </Card>
-
-          {/* Developer Info */}
-          <Card className="p-6">
-            <div className="flex items-center gap-4">
-              <Info className="h-8 w-8 text-neutral-500" />
-              <div>
-                <p className="text-sm text-neutral-500">
-                  Project status: {house_detail.status}
-                </p>
-              </div>
+            <div className="text-start text-inside">
+              <p className="mb-8 leading-9">
+                {house_detail.project_name} is a pre construction project
+                developed by {house_detail.developer.name} in the city of{" "}
+                {house_detail.city.name}. The project status is{" "}
+                {house_detail.status} .
+              </p>
+              <div
+                className="iframe-container leading-9 space-y-5"
+                dangerouslySetInnerHTML={{
+                  __html: house_detail.description,
+                }}
+              ></div>
             </div>
-          </Card>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 my-20">
+            <div>
+              <h3 className="text-[1.25rem] text-[red] font-[700] mb-2">
+                Deposit Structure
+              </h3>
+              <div
+                className="iframe-container leading-9 space-y-5"
+                dangerouslySetInnerHTML={{
+                  __html: house_detail.deposit_structure,
+                }}
+              ></div>
+            </div>
+            <div>
+              <h3 className="text-[1.25rem] text-[red] font-[700] mb-2">
+                Facts and Features
+              </h3>
+              <div
+                className="iframe-container leading-9 space-y-5"
+                dangerouslySetInnerHTML={{
+                  __html: house_detail.facts_about,
+                }}
+              ></div>
+            </div>
+          </div>
+          <WalkScore
+            projectName={house_detail.project_name}
+            address={house_detail.project_address}
+          />
+          <ProjectLocation
+            projectName={house_detail.project_name}
+            address={house_detail.project_address}
+            latitude={house_detail.latitute}
+            longitude={house_detail.longitude}
+          />
+          <Neighbourhood
+            projectName={house_detail.project_name}
+            street_map={house_detail.street_map}
+          />
         </div>
       </div>
       <ContactModal

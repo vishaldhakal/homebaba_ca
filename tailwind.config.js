@@ -85,6 +85,7 @@ module.exports = {
       },
       boxShadow: {
         card: "0 .125rem .25rem rgba(0, 0, 0, .075)",
+        featured: "0 .125rem .5rem rgba(10, 160, 250, .2)",
         nav: "0 0 1rem 1px rgb(0 0 0/3%)",
         badge: "0 .5rem 1rem rgba(0,0,0,.15)",
       },

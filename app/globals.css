@@ -157,3 +157,21 @@
 ol{
   list-style-type: decimal;
 }
+
+ul{
+  list-style-type: disc;
+  margin-left: 1rem;
+}
+
+.top-map-responsive {
+  overflow: hidden !important;
+  position: absolute !important;
+  height: 100% !important;
+  border-radius: 5px !important;
+}
+.map-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
