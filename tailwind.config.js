@@ -9,6 +9,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "primary-green": "#EE4266",
+        "light-lime": "#e1f6b2",
+        "primary-red": "#eb7e6c",
+        "medium-black": "#222222",
+        "very-light-gray": "#f9f9f9",
+        "gray-filter": "#e5e7eb",
+        "chat-active-card": "rgba(0, 0, 0, .06)",
+        "chat-hover": "rgba(0,0,0,.04)",
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
