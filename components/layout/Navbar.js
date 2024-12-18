@@ -179,6 +179,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className="lg:hidden flex items-center justify-between gap-4">
         {/* Search toggle for mobile */}
+
         <div className="flex-1 max-w-xs mx-4 me-auto sm:hidden">
           <SearchBar
             padding="py-1 md:py-5 h-9"
@@ -198,6 +199,18 @@ const Navbar = () => {
               <SheetTitle>Menu</SheetTitle>
             </SheetHeader>
             <div className="flex flex-col gap-4 mt-8">
+              <Dropdown
+                name="Rent Resale Properties"
+                // text={isSticky || !isHomePage ? "black" : "white"}
+                options={rentOpts}
+                width="auto"
+              />
+              <Dropdown
+                name="Buy Resale Properties"
+                // text={isSticky || !isHomePage ? "black" : "white"}
+                options={buyOpts}
+                width="auto"
+              />
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
