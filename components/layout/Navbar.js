@@ -12,7 +12,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Link from "next/link";
-
+import { generateURL } from "@/helpers/generateResaleURL";
+import Dropdown from "../resale/Dropdown";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -23,8 +24,98 @@ const Navbar = () => {
     { href: "/contact", label: "Contact" },
   ];
 
+  const buyOpts = [
+    /* {
+      name: "Semi-detached Homes for Sale",
+      link: generateURL({ houseTypeVal: "semiDetached" }),
+    }, */
+    {
+      name: "Semi Detached Homes for Sale",
+      link: generateURL({
+        houseTypeVal: "semi detached",
+        saleLeaseVal: "sale",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Detached Homes for Sale",
+      link: generateURL({
+        houseTypeVal: "detached",
+        saleLeaseVal: "sale",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Townhomes for Sale",
+      link: generateURL({
+        houseTypeVal: "town house",
+        saleLeaseVal: "sale",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Duplex  Homes for Sale",
+      link: generateURL({
+        houseTypeVal: "duplex",
+        saleLeaseVal: "sale",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Triplex Homes for Sale",
+      link: generateURL({
+        houseTypeVal: "triplex",
+        saleLeaseVal: "sale",
+        // cityVal: cityName,
+      }),
+    },
+  ];
+
+  const rentOpts = [
+    {
+      name: "Semi Detached Homes for Lease",
+      link: generateURL({
+        houseTypeVal: "semi detached",
+        saleLeaseVal: "lease",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Detached Homes for Lease",
+      link: generateURL({
+        houseTypeVal: "detached",
+        saleLeaseVal: "lease",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Townhomes for Lease",
+      link: generateURL({
+        houseTypeVal: "town house",
+        saleLeaseVal: "lease",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Duplex  Homes for Lease",
+      link: generateURL({
+        houseTypeVal: "duplex",
+        saleLeaseVal: "lease",
+        // cityVal: cityName,
+      }),
+    },
+    {
+      name: "Triplex Homes for Lease",
+      link: generateURL({
+        houseTypeVal: "triplex",
+        saleLeaseVal: "lease",
+        // cityVal: cityName,
+      }),
+    },
+  ];
+
   return (
-    <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-50 shadow-nav">
+    <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-[999] shadow-nav">
       {/* Logo Section */}
       <div className="flex items-center">
         <span className="text-sm md:text-2xl font-bold">homebaba</span>
@@ -55,6 +146,18 @@ const Navbar = () => {
 
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center space-x-6">
+        <Dropdown
+          name="Rent Resale Properties"
+          // text={isSticky || !isHomePage ? "black" : "white"}
+          options={rentOpts}
+          width="auto"
+        />
+        <Dropdown
+          name="Buy Resale Properties"
+          // text={isSticky || !isHomePage ? "black" : "white"}
+          options={buyOpts}
+          width="auto"
+        />
         {navLinks.map((link) => (
           <Link
             key={link.label}

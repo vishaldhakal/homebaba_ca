@@ -1,4 +1,4 @@
-import { generateURL } from "@/helpers/generateURL";
+import { generateURL } from "@/helpers/generateResaleURL";
 import Link from "next/link";
 import React from "react";
 
@@ -20,15 +20,15 @@ const CityCard = ({ name, imageUrl }) => (
 
 const CanadianCitiesShowcase = () => {
   const cities = [
-    { name: "Toronto", imageUrl: "/images/toronto.jpg" },
-    { name: "Ottawa", imageUrl: "/images/ottawa.jpg" },
+    { name: "Toronto", imageUrl: "/city-images/toronto.jpg" },
+    { name: "Ottawa", imageUrl: "/city-images/ottawa.jpg" },
     // object for these cities
-    { name: "Mississauga", imageUrl: "/images/mississauga.jpg" },
-    { name: "Ajax", imageUrl: "/images/ajax.jpg" },
-    { name: "Barrie", imageUrl: "/images/barrie.jpg" },
-    { name: "Brampton", imageUrl: "/images/brampton.jpg" },
-    { name: "Pickering", imageUrl: "/images/pickering.jpg" },
-    { name: "Hamilton", imageUrl: "/images/hamilton.jpg" },
+    { name: "Mississauga", imageUrl: "/city-images/mississauga.jpg" },
+    { name: "Ajax", imageUrl: "/city-images/ajax.jpg" },
+    { name: "Barrie", imageUrl: "/city-images/barrie.jpg" },
+    { name: "Brampton", imageUrl: "/city-images/brampton.jpg" },
+    { name: "Pickering", imageUrl: "/city-images/pickering.jpg" },
+    { name: "Hamilton", imageUrl: "/city-images/hamilton.jpg" },
     // { name: "Oakville", imageUrl: "/images/oakville.jpg" },
     // Add more cities as needed
   ];

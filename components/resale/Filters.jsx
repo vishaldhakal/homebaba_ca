@@ -851,7 +851,7 @@ const IndividualFilterButton = ({
             key={index}
             className={`mx-[2px] px-1 sm:px-3 py-1 cursor-pointer text-nowrap text-xs sm:text-sm h-[28px] leading-[1.2rem] sm:leading-normal sm:h-[34px] flex justify-content-center align-items-center rounded-full hover:shadow-lg border-[2px] ${
               isActive(option)
-                ? `border-primary-green! bg-primary-green`
+                ? `border-primary-green! text-white bg-primary-green`
                 : "border-gray-filter"
             }`}
             // onClick={() => handleClick(name, option)}
