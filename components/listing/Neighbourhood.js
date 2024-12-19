@@ -16,13 +16,12 @@ const Neighbourhood = ({ projectName, street_map }) => {
       </div>
 
       <div className="bg-white p-1 rounded-md">
-        <div className="mx-5 px-5"></div>
         <div className="map-responsive">
           <iframe
             title={`Google Street Map View for ${projectName}`}
             src={street_map}
-            width="600"
-            height="450"
+            width="650"
+            height="340"
             className="border-0"
             allowFullScreen={true}
           ></iframe>

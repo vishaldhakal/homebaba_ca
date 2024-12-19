@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["api.homebaba.ca"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "api.homebaba.ca",
+      },
+    ],
   },
 };
 

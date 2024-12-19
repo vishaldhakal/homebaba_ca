@@ -210,6 +210,23 @@ const ListingInfo = ({ house_detail }) => {
             projectName={house_detail.project_name}
             street_map={house_detail.street_map}
           />
+          <div className="py-5">
+            <p className="text-xs leading-5 text-gray-500">
+              Note: Homebaba is Canada's one of the largest database of new
+              construction homes. Our comprehensive database is populated by our
+              research and analysis of publicly available data. Homebaba strives
+              for accuracy and we make every effort to verify the information.
+              The information provided on Homebaba.ca may be outdated or
+              inaccurate. Homebaba Inc. is not liable for the use or misuse of
+              the site's information.The information displayed on{" "}
+              <a href="https://homebaba.ca" className="text-primary">
+                homebaba.ca
+              </a>{" "}
+              is for reference only. Please contact a liscenced real estate
+              agent or broker to seek advice or receive updated and accurate
+              information.
+            </p>
+          </div>
         </div>
       </div>
       <ContactModal

@@ -5,8 +5,8 @@ const WalkScore = ({ projectName, address }) => {
   };
 
   return (
-    <div className="py-6 my-8">
-      <div className="mt-10 flex items-center gap-2  mb-6">
+    <div className="pb-6 mb-8">
+      <div className="mb-10 flex items-center gap-2">
         <Image src="/walking.png" alt="Walking icon" height={44} width={44} />
         <h2 className="text-[1.5rem] font-[700]">
           Walk Score for {projectName}
