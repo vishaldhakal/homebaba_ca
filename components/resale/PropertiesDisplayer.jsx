@@ -42,10 +42,10 @@ const PropertiesDisplayer = ({
               if (idx < 2) {
                 return (
                   <DisplayerCard
-                    MLS={property.MLS}
-                    city={property.Municipality}
+                    MLS={property.ListingKey}
+                    city={property.CountyOrParish}
                     address={property.Address}
-                    type={property.TypeOwn1Out}
+                    type={propertyPropertySubType}
                     key={idx}
                     imageGradient={imageGradient}
                   />
@@ -59,10 +59,10 @@ const PropertiesDisplayer = ({
               if (idx >= 2) {
                 return (
                   <DisplayerCard
-                    MLS={property.MLS}
-                    city={property.Municipality}
+                    MLS={property.ListingKey}
+                    city={property.CountyOrParish}
                     address={property.Address}
-                    type={property.TypeOwn1Out}
+                    type={propertyPropertySubType}
                     key={idx}
                     imageGradient={imageGradient}
                   />

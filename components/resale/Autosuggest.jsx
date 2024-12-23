@@ -45,7 +45,7 @@ const Autosuggest = ({
                 <SearchOption
                   suggestion={suggestion}
                   setSearchTerm={setSearchTerm}
-                  key={suggestion?.MLS || suggestion?.city}
+                  key={suggestion?.ListingKey || suggestion?.city}
                 />
               );
             })}
@@ -74,7 +74,7 @@ const Autosuggest = ({
               {[...new Set(recentSearchArray)]?.map((suggestion) => (
                 <SearchOption
                   suggestion={JSON.parse(suggestion)}
-                  key={suggestion?.MLS || suggestion?.city}
+                  key={suggestion?.ListingKey || suggestion?.city}
                 />
               ))}
             </div>
@@ -89,11 +89,11 @@ const SearchOption = ({ suggestion, setSearchTerm }) => {
     if (window) {
       let searchesArray =
         JSON.parse(window.localStorage.getItem("searchValue")) || [];
-      if (suggestion?.MLS) {
+      if (suggestion?.ListingKey) {
         const searchObj = JSON.stringify({
           Address: suggestion?.Address,
-          Municipality: suggestion?.Municipality,
-          MLS: suggestion?.MLS,
+          Municipality: suggestion?.CountyOrParish,
+          MLS: suggestion?.ListingKey,
         });
         searchesArray.unshift(searchObj);
         if (searchesArray.length > 3) searchesArray = searchesArray.slice(0, 3);
@@ -118,10 +118,10 @@ const SearchOption = ({ suggestion, setSearchTerm }) => {
   return (
     <Link
       href={
-        suggestion?.MLS
+        suggestion?.ListingKey
           ? generateURL({
-              listingIDVal: suggestion.MLS,
-              cityVal: suggestion?.Municipality,
+              listingIDVal: suggestion.ListingKey,
+              cityVal: suggestion?.CountyOrParish,
             }) //for a listing
           : generateURL({ cityVal: suggestion?.city })
       }
@@ -130,7 +130,7 @@ const SearchOption = ({ suggestion, setSearchTerm }) => {
         addToLocalStorage();
       }}
       className="w-full py-2 flex justify-center items-center cursor-pointer rounded-lg hover:bg-lime-100 px-2"
-      // key={suggestion?.MLS || suggestion?.city}
+      // key={suggestion?.ListingKey || suggestion?.city}
     >
       <div className="flex justify-between me-3">
         <div className="flex justify-center items-center">

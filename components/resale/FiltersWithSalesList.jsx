@@ -90,7 +90,7 @@ const FiltersWithSalesList = ({
       const hotSales = [];
       const remainingSales = [];
       salesData?.forEach((data) => {
-        if (is24HoursAgo(data.TimestampSql) && hotSales.length < 5) {
+        if (is24HoursAgo(data.OriginalEntryTimestamp) && hotSales.length < 5) {
           hotSales.push(data);
         } else {
           remainingSales.push(data);
@@ -103,20 +103,8 @@ const FiltersWithSalesList = ({
   }, [salesData]);
 
   const _getMergedHouseType = (state) => {
-    let mergedHouseType = [];
-    const selectedHouseType = Object.values(houseType).filter((type) =>
-      state.type.includes(type.name)
-    );
-    for (const type of selectedHouseType) {
-      if (type.value === null) {
-        mergedHouseType = null;
-        break;
-      } else {
-        mergedHouseType.pop();
-        mergedHouseType.push(type.value);
-      }
-      return mergedHouseType;
-    }
+    const selectedHouseType = [state.type];
+    return selectedHouseType;
   };
 
   const fetchFilteredData = async (
@@ -127,7 +115,7 @@ const FiltersWithSalesList = ({
     const payload = {
       saleLease: Object.values(saleLease).find(
         (saleLeaseObj) => saleLeaseObj.name === params.saleLease
-      )?.value,
+      )?.name,
       bed: Object.values(bedCount).find((bedObj) => bedObj.name === params.bed)
         ?.value,
       minListPrice: Number(params.priceRange?.min ?? 0),

@@ -30,6 +30,7 @@ const SalesList = ({
 
   const _getMergedHouseType = (state) => {
     let mergedHouseType = [];
+    console.log(state);
     const selectedHouseType = Object.values(houseType).filter((type) =>
       state.type.includes(type.name)
     );
@@ -93,7 +94,7 @@ const SalesList = ({
         <>
           {salesData.map((curElem, index) => {
             return (
-              <div key={curElem.MLS}>
+              <div key={curElem.ListingKey}>
                 <script
                   key={curElem.Address}
                   type="application/ld+json"

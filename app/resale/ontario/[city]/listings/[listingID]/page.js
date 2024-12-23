@@ -3,7 +3,9 @@ import { residential } from "@/app/_resale-api/routes/fetchRoutes";
 import { generateImageURLs } from "@/helpers/generateImageURLs";
 import capitalizeFirstLetter from "@/helpers/capitalizeFirstLetter";
 import {
-  fetchStatsFromMLS,
+  fetchDataFromMLS,
+  getImageUrls,
+  // fetchStatsFromMLS,
   getSalesData,
 } from "@/app/_resale-api/getSalesData";
 import BookShowingForm from "@/components/resale/BookShowingForm";
@@ -31,20 +33,6 @@ import { houseType } from "@/constant";
 const INITIAL_OFFSET = 0;
 const INITIAL_LIMIT = 4;
 
-const fetchData = async (listingID) => {
-  const options = {
-    method: "GET",
-  };
-  const urlToFetchMLSDetail = residential.properties.replace(
-    "$query",
-    `?$select=MLS='${listingID}'`
-  );
-
-  const resMLSDetail = await fetch(urlToFetchMLSDetail, options);
-  const data = await resMLSDetail.json();
-  return data.results[0];
-};
-
 const page = async ({ params }) => {
   const { city, listingID } = await params;
   const cityValue = city.split("-").join(" ");
@@ -52,59 +40,62 @@ const page = async ({ params }) => {
   const parts = listingID.split("-");
   const lastPart = parts[parts.length - 1];
   const listingIDValue = lastPart;
-  let main_data = await fetchData(listingIDValue); //always a single object inside the array
+  let main_data = await fetchDataFromMLS(listingIDValue); //always a single object inside the array
   const newSalesData = await getSalesData(
     INITIAL_OFFSET,
     INITIAL_LIMIT,
     formattedSlug,
-    main_data?.TypeOwnSrch
+    main_data?.PropertyType
   );
 
-  const statsValue = await fetchStatsFromMLS({
-    listingType: main_data?.TypeOwnSrch,
-    municipality: main_data?.Municipality,
-    saleLease: main_data?.SaleLease,
-  });
-  main_data.avg = statsValue?.avg
-    ? parseFloat(statsValue?.avg?.toFixed(0)).toLocaleString()
-    : null;
-  const imageURLs = generateImageURLs(
-    listingIDValue,
-    parseInt(main_data?.PhotoCount)
-  );
+  // const statsValue = await fetchStatsFromMLS({
+  //   listingType: main_data?.PropertySubType,
+  //   municipality: main_data?.CountyOrParish,
+  //   saleLease: main_data?.TransactionType,
+  // });
+  // main_data.avg = statsValue?.avg
+  //   ? parseFloat(statsValue?.avg?.toFixed(0)).toLocaleString()
+  //   : null;
+  // const imageURLs = generateImageURLs(
+  //   listingIDValue,
+  //   parseInt(main_data?.PhotoCount)
+  // );
   const breadcrumbItems = [
     { label: "Ontario", href: "/ontario" },
     { label: formattedSlug, href: generateURL({ cityVal: cityValue }) },
     {
-      label: `For ${main_data.SaleLease}`,
+      label: `For ${main_data.TransactionType}`,
       href: generateURL({
         cityVal: cityValue,
-        saleLeaseVal: main_data.SaleLease.toLowerCase(),
+        saleLeaseVal: main_data?.TransactionType?.toLowerCase(),
       }),
     },
     {
-      label: `${main_data.Street} ${main_data.StreetName}${" "}
-    ${main_data.StreetAbbreviation}`,
+      label: `${main_data.StreetNumber} ${main_data.StreetName}${" "}
+    ${main_data.StreetSuffix}`,
       href: "#",
     },
   ];
 
-  // const address = `${main_data?.Street} ${main_data?.StreetName} ${main_data?.StreetAbbreviation}`;
+  // const address = `${main_data?.StreetNumber} ${main_data?.StreetName} ${main_data?.StreetSuffix}`;
   const address = [
-    main_data?.Street,
+    main_data?.StreetNumber,
     main_data?.StreetName,
-    main_data?.StreetAbbreviation,
+    main_data?.StreetSuffix,
   ]
     .filter(Boolean)
     .join(" ");
 
+  const imageURLs = await getImageUrls({ MLS: main_data?.ListingKey });
+  console.log(main_data?.ListingKey);
+  console.log(imageURLs);
   // const notes = await getNotes();
   return (
     <>
       <div className="flex justify-center min-[2000px]:max-w-[68%] mx-auto">
         <div>
           <script
-            key={main_data.MLS}
+            key={main_data.ListingKey}
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(CreateSchema(main_data)),
@@ -120,10 +111,12 @@ const page = async ({ params }) => {
                 <Gallery data={imageURLs} />
                 <div className="space-x-2 order-2 sm:order-1 absolute bottom-2 left-2">
                   <button className="bg-[#CC0B0B] p-1 text-white text-xs font-bold mt-1 mb-2 sm:my-0 w-fit-content rounded-md">
-                    <TimeAgo modificationTimestamp={main_data.TimestampSql} />
+                    <TimeAgo
+                      modificationTimestamp={main_data.OriginalEntryTimestamp}
+                    />
                   </button>
                   <button className="bg-[#CC0B0B] p-1 text-white text-xs font-bold mt-1 mb-2 sm:my-0 w-fit-content rounded-md">
-                    <span>{main_data.TypeOwn1Out}</span>
+                    <span>{main_data.PropertySubType}</span>
                   </button>
                 </div>
               </div>
@@ -149,7 +142,7 @@ const page = async ({ params }) => {
                   >
                     <BookShowingForm
                       address={
-                        address + `, ${main_data?.Municipality}, Ontario`
+                        address + `, ${main_data?.CountyOrParish}, Ontario`
                       }
                     ></BookShowingForm>
                   </div>
@@ -162,7 +155,7 @@ const page = async ({ params }) => {
                 <section className="additonal__listing w-full mx-auto mt-24">
                   <PropertyDisplaySection
                     title={`Similar Homes nearby in ${
-                      main_data?.Municipality || "Ontario"
+                      main_data?.CountyOrParish || "Ontario"
                     }`}
                     subtitle={`Check out 100+ listings near this property. Listings updated daily`}
                     exploreAllLink={generateURL({
@@ -173,7 +166,7 @@ const page = async ({ params }) => {
                               houseType[key].value == main_data?.TypeOwnSrch
                           )
                         ]?.name,
-                      saleLeaseVal: main_data?.SaleLease,
+                      saleLeaseVal: main_data?.TransactionType,
                       cityVal: city,
                     })}
                   >
@@ -198,17 +191,17 @@ export async function generateMetadata({ params }, parent) {
   const parts = listingID.split("-");
   const lastPart = parts[parts.length - 1];
   const listingIDValue = lastPart;
-  const main_data = await fetchData(listingIDValue);
-  const imageURLs = generateImageURLs(listingIDValue);
+  const main_data = await fetchDataFromMLS(listingIDValue);
+  const imageURLs = await getImageUrls({ MLS: main_data?.ListingKey });
   return {
     ...parent,
     alternates: {
       canonical: `https://homebaba.ca/listings/${slugGenerator(main_data)}`,
     },
     openGraph: {
-      images: await fetch(imageURLs[0]),
+      images: imageURLs[0],
     },
-    title: `${main_data?.Street} ${main_data?.StreetName} ${main_data?.StreetAbbreviation}`,
-    description: `${main_data?.TypeOwn1Out}.${main_data?.Municipality}`,
+    title: `${main_data?.StreetNumber} ${main_data?.StreetName} ${main_data?.StreetSuffix}`,
+    description: `${main_data?.PropertySubType}.${main_data?.CountyOrParish}`,
   };
 }

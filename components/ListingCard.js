@@ -38,7 +38,7 @@ export default function ListingCard({ city, listing, index }) {
                   background:
                     "linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%)",
                 }}
-                alt={`${listing.name} located at ${listing.street} image`}
+                alt={`${listing.name} located at ${listing.StreetNumber} image`}
               />
             ) : (
               <img

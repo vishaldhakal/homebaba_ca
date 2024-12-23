@@ -15,7 +15,7 @@ const FAQ = ({ main_data }) => {
           title="What type of property is this?"
         >
           <div className="text-[1rem]">
-            This is a {main_data.TypeOwn1Out.toLowerCase()} home.
+            This is a {main_data.PropertySubType.toLowerCase()} home.
           </div>
         </AccordionItem>
         <AccordionItem
@@ -25,8 +25,8 @@ const FAQ = ({ main_data }) => {
           className="text-md"
         >
           <div className="text-[1rem]">
-            This property has {main_data.Bedrooms} bedrooms and{" "}
-            {main_data.Washrooms} bathrooms.
+            This property has {main_data.BedroomsTotal} bedrooms and{" "}
+            {main_data.BathroomsTotalInteger} bathrooms.
           </div>
         </AccordionItem>
         <AccordionItem
@@ -47,8 +47,9 @@ const FAQ = ({ main_data }) => {
         >
           <div className="text-[1rem]">
             This property is located in{" "}
-            {main_data.Community ? main_data.Community : ""} {main_data?.Street}{" "}
-            {main_data?.StreetName} {main_data?.StreetAbbreviation}
+            {main_data.Community ? main_data.Community : ""}{" "}
+            {main_data?.StreetNumber} {main_data?.StreetName}{" "}
+            {main_data?.StreetSuffix}
           </div>
         </AccordionItem>
       </Accordion>

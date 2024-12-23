@@ -1,8 +1,8 @@
 export const slugGenerator = (listing) => {
   const parts = [];
 
-  if (listing?.Street) {
-    parts.push(listing.Street);
+  if (listing?.StreetNumber) {
+    parts.push(listing.StreetNumber);
   }
 
   if (listing?.StreetName) {
@@ -10,12 +10,12 @@ export const slugGenerator = (listing) => {
     parts.push(streetName);
   }
 
-  if (listing?.StreetAbbreviation) {
-    parts.push(listing.StreetAbbreviation);
+  if (listing?.StreetSuffix) {
+    parts.push(listing.StreetSuffix);
   }
 
-  if (listing?.MLS) {
-    parts.push(listing.MLS);
+  if (listing?.ListingKey) {
+    parts.push(listing.ListingKey);
   }
 
   return parts.filter(Boolean).join("-");

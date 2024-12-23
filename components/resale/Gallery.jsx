@@ -30,8 +30,9 @@ const Gallery = ({ data }) => {
           elementClassNames="grid grid-rows-3 sm:grid-rows-2 grid-cols-4 gap-2"
         >
           <>
+            {console.log(data)}
             {data?.length > 0 ? (
-              data.map((url, index) => (
+              data?.map((url, index) => (
                 <Link
                   href={`${url}`}
                   key={index}

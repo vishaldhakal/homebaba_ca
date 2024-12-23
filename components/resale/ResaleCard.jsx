@@ -9,10 +9,12 @@ import { generateURL } from "@/helpers/generateResaleURL";
 import Favorite from "./Favorite";
 import { toggle } from "@nextui-org/react";
 import { isLocalStorageAvailable } from "@/helpers/checkLocalStorageAvailable";
+import { authFetch } from "@/helpers/authFetch";
+import { getImageUrls } from "@/app/_resale-api/getSalesData";
 
 const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
   // const [address, setAddress] = useState("");
-
+  const [imgUrl, setImgUrl] = useState("/no-image.webp");
   const price = Number(curElem.ListPrice).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
@@ -20,12 +22,9 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
   });
 
   const mapObj = {
-    MLS: curElem.MLS,
+    MLS: curElem.ListingKey,
     index: 1,
   };
-  const imgSrc = residential.photos.replace(/MLS|index/gi, function (matched) {
-    return mapObj[matched];
-  });
 
   const handleImageError = (e) => {
     e.target.onerror = null;
@@ -33,16 +32,16 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
   };
 
   // const streetAndMLS = curElem.StreetName
-  //   ? `${curElem.Street}-${curElem.StreetName?.replace(" ", "-")}-${
-  //       curElem.StreetAbbreviation
-  //     }-${curElem.MLS}`
-  //   : curElem.MLS;
+  //   ? `${curElem.StreetNumber}-${curElem.StreetName?.replace(" ", "-")}-${
+  //       curElem.StreetSuffix
+  //     }-${curElem.ListingKey}`
+  //   : curElem.ListingKey;
 
   const streetAndMLS = (() => {
     const parts = [];
 
-    if (curElem.Street) {
-      parts.push(curElem.Street);
+    if (curElem.StreetNumber) {
+      parts.push(curElem.StreetNumber);
     }
 
     if (curElem.StreetName) {
@@ -50,14 +49,13 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
       parts.push(streetName);
     }
 
-    if (curElem.StreetAbbreviation) {
-      parts.push(curElem.StreetAbbreviation);
+    if (curElem.StreetSuffix) {
+      parts.push(curElem.StreetSuffix);
     }
 
-    if (curElem.MLS) {
-      parts.push(curElem.MLS);
+    if (curElem.ListingKey) {
+      parts.push(curElem.ListingKey);
     }
-
     return parts.filter(Boolean).join("-");
   })();
 
@@ -66,10 +64,16 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
   useEffect(() => {
     if (
       window.localStorage.getItem("favorites") &&
-      JSON.parse(window.localStorage.getItem("favorites")).includes(curElem.MLS)
+      JSON.parse(window.localStorage.getItem("favorites")).includes(
+        curElem.ListingKey
+      )
     ) {
       setIsFavorite(true);
     }
+
+    getImageUrls({ MLS: curElem.ListingKey }).then((url) => {
+      setImgUrl(url[0]);
+    });
   });
   const toggleFavorite = (e) => {
     e.stopPropagation();
@@ -79,7 +83,7 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
       const favorites = favoriteValue
         ? JSON.parse(window.localStorage.getItem("favorites"))
         : [];
-      favorites.push(curElem.MLS);
+      favorites.push(curElem.ListingKey);
       const value = JSON.stringify(favorites);
       window.localStorage.setItem("favorites", value);
     } else if (isFavorite && isLocalStorageAvailable()) {
@@ -87,7 +91,7 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
         ? JSON.parse(window.localStorage.getItem("favorites"))
         : [];
       const value = JSON.stringify(
-        favorites.filter((val) => val !== curElem.MLS)
+        favorites.filter((val) => val !== curElem.ListingKey)
       );
       window.localStorage.setItem("favorites", value);
     }
@@ -99,7 +103,7 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
     <section className="relative transition-all duration-200 transform bg-white group rounded-2xl p-0 hover:shadow-lg hover:rounded-t-2xl  hover:-translate-y-1 overflow-hidden">
       <Link
         href={generateURL({
-          cityVal: curElem.Municipality,
+          cityVal: curElem.CountyOrParish,
           listingIDVal: streetAndMLS,
         })}
         className="text-black"
@@ -114,11 +118,11 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
               >
                 <img
                   className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110 rounded-t-2xl"
-                  src={imgSrc}
+                  src={imgUrl}
                   width="900"
                   height="800"
                   alt="property image"
-                  onError={handleImageError}
+                  // onError={handleImageError}
                 />
 
                 {/* <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div> */}
@@ -126,7 +130,7 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
 
               <div className="absolute bottom-3 left-2 flex flex-row z-20">
                 <div className="text-black text-[0.7rem] p-[3px] px-2 shadow-2xl rounded-md mx-1 bg-white flex items-center">
-                  {curElem.TypeOwn1Out}{" "}
+                  {curElem.PropertySubType}{" "}
                 </div>
                 {curElem.ApproxSquareFootage && (
                   <div className="text-black text-[0.7rem] p-[3px] px-2 shadow-2xl rounded-md mx-1 bg-white items-center hidden sm:block">
@@ -151,16 +155,18 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
                   )}
                 </h2>
                 <div className="text-xs font-medium text-[#CC0B0B] mb-1 sm:mb-0">
-                  <TimeAgo modificationTimestamp={curElem.TimestampSql} />
+                  <TimeAgo
+                    modificationTimestamp={curElem.OriginalEntryTimestamp}
+                  />
                 </div>
               </div>
               {/* <p className="mb-0 fs-mine text-limit font-md pb-0">
                   {" "}
-                  MLS® #{curElem.MLS}
+                  MLS® #{curElem.ListingKey}
                 </p> */}
               <span className={`text-black text-xs`}>
                 <div className="flex flex-row justify-start">
-                  {curElem.Bedrooms && (
+                  {curElem.BedroomsTotal && (
                     <div className="flex items-center mr-3">
                       <img
                         src="/resale-card-img/bedrooms.svg"
@@ -168,12 +174,12 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
                         alt="bedrooms"
                       />
                       <span>
-                        {Math.floor(curElem.Bedrooms)}{" "}
+                        {Math.floor(curElem.BedroomsTotal)}{" "}
                         <span className="hidden sm:inline">Bed</span>
                       </span>
                     </div>
                   )}
-                  {curElem.Washrooms && (
+                  {curElem.BathroomsTotalInteger && (
                     <div className="flex items-center mr-3">
                       <img
                         src="/resale-card-img/bathrooms.svg"
@@ -181,12 +187,12 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
                         alt="washrooms"
                       />
                       <span>
-                        {Math.floor(curElem.Washrooms)}{" "}
+                        {Math.floor(curElem.BathroomsTotalInteger)}{" "}
                         <span className="hidden sm:inline">Bath</span>
                       </span>
                     </div>
                   )}
-                  {curElem.GarageSpaces && (
+                  {curElem.GarageParkingSpaces && (
                     <div className="flex items-center mr-3">
                       <img
                         src="/resale-card-img/garage.svg"
@@ -194,7 +200,7 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
                         alt="washrooms"
                       />
                       <span>
-                        {Math.floor(curElem.GarageSpaces)}{" "}
+                        {Math.floor(curElem.GarageParkingSpaces)}{" "}
                         <span className="hidden sm:inline">Garage</span>
                       </span>
                     </div>
@@ -205,17 +211,17 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
                 <div className="text-black">
                   <div className="text-dark text-sm">
                     {curElem.StreetName ? (
-                      `${curElem.Street} ${curElem.StreetName}${" "}
-                    ${curElem.StreetAbbreviation} ${
-                        curElem.Municipality
-                      }, Ontario`
+                      `${curElem.StreetNumber} ${curElem.StreetName}${" "}
+                    ${curElem.StreetSuffix} ${curElem.CountyOrParish}, Ontario`
                     ) : (
                       <span className="p-4"></span>
                     )}
                   </div>
                 </div>
               </div>
-              <div className="text-xs text-gray-600">MLS® {curElem.MLS}</div>
+              <div className="text-xs text-gray-600">
+                MLS® {curElem.ListingKey}
+              </div>
               <div className="text-xs text-gray-600">
                 Listed by {curElem.ListBrokerage}
               </div>
@@ -231,7 +237,7 @@ const ResaleCard = ({ curElem, small = false, showDecreasedPrice = false }) => {
         <Favorite
           isFavorite={isFavorite}
           toggleFavorite={toggleFavorite}
-          MLS={curElem.MLS}
+          MLS={curElem.ListingKey}
           size={4}
         />
       </div>

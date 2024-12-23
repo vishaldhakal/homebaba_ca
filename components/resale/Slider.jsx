@@ -63,7 +63,10 @@ const Slider = ({ data, type }) => {
         ref={scrollRef}
       >
         {data?.map((curElem, index) => {
-          if (curElem.MLS !== "C8446018" && curElem.MLS !== "C8450446") {
+          if (
+            curElem.ListingKey !== "C8446018" &&
+            curElem.ListingKey !== "C8450446"
+          ) {
             //manual removal, to be removed later
             return (
               <div className="my-2 sm:my-0 row-auto" key={index} ref={cardRef}>
