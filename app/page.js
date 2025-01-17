@@ -1,24 +1,32 @@
 import HeroSection from "@/components/HeroSection";
-import TopProjects from "@/components/TopProjects";
-import PropertyTypes from "@/components/PropertyTypes";
-import HomebabaAdvantage from "@/components/HomebabaAdvantage";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import RecentBlogs from "@/components/RecentBlogs";
-import Communities from "@/components/Communities";
 import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
+import StatsSection from "@/components/StatsSection";
+import CitiesSection from "@/components/CitiesSection";
+import Testimonial from "@/components/Testimonial";
+import HomebabaPromo from "@/components/HomebabaPromo";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <TopProjects />
-      <PropertyTypes />
-      <HomebabaAdvantage />
-      <Communities />
+      <FeaturedProjects />
+      <StatsSection />
+      <CitiesSection />
+      <Testimonial
+        testimonialText="The deal I just closed was with a buyer from Homebaba—the very first person I connected with. I lead a team of six and have made Homebaba an essential tool for everyone on my team."
+        authorName="Angela Yang"
+        authorPosition="Broker of record"
+        authorRole="Anchor New Homes Inc. Brokerage"
+        companyLogo="/testmonials/A.png"
+      />
+      <HomebabaPromo />
       <RecentBlogs />
       <div className="flex flex-col items-center mb-8 md:mb-12">
         <Image
-          src="/contact-person.png"
+          src="/contact-bottom-2.png"
           alt="Real Estate Agent"
           width={300}
           height={300}

@@ -1,12 +1,12 @@
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import NewsLetter from "@/components/NewsLetter";
 import NextTopLoader from "nextjs-toploader";
 import "leaflet/dist/leaflet.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -25,7 +25,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
+      <body className={`${plusJakartaSans.className}`}>
         <NextTopLoader color="red" height={3} />
         <Navbar />
         {children}

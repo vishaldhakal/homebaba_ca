@@ -1,4 +1,5 @@
 import React from "react";
+import Heading from "@/components/design/Heading";
 
 const properties = [
   {
@@ -56,13 +57,15 @@ const PropertyCard = ({ property }) => (
 
 const TopProjects = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2] text-center mb-3">
-        Top 10 GTA Projects
-      </h2>
-      <p className="text-center text-sm underline mb-12 underline-offset-4">
-        Selected by homes expert at homebaba.
-      </p>
+    <div className="container mx-auto px-4 py-8 mt-10">
+      <Heading
+        subtitle="Selected by homes expert at homebaba."
+        align="center"
+        className="mb-3"
+      >
+        Most Anticipated Projects
+      </Heading>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
         {properties.map((property, index) => (
           <PropertyCard key={index} property={property} />

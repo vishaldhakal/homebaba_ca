@@ -20,7 +20,7 @@ const SearchBar = ({
   width = "w-[700px]",
   className,
   padding = "py-4",
-  shadow = "shadow-2xl",
+  shadow = "shadow-none",
 }) => {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -110,12 +110,23 @@ const SearchBar = ({
   };
 
   return (
-    <div className={cn("relative mx-auto", width, className)} ref={commandRef}>
-      <Command className={cn("rounded-t-lg border", shadow)}>
+    <div
+      className={cn("relative bg-white mx-auto", width, className)}
+      ref={commandRef}
+    >
+      <Command
+        className={cn(
+          "rounded-xl border border-black focus-within:shadow-none",
+          shadow
+        )}
+      >
         <div className="w-full">
           <CommandInput
             placeholder="search by city, project name, or developer..."
-            className={cn("w-full cmd-input", padding)}
+            className={cn(
+              "w-full placeholder:text-center placeholder:text-xs placeholder:text-gray-500 rounded-xl cmd-input",
+              padding
+            )}
             onFocus={() => setOpen(true)}
             value={searchQuery}
             onValueChange={setSearchQuery}
@@ -124,8 +135,8 @@ const SearchBar = ({
         {open && (
           <CommandList
             className={cn(
-              "absolute w-full bg-white rounded-b-lg border-x border-b top-[96%]",
-              "left-0 shadow-lg mt-[2px] z-[100] max-h-[300px] overflow-y-auto",
+              "absolute w-full bg-white rounded-xl border-x border-b top-[96%]",
+              "left-0 shadow-lg mt-[7px] z-[100] max-h-[300px] overflow-y-auto",
               "min-w-[250px]"
             )}
           >

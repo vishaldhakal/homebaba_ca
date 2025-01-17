@@ -48,7 +48,7 @@ const Footer = () => {
           <div className="flex items-center justify-center md:justify-start mb-5">
             <span className="text-3xl md:text-4xl font-bold">homebaba</span>
             <Image
-              src="/maple-leaf.svg"
+              src="/canadaleaf.svg"
               alt="Maple Leaf Icon for Logo"
               width={30}
               height={30}

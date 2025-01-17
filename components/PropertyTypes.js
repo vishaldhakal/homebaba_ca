@@ -1,89 +1,81 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 const propertyTypes = [
   {
     title: "Townhomes",
     icon: "🏘️",
-    href: "/properties/townhomes",
-    quantity: 100,
+    filter: "Townhomes",
+    quantity: 300,
   },
   {
     title: "Condos",
     icon: "🏬",
-    href: "/properties/condos",
-    quantity: 400,
-  },
-  {
-    title: "Semi Detached",
-    icon: "🏡",
-    href: "/properties/semi-detached",
-    quantity: 300,
+    filter: "Condos",
+    quantity: 600,
   },
   {
     title: "Detached",
     icon: "🏠",
-    href: "/properties/detached",
-    quantity: 100,
+    filter: "Detached",
+    quantity: 200,
   },
   {
     title: "Featured",
     icon: "⭐",
-    href: "/properties/featured",
-    quantity: 10,
+    filter: "Featured",
+    quantity: 50,
   },
 ];
 
 const PropertyTypes = () => {
-  return (
-    <section className="container mx-auto px-6 md:px-8 py-16 md:py-20 overflow-x-hidden">
-      <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]  text-center mb-5">
-        Townhomes, Singles & Condos for your family
-      </h2>
+  const router = useRouter();
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-5xl mx-auto">
-        {propertyTypes.map((property, index) => (
-          <Link
-            key={property.title}
-            href={property.href}
-            className={`group ${
-              index === propertyTypes.length - 1 &&
-              propertyTypes.length % 2 === 1
-                ? "col-span-full sm:col-auto flex justify-center sm:justify-start"
-                : ""
-            }`}
-          >
+  const handlePropertyClick = (filter) => {
+    router.push(`/?filter=${filter}`, undefined, { shallow: true }).then(() => {
+      setTimeout(() => {
+        const listingsSection = document.getElementById("featured-listings");
+        if (listingsSection) {
+          console.log(listingsSection);
+          const headerOffset = 80;
+          const elementPosition = listingsSection.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
+    });
+  };
+
+  return (
+    <section className="overflow-x-hidden">
+      <div className="container">
+        <div className="grid grid-cols-4 gap-0 max-w-[450px] mx-auto px-0">
+          {propertyTypes.map((property) => (
             <div
-              className={`
-               relative overflow-hidden rounded-xl h-[100px] md:h-[140px]
-              bg-slate-50 
-              transition-all duration-300
-              group-hover:shadow-sm group-hover:scale-105
-              flex flex-col items-center justify-center
-              p-2
-              w-full max-w-[180px]
-            `}
+              key={property.title}
+              className="rounded-2xl py-2 px-0 text-center flex flex-col items-center justify-center transition-all duration-300 cursor-pointer min-h-[140px] sm:min-h-0 sm:p-4 sm:px-2"
+              onClick={() => handlePropertyClick(property.filter)}
             >
-              <div
-                className="text-3xl md:text-5xl mb-2 md:mb-4
-                transition-transform duration-300 
-                group-hover:scale-110"
-              >
-                {property.icon}
+              <div className="text-[2.5rem] sm:text-[2rem] transition-transform duration-300 flex items-center justify-center w-full h-[60px] sm:h-[50px] mb-0 hover:scale-110">
+                <span>{property.icon}</span>
               </div>
-              <h3
-                className="text-[11px] md:text-sm font-semibold text-center
-                transition-all duration-300
-                group-hover:text-slate-900
-                group-hover:transform group-hover:-translate-y-1"
-              >
-                {property.title}
-              </h3>
-              <p className="text-[9px] md:text-xs text-center text-slate-500">
-                {property.quantity} properties
-              </p>
+              <div className="flex flex-col items-center justify-center gap-1">
+                <h3 className="text-[0.775rem] sm:text-[0.7rem] font-semibold text-[#212529] m-0 text-center w-full">
+                  {property.title}
+                </h3>
+                <p className="text-[0.75rem] sm:text-[0.5rem] text-gray-600 m-0 text-center w-full">
+                  {property.quantity} projects
+                </p>
+              </div>
             </div>
-          </Link>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
