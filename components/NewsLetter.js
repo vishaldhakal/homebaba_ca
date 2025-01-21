@@ -1,17 +1,35 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const NewsLetter = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
+  const pathname = usePathname();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Add your newsletter subscription logic here
+      const response = await fetch("https://api.homebaba.ca/api/newsletter/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          page_url: pathname,
+          city: pathname.split("/")[1] || "toronto" // Default to toronto if no city in URL
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to subscribe");
+      }
+
       setStatus("success");
       setEmail("");
     } catch (error) {
+      console.error("Newsletter subscription error:", error);
       setStatus("error");
     }
   };
@@ -73,12 +91,12 @@ const NewsLetter = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="flex-1 min-w-0 px-4 py-3.5 text-base text-gray-900 placeholder-gray-500 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent shadow-sm"
+              className="flex-1 min-w-0 px-4 py-3.5 text-base text-gray-900 placeholder-gray-500 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent shadow-sm"
               required
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all duration-200 shadow-sm hover:shadow-md"
+              className="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-2xl text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Notify me
             </button>

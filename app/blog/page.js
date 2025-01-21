@@ -1,29 +1,54 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, Clock } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
-const RecentBlogs = ({ blogs }) => {
+const categories = [
+  { name: "News", slug: "news" },
+  { name: "Insights", slug: "insights" },
+  { name: "Thorold", slug: "thorold" },
+  { name: "Innisfil", slug: "innisfil" },
+  { name: "Grimsby", slug: "grimsby" },
+  { name: "Mississauga", slug: "mississauga" },
+  { name: "Calgary", slug: "calgary" }
+];
+
+async function getBlogs() {
+  try {
+    const res = await fetch('https://api.homebaba.ca/api/posts/', {
+      next: { revalidate: 3600 },
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!res.ok) {
+      return { results: [] };
+    }
+    
+    const data = await res.json();
+    return data.data || { results: [] };
+  } catch (error) {
+    return { results: [] };
+  }
+}
+
+export default function BlogListing() {
+  const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [blogData, setBlogData] = useState([]);
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (blogs?.results) {
-      setBlogData(blogs.results.slice(0, 4));
+    getBlogs().then((data) => {
+      setBlogs(data.results || []);
       setIsLoading(false);
-    }
-  }, [blogs]);
+    });
+  }, []);
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -43,20 +68,45 @@ const RecentBlogs = ({ blogs }) => {
   };
 
   return (
-    <section className="py-12 px-4 max-w-7xl mx-auto mt-10">
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      {/* Categories Navigation */}
+      <nav className="mb-12 overflow-x-auto">
+        <ul className="flex justify-start md:justify-start items-center min-w-max px-4">
+          {categories.map((category, index) => {
+            const isActive = pathname === `/blog/category/${category.slug}` || 
+                           (pathname === '/blog' && category.slug === 'news');
+            return (
+              <li key={category.slug} className="flex items-center">
+                <Link 
+                  href={`/blog/category/${category.slug}`}
+                  className={`
+                    relative py-1 text-base font-medium transition-colors duration-200
+                    ${isActive 
+                      ? 'text-gray-900 border-b border-gray-900' 
+                      : 'text-gray-600 hover:text-gray-900'}
+                  `}
+                >
+                  {category.name}
+                </Link>
+                {index < categories.length - 1 && (
+                  <span className="mx-4 text-gray-300">•</span>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
       <div className="text-center mb-12">
-        <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]">
-          The Homebaba Insights
-        </h2>
-        <p className="text-gray-600 text-sm md:text-lg">
-          Read our latest articles and never miss out on the latest trends in
-          the real estate industry
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">Our Blog</h1>
+        <p className="text-gray-600 text-lg">
+          Stay updated with the latest insights in real estate
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {!isLoading && blogData.length > 0 ? (
-          blogData.map((blog) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {!isLoading ? (
+          blogs.map((blog) => (
             <Link href={`/blog/${blog.slug}`} key={blog.slug}>
               <Card className="group h-full hover:shadow-lg transition-all duration-300 overflow-hidden border-none shadow-xl rounded-xl">
                 <div className="relative h-48 overflow-hidden rounded-t-xl">
@@ -72,7 +122,7 @@ const RecentBlogs = ({ blogs }) => {
                 </div>
 
                 <CardHeader className="mb-0 pb-2 px-3">
-                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors leading-7 text-md">
+                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors leading-7 text-xl">
                     {blog.title}
                   </CardTitle>
                 </CardHeader>
@@ -97,8 +147,7 @@ const RecentBlogs = ({ blogs }) => {
             </Link>
           ))
         ) : (
-          // Loading state - show skeleton cards
-          [...Array(4)].map((_, index) => (
+          [...Array(6)].map((_, index) => (
             <Card key={index} className="h-full border-none shadow-xl animate-pulse rounded-xl">
               <div className="relative h-48 bg-gray-200 rounded-t-xl"></div>
               <CardHeader className="mb-0 pb-2 px-3">
@@ -120,8 +169,6 @@ const RecentBlogs = ({ blogs }) => {
           ))
         )}
       </div>
-    </section>
+    </div>
   );
-};
-
-export default RecentBlogs;
+}

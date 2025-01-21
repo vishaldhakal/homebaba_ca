@@ -7,8 +7,31 @@ import StatsSection from "@/components/StatsSection";
 import CitiesSection from "@/components/CitiesSection";
 import Testimonial from "@/components/Testimonial";
 import HomebabaPromo from "@/components/HomebabaPromo";
+import CallToAction from "@/components/CallToAction";
 
-export default function Home() {
+async function getBlogs() {
+  try {
+    const res = await fetch('https://api.homebaba.ca/api/posts/', { 
+      next: { revalidate: 3600 },
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!res.ok) {
+      return { results: [] };
+    }
+    
+    const data = await res.json();
+    return data.data || { results: [] };
+  } catch (error) {
+    return { results: [] };
+  }
+}
+
+export default async function Home() {
+  const blogsData = await getBlogs();
+  
   return (
     <>
       <HeroSection />
@@ -23,7 +46,8 @@ export default function Home() {
         companyLogo="/testmonials/A.png"
       />
       <HomebabaPromo />
-      <RecentBlogs />
+      <CallToAction />
+      <RecentBlogs blogs={blogsData} key={Date.now()} />
       <div className="flex flex-col items-center mb-8 md:mb-12">
         <Image
           src="/contact-bottom-2.png"
