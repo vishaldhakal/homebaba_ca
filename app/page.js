@@ -11,17 +11,17 @@ import CallToAction from "@/components/CallToAction";
 
 async function getBlogs() {
   try {
-    const res = await fetch('https://api.homebaba.ca/api/posts/', { 
+    const res = await fetch("https://api.homebaba.ca/api/posts/", {
       next: { revalidate: 3600 },
       headers: {
-        'Accept': 'application/json'
-      }
+        Accept: "application/json",
+      },
     });
-    
+
     if (!res.ok) {
       return { results: [] };
     }
-    
+
     const data = await res.json();
     return data.data || { results: [] };
   } catch (error) {
@@ -31,7 +31,7 @@ async function getBlogs() {
 
 export default async function Home() {
   const blogsData = await getBlogs();
-  
+
   return (
     <>
       <HeroSection />
@@ -62,6 +62,7 @@ export default async function Home() {
         <p className="text-gray-600 text-center text-sm md:text-base">
           Don't know where to start? Contact Homebaba now!
         </p>
+        {/* <p></p> */}
       </div>
       <ContactForm />
     </>
