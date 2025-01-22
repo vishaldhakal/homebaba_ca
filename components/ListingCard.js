@@ -6,7 +6,7 @@ export default function ListingCard({ city, listing, index }) {
     if (parseInt(prii) == 0) {
       return `Pricing not available`;
     } else {
-      return `Starting from low $${nFormatter(prii, 2)}`;
+      return `Starting from  $${nFormatter(prii, 2)}`;
     }
   }
 
@@ -14,7 +14,7 @@ export default function ListingCard({ city, listing, index }) {
     <>
       <div
         className={`rounded-lg my-3 md:my-0 ${
-          listing.is_featured ? "md:col-span-2 shadow-featured" : "shadow-card"
+          listing.is_featured ? "shadow-featured" : "shadow-card"
         }`}
       >
         <div

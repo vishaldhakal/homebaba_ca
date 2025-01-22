@@ -5,6 +5,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import NewsLetter from "@/components/NewsLetter";
 import NextTopLoader from "nextjs-toploader";
 import "leaflet/dist/leaflet.css";
+import { Toaster } from 'react-hot-toast';
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       <body className={`${plusJakartaSans.className}`}>
         <NextTopLoader color="red" height={3} />
         <Navbar />
+        <Toaster position="top-center" />
         {children}
         <NewsLetter />
         <Footer />

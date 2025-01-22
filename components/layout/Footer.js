@@ -132,21 +132,21 @@ const Footer = () => {
 
         {/* Social Links */}
         <div className="py-5 flex flex-col items-center">
-          <div className="grid grid-cols-6 gap-4 w-1/3">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 sm:gap-4 w-full sm:w-[400px] md:w-[500px] max-w-[600px] px-4">
             {socialLinks.map((social, index) => (
               <a
                 key={index}
                 href={social.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-center"
+                className="flex justify-center items-center hover:opacity-80 transition-opacity"
               >
                 <Image
                   src={social.icon}
-                  alt=""
-                  width={24}
-                  height={24}
-                  className="w-6 h-6 mx-auto"
+                  alt={`${social.link.split('.com/')[1]} social link`}
+                  width={28}
+                  height={28}
+                  className="w-7 h-7 sm:w-6 sm:h-6"
                 />
               </a>
             ))}

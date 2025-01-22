@@ -2,19 +2,90 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import ContactModal from "@/components/modals/ContactModal";
+import RequestModal from "@/components/RequestModal";
 import WalkScore from "@/components/listing/WalkScore";
 import ProjectLocation from "@/components/listing/ProjectLocation";
 import Neighbourhood from "@/components/listing/Neighbourhood";
 import nFormatter from "@/helpers/nFormatter";
 import { useState } from "react";
+import axios from "axios";
+import swal from "sweetalert";
 
 const ListingInfo = ({ house_detail }) => {
   const [showContactModal, setShowContactModal] = useState(false);
   const [requestType, setRequestType] = useState("");
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  const [credentials, setCredentials] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    realtor: "No",
+    project_namee: house_detail.project_name || "Pre construction Homes",
+    cityy: house_detail.city?.name || "Ontario",
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setCredentials((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let form_data = new FormData();
+      form_data.append("name", credentials.name);
+      form_data.append("email", credentials.email);
+      form_data.append("phone", credentials.phone);
+      form_data.append("message", credentials.message);
+      form_data.append("realtor", credentials.realtor);
+      form_data.append("proj_name", credentials.project_namee);
+      form_data.append("cityy", credentials.cityy);
+
+      let url = "https://api.homebaba.ca/api/contact-form-submit/";
+      await axios.post(url, form_data, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+        mode: "no-cors",
+      });
+
+      await swal(
+        `Thank You, ${credentials.name}`,
+        "Please expect an email or call from us shortly",
+        "success"
+      );
+
+      setCredentials({
+        ...credentials,
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+      setShowContactModal(false);
+    } catch (error) {
+      console.error(error);
+      await swal("Message Failed", "Cannot send your message", "error");
+    }
+  };
 
   const handleRequestInfo = (type) => {
     setRequestType(type);
+    const messageMap = {
+      'floor-plans': `Please send me additional floor plans information about ${house_detail.project_name}. Thank you`,
+      'parking-price': `Please send me additional parking price information about ${house_detail.project_name}. Thank you`,
+      'locker-price': `Please send me additional locker price information about ${house_detail.project_name}. Thank you`,
+      'maintenance-fee': `Please send me additional maintenance fee information about ${house_detail.project_name}. Thank you`
+    };
+    
+    setCredentials(prev => ({
+      ...prev,
+      message: messageMap[type]
+    }));
     setShowContactModal(true);
   };
 
@@ -100,81 +171,74 @@ const ListingInfo = ({ house_detail }) => {
               <span>{house_detail.occupancy}</span>
             </div>
 
-            <div className="flex items-center gap-2 mt-4">
-              <span className="font-semibold text-base me-2">
-                Number Of Floor Plans:
-              </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-[600px]">
               <Button
-                variant="link"
-                onClick={() => handleRequestInfo("floor plans")}
-                className="text-blue-600 hover:text-blue-800 py-0 my-0 h-fit px-0"
+                variant="outline"
+                onClick={() => handleRequestInfo("floor-plans")}
+                className="text-blue-600 hover:text-blue-800 border border-blue-600 hover:bg-blue-50 text-sm py-2 h-auto rounded-[10px]"
               >
-                Request Number of Floor Plans
+                Request Floor Plans
               </Button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-base me-2">
-                Parking Price:
-              </span>
               <Button
-                variant="link"
-                onClick={() => handleRequestInfo("parking price")}
-                className="text-blue-600 hover:text-blue-800 py-0 my-0 h-fit px-0"
+                variant="outline"
+                onClick={() => handleRequestInfo("parking-price")}
+                className="text-blue-600 hover:text-blue-800 border border-blue-600 hover:bg-blue-50 text-sm py-2 h-auto rounded-[10px]"
               >
                 Request Parking Price
               </Button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-base me-2">
-                Locker Price:
-              </span>
               <Button
-                variant="link"
-                onClick={() => handleRequestInfo("locker price")}
-                className="text-blue-600 hover:text-blue-800 py-0 my-0 h-fit px-0"
+                variant="outline"
+                onClick={() => handleRequestInfo("locker-price")}
+                className="text-blue-600 hover:text-blue-800 border border-blue-600 hover:bg-blue-50 text-sm py-2 h-auto rounded-[10px]"
               >
                 Request Locker Price
               </Button>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-base me-2">
-                Estimated Maintenance Fee:
-              </span>
               <Button
-                variant="link"
-                onClick={() => handleRequestInfo("maintenance fee")}
-                className="text-blue-600 hover:text-blue-800 py-0 my-0 h-fit px-0"
+                variant="outline"
+                onClick={() => handleRequestInfo("maintenance-fee")}
+                className="text-blue-600 hover:text-blue-800 border border-blue-600 hover:bg-blue-50 text-sm py-2 h-auto rounded-[10px]"
               >
-                Request Est Maintenance
+                Request Est. Maintenance
               </Button>
             </div>
           </div>
           <div className="mt-20">
             <h2 className="text-3xl font-[700] mb-2">
-              Information about {house_detail.project_name} in{" "}
+              Project Details: {house_detail.project_name} in{" "}
               {house_detail.city.name}
             </h2>
             <div className="text-start text-inside">
-              <p className="mb-8 leading-9">
-                {house_detail.project_name} is a pre construction project
-                developed by {house_detail.developer.name} in the city of{" "}
-                {house_detail.city.name}. The project status is{" "}
-                {house_detail.status} .
-              </p>
               <div
-                className="iframe-container leading-9 space-y-5"
+                className={`prose max-w-none ${!showFullDescription && 'line-clamp-3'}`}
                 dangerouslySetInnerHTML={{
                   __html: house_detail.description,
                 }}
               ></div>
+              <button 
+                onClick={() => setShowFullDescription(!showFullDescription)}
+                className="text-blue-600 hover:text-blue-800 font-medium mt-2 flex items-center gap-1"
+              >
+                {showFullDescription ? (
+                  <>
+                    Show Less
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    Show More
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </>
+                )}
+              </button>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 my-20">
             <div>
-              <h3 className="text-[1.25rem] text-[red] font-[700] mb-2">
+              <h3 className="text-[1.25rem] text-[black] font-[700] mb-2">
                 Deposit Structure
               </h3>
               <div
@@ -185,7 +249,7 @@ const ListingInfo = ({ house_detail }) => {
               ></div>
             </div>
             <div>
-              <h3 className="text-[1.25rem] text-[red] font-[700] mb-2">
+              <h3 className="text-[1.25rem] text-[black] font-[700] mb-2">
                 Facts and Features
               </h3>
               <div
@@ -229,12 +293,17 @@ const ListingInfo = ({ house_detail }) => {
           </div>
         </div>
       </div>
-      <ContactModal
-        isOpen={showContactModal}
-        onClose={() => setShowContactModal(false)}
-        projectName={house_detail.project_name}
-        requestType={requestType}
-      />
+
+      {showContactModal && (
+        <RequestModal
+          requestType={requestType}
+          credentials={credentials}
+          handleChange={handleChange}
+          handleFormSubmit={handleFormSubmit}
+          handleCloseModal={() => setShowContactModal(false)}
+          projectName={house_detail.project_name}
+        />
+      )}
     </>
   );
 };

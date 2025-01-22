@@ -2,6 +2,7 @@ import Gallery from "@/components/listing/Gallery";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SocialMediaShare from "@/components/SocialMediaShare";
 import ListingInfo from "@/components/listing/ListingInfo";
+import SidebarContact from "@/components/listing/SidebarContact";
 
 /* import ContactForm from "@/components/listing/ContactForm";
 import RelatedListings from "@/components/listing/RelatedListings";
@@ -29,29 +30,27 @@ export default async function ListingPage({ params }) {
       <div className="container mx-auto px-4 py-4">
         <Breadcrumbs />
         <Gallery images={images} projectName={house_detail.project_name} />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8">
           <div className="col-span-2">
             <SocialMediaShare />
             <ListingInfo house_detail={house_detail} city={params.city} />
-
-            {/*  <WalkScore
-              address={house_detail.project_address}
-              projectName={house_detail.project_name}
-            /> */}
-
-            {/* <LocationMap
-              latitude={house_detail.latitute}
-              longitude={house_detail.longitude}
-              address={house_detail.project_address}
-              projectName={house_detail.project_name}
-            /> */}
           </div>
 
-          <div className="col-span-1">
-            {/* <ContactForm
-              partnerData={partnerdata}
-              projectName={house_detail.project_name}
-            /> */}
+          <div className="col-span-1 flex flex-col items-center">
+            <img 
+              src="/reg.png" 
+              alt="Register Now" 
+              className="w-[200px] sm:w-[250px] mb-6" 
+            />
+            <div className="sticky top-24 w-full flex justify-center">
+              <div className="w-[95%] max-w-[409px]">
+                <SidebarContact 
+                  projectName={house_detail.project_name}
+                  city={params.city}
+                  partnerdata={partnerdata}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
