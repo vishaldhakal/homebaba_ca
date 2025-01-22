@@ -46,7 +46,7 @@ function MapController({ center, markers }) {
   return null;
 }
 
-export default function Map({ citydetail, datas, heightt, onClose }) {
+export default function Map({ citydetail, datas = [], heightt, onClose }) {
   const [selected, setSelected] = useState(null);
 
   const center = useMemo(
@@ -64,8 +64,10 @@ export default function Map({ citydetail, datas, heightt, onClose }) {
   );
 
   const markers = useMemo(
-    () =>
-      datas.map((no) => {
+    () => {
+      if (!Array.isArray(datas)) return [];
+      
+      return datas.map((no) => {
         const lat = parseFloat(no.latitute);
         const lng = parseFloat(no.longitude);
         // Skip invalid coordinates
@@ -76,7 +78,8 @@ export default function Map({ citydetail, datas, heightt, onClose }) {
           price: nFormatter(no.price_starting_from, 2),
           data: no,
         };
-      }).filter(Boolean), // Remove null entries
+      }).filter(Boolean); // Remove null entries
+    },
     [datas]
   );
 
