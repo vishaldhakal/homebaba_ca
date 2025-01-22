@@ -164,7 +164,7 @@ export default function CityPage({ params }) {
           )}
         </div>
 
-        {/* Upcoming Projects Section */}
+        {/* Upcoming Projects Secstion */}
         {filteredprojects("Upcoming").length > 0 && (
           <div className="mt-20">
             <h2 className="text-2xl font-bold mb-4">
