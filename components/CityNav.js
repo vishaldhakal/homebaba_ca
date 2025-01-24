@@ -77,7 +77,7 @@ const CityNav = () => {
               <Link
                 key={city.city_name}
                 href={`/${city.city_name}`}
-                className="whitespace-nowrap px-5 rounded-md text-[1rem] pt-5 pb-4 font-medium text-gray-700 transition-colors bg-white shadow-sm border-b-4 border-white hover:border-black"
+                className="whitespace-nowrap px-5 text-[1rem] pt-5 pb-4 font-medium text-gray-700 transition-colors bg-white shadow-sm border-b-4 border-white hover:border-black rounded-[5px]"
               >
                 {city.city_name_cap}
               </Link>

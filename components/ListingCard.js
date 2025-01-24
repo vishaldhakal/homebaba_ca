@@ -6,24 +6,20 @@ export default function ListingCard({ city, listing, index }) {
     if (parseInt(prii) == 0) {
       return `Pricing not available`;
     } else {
-      return `Starting from  $${nFormatter(prii, 2)}`;
+      return `Starting from low $${nFormatter(prii, 2)}`;
     }
   }
 
   return (
     <>
       <div
-        className={`rounded-lg my-3 md:my-0 ${
-          listing.is_featured ? "shadow-featured" : "shadow-card"
+        className={`rounded-xl my-3 md:my-0 ${
+          listing.is_featured
+            ? "md:col-span-2 shadow-featured border-blue-500 border"
+            : "shadow-card"
         }`}
       >
-        <div
-          className={`relative ${
-            listing.is_featured
-              ? "border-blue-500 border-t border-l border-r rounded-t-lg"
-              : "border-0"
-          }`}
-        >
+        <div className={`relative`}>
           <Link
             href={`/${city}/${listing.slug}`}
             className="block h-[250px]"
@@ -33,7 +29,7 @@ export default function ListingCard({ city, listing, index }) {
               <img
                 loading="lazy"
                 src={listing.images[0].split(",")[0]}
-                className="w-full h-[250px] rounded-t-lg object-cover"
+                className="w-full h-[250px] rounded-t-xl object-cover"
                 style={{
                   background:
                     "linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%)",
@@ -44,7 +40,7 @@ export default function ListingCard({ city, listing, index }) {
               <img
                 loading="lazy"
                 src="/noimage.webp"
-                className="w-full h-auto rounded-t-lg object-cover"
+                className="w-full h-auto rounded-t-xl object-cover"
                 style={{
                   background:
                     "linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%)",
@@ -79,11 +75,7 @@ export default function ListingCard({ city, listing, index }) {
         </div>
         <Link
           href={`/${city}/${listing.slug}`}
-          className={`block p-4 bg-white shadow-md rounded-b-lg no-underline ${
-            listing.is_featured
-              ? "border-blue-500 border-b border-l border-r"
-              : "border-0"
-          }`}
+          className={`block p-4 bg-white shadow-md rounded-b-xl no-underline`}
           target="_blank"
         >
           <div className="space-y-1">

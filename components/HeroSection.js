@@ -1,7 +1,7 @@
 import Image from "next/image";
 import PropertyTypes from "@/components/PropertyTypes";
 import SearchBar from "@/components/SearchBar";
-
+import Link from "next/link";
 const popularCities = [
   "Toronto",
   "Calgary",
@@ -37,12 +37,13 @@ const HeroSection = () => {
             />
             <div className="flex flex-wrap gap-5 justify-center mt-4">
               {popularCities.map((city) => (
-                <div
+                <Link
+                  href={`/${city.toLowerCase()}`}
                   key={city}
                   className="text-xs font-normal text-black underline decoration-1 decoration-black underline-offset-4"
                 >
                   {city}
-                </div>
+                </Link>
               ))}
             </div>
           </div>

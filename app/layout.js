@@ -5,7 +5,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import NewsLetter from "@/components/NewsLetter";
 import NextTopLoader from "nextjs-toploader";
 import "leaflet/dist/leaflet.css";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
 

@@ -1,5 +1,12 @@
 "use client";
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+  useMap,
+} from "react-leaflet";
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import nFormatter from "@/helpers/nFormatter";
@@ -25,10 +32,10 @@ const createCustomIcon = (price) => {
 
   return L.divIcon({
     html: iconHtml,
-    className: 'custom-marker',
+    className: "custom-marker",
     iconSize: [24, 24],
     iconAnchor: [12, 24],
-    popupAnchor: [0, -24]
+    popupAnchor: [0, -24],
   });
 };
 
@@ -48,26 +55,24 @@ function MapController({ center, markers }) {
 
 export default function Map({ citydetail, datas = [], heightt, onClose }) {
   const [selected, setSelected] = useState(null);
+  const [showMap, setShowMap] = useState(true);
 
-  const center = useMemo(
-    () => {
-      if (!citydetail || !citydetail.centerLat || !citydetail.centerLong) {
-        // Default to Toronto coordinates if no center provided
-        return { lat: 43.6532, lng: -79.3832 };
-      }
-      return {
-        lat: parseFloat(citydetail.centerLat),
-        lng: parseFloat(citydetail.centerLong),
-      };
-    },
-    [citydetail]
-  );
+  const center = useMemo(() => {
+    if (!citydetail || !citydetail.centerLat || !citydetail.centerLong) {
+      // Default to Toronto coordinates if no center provided
+      return { lat: 43.6532, lng: -79.3832 };
+    }
+    return {
+      lat: parseFloat(citydetail.centerLat),
+      lng: parseFloat(citydetail.centerLong),
+    };
+  }, [citydetail]);
 
-  const markers = useMemo(
-    () => {
-      if (!Array.isArray(datas)) return [];
-      
-      return datas.map((no) => {
+  const markers = useMemo(() => {
+    if (!Array.isArray(datas)) return [];
+
+    return datas
+      .map((no) => {
         const lat = parseFloat(no.latitute);
         const lng = parseFloat(no.longitude);
         // Skip invalid coordinates
@@ -78,10 +83,9 @@ export default function Map({ citydetail, datas = [], heightt, onClose }) {
           price: nFormatter(no.price_starting_from, 2),
           data: no,
         };
-      }).filter(Boolean); // Remove null entries
-    },
-    [datas]
-  );
+      })
+      .filter(Boolean); // Remove null entries
+  }, [datas]);
 
   const handleMarkerClick = useCallback((marker) => {
     setSelected(marker.data);
@@ -103,7 +107,17 @@ export default function Map({ citydetail, datas = [], heightt, onClose }) {
         className="absolute top-4 right-4 z-[1000] bg-white rounded-lg px-4 py-2 shadow-md flex items-center gap-2 hover:bg-gray-50 transition-colors"
       >
         <span>Close Map</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
@@ -121,7 +135,7 @@ export default function Map({ citydetail, datas = [], heightt, onClose }) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <ZoomControl position="bottomright" />
-          
+
           {markers.map((marker) => (
             <Marker
               key={marker.id}
@@ -133,18 +147,25 @@ export default function Map({ citydetail, datas = [], heightt, onClose }) {
             >
               <Popup className="listing-popup">
                 <Link
-                  href={`/${marker.data.city.name.toLowerCase()}/${marker.data.slug}`}
+                  href={`/${marker.data.city.name.toLowerCase()}/${
+                    marker.data.slug
+                  }`}
                   className="block"
                 >
                   <div className="w-[280px]">
                     <div className="relative h-[180px]">
                       <img
-                        src={marker.data.images?.[0]?.split(",")[0] || "/noimage.webp"}
+                        src={
+                          marker.data.images?.[0]?.split(",")[0] ||
+                          "/noimage.webp"
+                        }
                         alt={marker.data.project_name}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute bottom-2 left-2 bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
-                        {marker.data.price_starting_from === 0 ? "TBD" : `$${marker.price}`}
+                        {marker.data.price_starting_from === 0
+                          ? "TBD"
+                          : `$${marker.price}`}
                       </div>
                     </div>
                     <div className="p-3">
