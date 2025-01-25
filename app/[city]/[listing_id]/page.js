@@ -27,41 +27,46 @@ export default async function ListingPage({ params }) {
 
   return (
     <main className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-4">
-        <Breadcrumbs />
-        <Gallery images={images} projectName={house_detail.project_name} />
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8">
-          <div className="col-span-2">
-            <SocialMediaShare />
-            <ListingInfo house_detail={house_detail} city={params.city} />
-          </div>
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <div className="w-full">
+          <Breadcrumbs />
+          <Gallery images={images} projectName={house_detail.project_name} />
+          <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8">
+              <div className="col-span-2">
+                <SocialMediaShare />
+                <ListingInfo house_detail={house_detail} city={params.city} />
+              </div>
 
-          <div className="col-span-1 flex flex-col items-center">
-            <img 
-              src="/reg.png" 
-              alt="Register Now" 
-              className="w-[200px] sm:w-[250px] mb-6" 
-            />
-            <div className="sticky top-24 w-full flex justify-center">
-              <div className="w-[95%] max-w-[409px]">
-                <SidebarContact 
-                  projectName={house_detail.project_name}
-                  city={params.city}
-                  partnerdata={partnerdata}
+              <div className="col-span-1 flex flex-col items-center min-w-[409px] space-y-8">
+                <img 
+                  src="/reg.png" 
+                  alt="Register Now" 
+                  className="w-[200px] sm:w-[250px] rounded-lg !rounded-[8px] rounded overflow-hidden" 
+                  style={{ borderRadius: '8px' }}
                 />
+                <div className="sticky top-24 w-full flex justify-center">
+                  <div className="w-[409px] min-w-[409px]">
+                    <SidebarContact 
+                      projectName={house_detail.project_name}
+                      city={params.city}
+                      partnerdata={partnerdata}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* <NewsLetter /> */}
+
+            {/* <FAQ projectName={house_detail.project_name} />
+
+            <RelatedListings
+              listings={house_detail.related1}
+              cityName={house_detail.city.name}
+            /> */}
           </div>
         </div>
-
-        {/* <NewsLetter /> */}
-
-        {/* <FAQ projectName={house_detail.project_name} />
-
-        <RelatedListings
-          listings={house_detail.related1}
-          cityName={house_detail.city.name}
-        /> */}
       </div>
     </main>
   );

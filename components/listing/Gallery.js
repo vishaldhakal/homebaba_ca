@@ -27,13 +27,13 @@ export default function Gallery({ images, projectName }) {
           height={800}
         >
           {({ ref, open }) => (
-            <div className="col-span-2 row-span-2 md:row-span-4 relative aspect-square h-[250px] md:h-[410px] w-full">
+            <div className="col-span-2 row-span-2 md:row-span-4 relative aspect-square h-[250px] md:h-[410px] w-full rounded-[8px] overflow-hidden">
               <Image
                 ref={ref}
                 src={displayImages[0].images}
                 alt={`${projectName} - Main View`}
                 fill
-                className="object-cover rounded-lg cursor-pointer"
+                className="object-cover !rounded-[8px] cursor-pointer"
                 priority
                 onClick={open}
               />
@@ -51,13 +51,13 @@ export default function Gallery({ images, projectName }) {
             height={800}
           >
             {({ ref, open }) => (
-              <div className="relative aspect-square h-[150px] md:h-[200px] w-full">
+              <div className="relative aspect-square h-[150px] md:h-[200px] w-full rounded-[8px] overflow-hidden">
                 <Image
                   ref={ref}
                   src={image.images}
                   alt={`${projectName} - View ${index + 2}`}
                   fill
-                  className="object-cover rounded-lg cursor-pointer hover:opacity-90 transition"
+                  className="object-cover !rounded-[8px] cursor-pointer hover:opacity-90 transition"
                   onClick={open}
                 />
               </div>

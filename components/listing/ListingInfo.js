@@ -95,17 +95,17 @@ const ListingInfo = ({ house_detail }) => {
         <div className="flex flex-col">
           {/* Header Section */}
           <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge
-                variant="secondary"
-                className="rounded-sm bg-white shadow-badge px-3 py-1 text-sm font-normal mt-2"
-              >
+            <div className="flex items-center gap-2">
+              <span className="text-sm">
                 {house_detail.project_type}
-              </Badge>
+              </span>
               {house_detail.is_featured && (
-                <Badge variant="default" className="bg-blue-500">
+                <span className="bg-sky-500 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 22 22">
+                    <path d="M2 0C3.13 0 4 3.13 4 7C4 12.25 7 20 7 20C7 20 14 12.25 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z" />
+                  </svg>
                   Featured
-                </Badge>
+                </span>
               )}
             </div>
 
