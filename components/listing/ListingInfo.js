@@ -1,6 +1,4 @@
 "use client";
-
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import RequestModal from "@/components/RequestModal";
 import WalkScore from "@/components/listing/WalkScore";
@@ -76,15 +74,15 @@ const ListingInfo = ({ house_detail }) => {
   const handleRequestInfo = (type) => {
     setRequestType(type);
     const messageMap = {
-      'floor-plans': `Please send me additional floor plans information about ${house_detail.project_name}. Thank you`,
-      'parking-price': `Please send me additional parking price information about ${house_detail.project_name}. Thank you`,
-      'locker-price': `Please send me additional locker price information about ${house_detail.project_name}. Thank you`,
-      'maintenance-fee': `Please send me additional maintenance fee information about ${house_detail.project_name}. Thank you`
+      "floor-plans": `Please send me additional floor plans information about ${house_detail.project_name}. Thank you`,
+      "parking-price": `Please send me additional parking price information about ${house_detail.project_name}. Thank you`,
+      "locker-price": `Please send me additional locker price information about ${house_detail.project_name}. Thank you`,
+      "maintenance-fee": `Please send me additional maintenance fee information about ${house_detail.project_name}. Thank you`,
     };
-    
-    setCredentials(prev => ({
+
+    setCredentials((prev) => ({
       ...prev,
-      message: messageMap[type]
+      message: messageMap[type],
     }));
     setShowContactModal(true);
   };
@@ -96,12 +94,16 @@ const ListingInfo = ({ house_detail }) => {
           {/* Header Section */}
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <span className="text-sm">
-                {house_detail.project_type}
-              </span>
+              <span className="text-sm">{house_detail.project_type}</span>
               {house_detail.is_featured && (
                 <span className="bg-sky-500 text-white text-xs px-2 py-1 rounded flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 22 22">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    fill="currentColor"
+                    viewBox="0 0 22 22"
+                  >
                     <path d="M2 0C3.13 0 4 3.13 4 7C4 12.25 7 20 7 20C7 20 14 12.25 14 7C14 3.13 10.87 0 7 0ZM7 9.5C5.62 9.5 4.5 8.38 4.5 7C4.5 5.62 5.62 4.5 7 4.5C8.38 4.5 9.5 5.62 9.5 7C9.5 8.38 8.38 9.5 7 9.5Z" />
                   </svg>
                   Featured
@@ -209,27 +211,47 @@ const ListingInfo = ({ house_detail }) => {
             </h2>
             <div className="text-start text-inside">
               <div
-                className={`prose max-w-none ${!showFullDescription && 'line-clamp-3'}`}
+                className={`prose max-w-none ${
+                  !showFullDescription && "line-clamp-3"
+                }`}
                 dangerouslySetInnerHTML={{
                   __html: house_detail.description,
                 }}
               ></div>
-              <button 
+              <button
                 onClick={() => setShowFullDescription(!showFullDescription)}
                 className="text-blue-600 hover:text-blue-800 font-medium mt-2 flex items-center gap-1"
               >
                 {showFullDescription ? (
                   <>
                     Show Less
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </>
                 ) : (
                   <>
                     Show More
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </>
                 )}

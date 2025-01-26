@@ -55,7 +55,9 @@ const FeaturedProjects = () => {
         maxWidthsubtitle="100px"
       >
         Homebaba Featured{" "}
-        <span className="whitespace-nowrap inline-block">Projects</span>{" "}
+        <span className="whitespace-nowrap inline-block text-red-600">
+          Projects
+        </span>{" "}
       </Heading>
 
       <div className="grid grid-cols-4 gap-1 mb-4 w-full max-w-[500px] mx-auto px-2">

@@ -6,7 +6,7 @@ import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
-import AnticipatedBottom from "../AnticipatedBottom";
+import AnticipatedBottom from "@/components/AnticipatedBottom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

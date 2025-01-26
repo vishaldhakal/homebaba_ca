@@ -9,6 +9,8 @@ import Testimonial from "@/components/Testimonial";
 import HomebabaPromo from "@/components/HomebabaPromo";
 import CallToAction from "@/components/CallToAction";
 import Script from "next/script";
+import MaldivesVacation from "@/components/MaldivesVacation";
+import HomebabaAdvantage from "@/components/HomebabaAdvantage";
 
 // Metadata configuration
 export const metadata = {
@@ -124,8 +126,11 @@ export default async function Home() {
       <HomebabaPromo />
       <CallToAction />
       <RecentBlogs blogs={blogsData} />
-
-      <div className="flex flex-col items-center mb-8 md:mb-12">
+      <div className="my-10 md:my-32"></div>
+      <MaldivesVacation />
+      <div className="my-10 md:my-32"></div>
+      <HomebabaAdvantage />
+      <div className="flex flex-col items-center mb-4 md:mb-5">
         <Image
           src="/contact-bottom-2.png"
           alt="Real Estate Agent"
@@ -135,7 +140,7 @@ export default async function Home() {
           priority
         />
         <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
-          Looking to buy a preconstruction home?
+          Looking to buy a New Home?
         </h1>
         <p className="text-gray-600 text-center text-sm md:text-base">
           Don't know where to start? Contact Homebaba now!

@@ -4,13 +4,6 @@ import SocialMediaShare from "@/components/SocialMediaShare";
 import ListingInfo from "@/components/listing/ListingInfo";
 import SidebarContact from "@/components/listing/SidebarContact";
 
-/* import ContactForm from "@/components/listing/ContactForm";
-import RelatedListings from "@/components/listing/RelatedListings";
-import FAQ from "@/components/listing/FAQ";
-import NewsLetter from "@/components/NewsLetter";
-import WalkScore from "@/components/listing/WalkScore";
-import LocationMap from "@/components/listing/LocationMap"; */
-
 async function getListingData(listingId) {
   const response = await fetch(
     `https://api.homebaba.ca/api/pre-constructions/${listingId}/`,
@@ -39,15 +32,15 @@ export default async function ListingPage({ params }) {
               </div>
 
               <div className="col-span-1 flex flex-col items-center min-w-[409px] space-y-8">
-                <img 
-                  src="/reg.png" 
-                  alt="Register Now" 
-                  className="w-[200px] sm:w-[250px] rounded-lg !rounded-[8px] rounded overflow-hidden" 
-                  style={{ borderRadius: '8px' }}
+                <img
+                  src="/reg.png"
+                  alt="Register Now"
+                  className="w-[200px] sm:w-[250px] rounded-lg !rounded-[8px] rounded overflow-hidden"
+                  style={{ borderRadius: "8px" }}
                 />
                 <div className="sticky top-24 w-full flex justify-center">
                   <div className="w-[409px] min-w-[409px]">
-                    <SidebarContact 
+                    <SidebarContact
                       projectName={house_detail.project_name}
                       city={params.city}
                       partnerdata={partnerdata}

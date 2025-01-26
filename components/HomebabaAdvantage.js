@@ -1,22 +1,26 @@
+import Heading from "@/components/design/Heading";
+
 const HomebabaAdvantage = () => {
   const images = [
-    "/homebaba-team/1.jpg",
-    "/homebaba-team/2.jpg",
-    "/homebaba-team/3.jpg",
-    "/homebaba-team/4.jpg",
-    "/homebaba-team/5.jpg",
+    "/gallery/1.jpg",
+    "/gallery/2.jpg",
+    "/gallery/3.jpg",
+    "/gallery/4.jpg",
+    "/gallery/5.jpg",
   ];
 
   return (
     <section className="py-12 md:py-16 px-6 md:px-4 max-w-7xl mx-auto">
       <div className="text-center mb-8 md:mb-12">
-        <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2]  text-center mb-3">
+        <Heading
+          subtitle="Working hand in hand with leading Pre construction Homes, Condos
+          Developers & Industry Partners"
+          align="center"
+          maxWidthsubtitle="100px"
+          maxWidth="100%"
+        >
           The Homebaba Advantage - Always people at heart
-        </h2>
-        <p className="text-gray-600 text-sm md:text-lg max-w-2xl mx-auto">
-          Working hand in hand with leading Pre construction Homes, Condos
-          Developers & Industry Partners
-        </p>
+        </Heading>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
