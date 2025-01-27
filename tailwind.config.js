@@ -17,7 +17,7 @@ module.exports = {
         "gray-filter": "#e5e7eb",
         "chat-active-card": "rgba(0, 0, 0, .06)",
         "chat-hover": "rgba(0,0,0,.04)",
-
+        "red-600": "#ff0000",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -118,6 +118,9 @@ module.exports = {
       },
       backdropBlur: {
         sm: "4px",
+      },
+      maxWidth: {
+        xxs: "238px",
       },
     },
   },

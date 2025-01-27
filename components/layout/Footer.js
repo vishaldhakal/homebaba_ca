@@ -29,10 +29,19 @@ const Footer = () => {
   ].sort((a, b) => a.name.localeCompare(b.name));
 
   const socialLinks = [
-    { icon: "/icons/facebook.svg", link: "https://www.facebook.com/thehomebaba/" },
-    { icon: "/icons/youtube.png", link: "https://www.youtube.com/channel/UCz0QC6Avx_Q_oTENvpp6PWg" },
+    {
+      icon: "/icons/facebook.svg",
+      link: "https://www.facebook.com/thehomebaba/",
+    },
+    {
+      icon: "/icons/youtube.png",
+      link: "https://www.youtube.com/channel/UCz0QC6Avx_Q_oTENvpp6PWg",
+    },
     { icon: "/icons/instagram.svg", link: "https://instagram.com/homebaba" },
-    { icon: "/icons/linkedin.svg", link: "https://linkedin.com/company/homebaba" },
+    {
+      icon: "/icons/linkedin.svg",
+      link: "https://linkedin.com/company/homebaba",
+    },
     { icon: "/icons/twitter.png", link: "https://twitter.com/homebaba" },
     { icon: "/icons/tiktok.png", link: "https://tiktok.com/@homebaba" },
   ];
@@ -44,7 +53,7 @@ const Footer = () => {
           {/* Column 1: Company Info */}
           <div className="my-3">
             <Link href="/" className="inline-flex items-center">
-              <span className="text-2xl font-bold">homebaba</span>
+              <span className="text-4xl font-bold">homebaba</span>
               <Image
                 src="/canadaleaf.svg"
                 alt="canada maple leaf"
@@ -57,26 +66,63 @@ const Footer = () => {
               Homebaba is the online Database for new Pre construction detached,
               semi-detached, townhomes and condos in Canada. Homebaba does not
               represent any builder. The content of the pages of this website is
-              for your general information, reference only. We are not liable for
-              the use or misuse of the site's information. Prices, sizes,
+              for your general information, reference only. We are not liable
+              for the use or misuse of the site's information. Prices, sizes,
               specifications, and promotions of the condos are subject to change
               by the builder without notice. E&OE
             </p>
+            <p className="mt-3 text-sm">
+              Contact : <Link href="tel:+16472395555">+1 647-239-5555</Link>
+            </p>
             <div className="mt-3">
               <h5 className="font-bold text-gray-900 mb-3">Company</h5>
-              <div className="flex flex-col space-y-2">
-                <Link href="/work-with-us" className="text-gray-600 hover:text-gray-900">
+              <div className="flex flex-col space-y-4">
+                <Link
+                  href="/work-with-us"
+                  className="text-gray-600 hover:text-gray-900"
+                >
                   Work with us
                 </Link>
-                <Link href="/blogs" className="text-gray-600 hover:text-gray-900">
+                <Link
+                  href="/blogs"
+                  className="text-gray-600 hover:text-gray-900"
+                >
                   Blogs
                 </Link>
-                <Link href="/contact-us" className="text-gray-600 hover:text-gray-900">
+                <Link
+                  href="/contact-us"
+                  className="text-gray-600 hover:text-gray-900"
+                >
                   Contact us
                 </Link>
-                <Link href="/privacy" className="text-gray-600 hover:text-gray-900">
+                <Link
+                  href="/privacy"
+                  className="text-gray-600 hover:text-gray-900"
+                >
                   Privacy Policy
                 </Link>
+                <Link
+                  href="https://condomonk.ca"
+                  target="_blank"
+                  className="text-black"
+                >
+                  Condomonk
+                </Link>
+                <Link
+                  href="https://homepapa.ca"
+                  target="_blank"
+                  className="text-black"
+                >
+                  Homepapa
+                </Link>
+                <Link
+                  href="https://dolphy.ca"
+                  target="_blank"
+                  className="text-black"
+                >
+                  Dolphy
+                </Link>
+                <p>Address : 8300 Woodbine Ave Markham, ON L3R 9Y7, Canada</p>
               </div>
             </div>
           </div>
@@ -99,7 +145,9 @@ const Footer = () => {
 
           {/* Column 3: Pre construction condos */}
           <div className="my-3">
-            <h5 className="font-bold text-gray-900 mb-3">Pre construction condos</h5>
+            <h5 className="font-bold text-gray-900 mb-3">
+              Pre construction condos
+            </h5>
             <div className="flex flex-col space-y-2">
               {popularCities.map((city) => (
                 <Link
@@ -115,7 +163,9 @@ const Footer = () => {
 
           {/* Column 4: Pre construction Townhomes */}
           <div className="my-3">
-            <h5 className="font-bold text-gray-900 mb-3">Pre construction Townhomes</h5>
+            <h5 className="font-bold text-gray-900 mb-3">
+              Pre construction Townhomes
+            </h5>
             <div className="flex flex-col space-y-2">
               {popularCities.map((city) => (
                 <Link
@@ -127,6 +177,33 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
+          </div>
+        </div>
+
+        <div>
+          <h6 className="text-center mt-10 font-black text-4xl border-b border-gray-200 inline-block w-full pb-3">
+            Our Trusted <span className="text-red-600">Platform Network</span>
+          </h6>
+          <div className="flex justify-center items-center gap-10 mb-10 mt-3">
+            <Link href="https://condomonk.ca" target="_blank">
+              <Image
+                src="/condomonk.png"
+                alt="condomonk"
+                width={200}
+                height={200}
+              />
+            </Link>
+            <Link href="https://dolphy.ca" target="_blank">
+              <Image src="/dolphy.png" alt="dolphy" width={200} height={200} />
+            </Link>
+            <Link href="https://homepapa.ca" target="_blank">
+              <Image
+                src="/homepapa.png"
+                alt="homepapa"
+                width={200}
+                height={200}
+              />
+            </Link>
           </div>
         </div>
 
@@ -143,7 +220,7 @@ const Footer = () => {
               >
                 <Image
                   src={social.icon}
-                  alt={`${social.link.split('.com/')[1]} social link`}
+                  alt={`${social.link.split(".com/")[1]} social link`}
                   width={28}
                   height={28}
                   className="w-7 h-7 sm:w-6 sm:h-6"
@@ -151,7 +228,9 @@ const Footer = () => {
               </a>
             ))}
           </div>
-          <p className="text-sm text-gray-500 mt-4">2025 Homebaba</p>
+          <p className="text-sm text-gray-500 py-10">
+            ©2025 Homebaba Technologies - All rights reserved
+          </p>
         </div>
       </div>
     </footer>

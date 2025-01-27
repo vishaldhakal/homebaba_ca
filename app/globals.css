@@ -54,6 +54,10 @@ p {
   line-height: 1.4rem ;
 }
 
+*{
+  letter-spacing: 0rem;
+}
+
 .hero-bg {
   background-image: url("/hero-bg.png");
   background-repeat: no-repeat;

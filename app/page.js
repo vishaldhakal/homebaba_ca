@@ -11,6 +11,7 @@ import CallToAction from "@/components/CallToAction";
 import Script from "next/script";
 import MaldivesVacation from "@/components/MaldivesVacation";
 import HomebabaAdvantage from "@/components/HomebabaAdvantage";
+import CityLinks from "@/components/CityLinks";
 
 // Metadata configuration
 export const metadata = {
@@ -125,11 +126,19 @@ export default async function Home() {
       />
       <HomebabaPromo />
       <CallToAction />
+      <div className="my-10 md:my-32"></div>
       <RecentBlogs blogs={blogsData} />
       <div className="my-10 md:my-32"></div>
       <MaldivesVacation />
       <div className="my-10 md:my-32"></div>
       <HomebabaAdvantage />
+      <Testimonial
+        testimonialText="This platform is exactly what new realtors need, a fantastic way to search and explore projects"
+        authorName="Josh Camaro"
+        authorPosition="Real Estate Professional"
+        authorRole=""
+        companyLogo="/testmonials/J.png"
+      />
       <div className="flex flex-col items-center mb-4 md:mb-5">
         <Image
           src="/contact-bottom-2.png"
@@ -147,6 +156,8 @@ export default async function Home() {
         </p>
       </div>
       <ContactForm />
+      <div className="my-10 md:my-32"></div>
+      <CityLinks />
     </>
   );
 }

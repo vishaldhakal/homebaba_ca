@@ -18,7 +18,7 @@ const NewsLetter = () => {
         body: JSON.stringify({
           email,
           page_url: pathname,
-          city: pathname.split("/")[1] || "toronto" // Default to toronto if no city in URL
+          city: pathname.split("/")[1] || "toronto", // Default to toronto if no city in URL
         }),
       });
 
@@ -35,7 +35,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <section className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-slate-50 via-pink-50 to-rose-100 mt-40">
+    <section className="relative w-full py-24 overflow-hidden bg-gradient-to-b from-pink-50 to-white mt-40 pb-80">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
@@ -70,7 +70,7 @@ const NewsLetter = () => {
       {/* Content Container */}
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-2xl md:text-5xl tracking-tight font-extrabold leading-[1.2] md:leading-[1.2] bg-gradient-to-r from-rose-600 to-red-400 bg-clip-text text-transparent pb-2">
+          <h2 className="text-2xl md:text-5xl  font-extrabold leading-[1.2] md:leading-[1.2] bg-gradient-to-r from-rose-600 to-red-400 bg-clip-text text-transparent pb-2">
             Notify Me of New Projects
           </h2>
           <p className="mt-4 text-lg leading-6 text-gray-700">

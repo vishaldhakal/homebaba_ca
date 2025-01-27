@@ -12,38 +12,22 @@ const Heading = ({
   className,
 }) => {
   const alignmentClasses = {
-    left: "text-left items-start",
-    center: "text-center items-center",
-    right: "text-right items-end",
+    left: "items-start text-left",
+    center: "items-center text-center",
+    right: "items-end text-right",
   };
 
-  const wrapperClasses = `flex flex-col ${alignmentClasses[align]} ${
-    className || ""
-  } mb-8`;
-
-  const headingClasses = `
-    text-[1.4rem] md:text-[2.1em]
-    font-extrabold
-    leading-tight md:leading-normal
-    tracking-normal
-    w-full
-    m-0 p-0
-    md:p-0 md:text-${align}
-    ${maxWidth ? `max-w-[${maxWidth}]` : ""}
-  `;
-
-  const subtitleClasses = `
-    text-[0.9rem]
-    font-normal
-    leading-relaxed md:leading-normal
-    m-0 mt-[0.2rem] p-0
-    md:text-[0.95rem] md:p-0 md:text-${align}
-    ${maxWidthsubtitle ? `max-w-[${maxWidthsubtitle}]` : ""}
-  `;
-
   return (
-    <div className={wrapperClasses}>
-      <h2 className={headingClasses} style={{ color: color }}>
+    <div
+      className={`flex flex-col mb-8 w-full ${alignmentClasses[align]} ${className}`}
+    >
+      <h2
+        className="text-[1.4rem] md:text-[2.1em] font-extrabold leading-tight md:leading-normal w-full m-0 p-0"
+        style={{
+          color,
+          maxWidth,
+        }}
+      >
         {typeof children === "string"
           ? children
               .split(" ")
@@ -61,7 +45,11 @@ const Heading = ({
           : children}
       </h2>
       {subtitle && (
-        <p className={subtitleClasses} style={{ color: subtitleColor }}>
+        <p
+          className={`text-[0.9rem] md:text-[0.95rem] font-normal leading-relaxed md:leading-normal mt-[0.2rem] m-0 p-0 ${
+            maxWidthsubtitle ? `max-w-xxs md:max-w-3xl` : ""
+          }`}
+        >
           {subtitle}
         </p>
       )}

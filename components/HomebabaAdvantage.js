@@ -16,10 +16,11 @@ const HomebabaAdvantage = () => {
           subtitle="Working hand in hand with leading Pre construction Homes, Condos
           Developers & Industry Partners"
           align="center"
-          maxWidthsubtitle="100px"
           maxWidth="100%"
+          maxWidthsubtitle="238px"
         >
-          The Homebaba Advantage - Always people at heart
+          The Homebaba Advantage -{" "}
+          <span className="text-red-600">Always people at heart</span>
         </Heading>
       </div>
 
@@ -27,12 +28,12 @@ const HomebabaAdvantage = () => {
         {images.map((image, index) => (
           <div
             key={index}
-            className="relative aspect-[9/16] overflow-hidden rounded-lg"
+            className="relative aspect-[9/16] overflow-hidden rounded-xl"
           >
             <img
               src={image}
               alt={`Partner ${index + 1}`}
-              className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+              className="object-cover w-full h-full hover:scale-105 transition-transform duration-300 rounded-xl"
             />
           </div>
         ))}
