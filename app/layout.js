@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import NewsLetter from "@/components/NewsLetter";
 import NextTopLoader from "nextjs-toploader";
+import FloatingContact from "@/components/FloatingContact";
 import "leaflet/dist/leaflet.css";
 import { Toaster } from "react-hot-toast";
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <Toaster position="top-center" />
         {children}
+        <FloatingContact />
         <NewsLetter />
         <Footer />
       </body>

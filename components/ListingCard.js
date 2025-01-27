@@ -15,8 +15,8 @@ export default function ListingCard({ city, listing, index }) {
       <div
         className={`rounded-xl my-3 md:my-0 ${
           listing.is_featured
-            ? "md:col-span-2 shadow-featured border-blue-500 border"
-            : "shadow-card"
+            ? "md:col-span-1 shadow-featured border-blue-500 border"
+            : "shadow-lg"
         }`}
       >
         <div className={`relative`}>
@@ -75,7 +75,7 @@ export default function ListingCard({ city, listing, index }) {
         </div>
         <Link
           href={`/${city}/${listing.slug}`}
-          className={`block p-4 bg-white shadow-md rounded-b-xl no-underline`}
+          className={`block p-4 bg-white rounded-b-xl no-underline`}
           target="_blank"
         >
           <div className="space-y-1">

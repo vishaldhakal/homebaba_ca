@@ -147,3 +147,68 @@ ul {
   background-position: top;
   background-size: cover;
 }
+
+/* Floating Contact Button Styles */
+.phone-deal-content {
+  background: white;
+  border-radius: 50px;
+  padding: 8px 20px 8px 8px;
+  padding-left: 65px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  position: relative;
+  min-height: 45px;
+  min-width: 190px;
+}
+
+.phone-deal-content:hover {
+  transform: translateY(-2px);
+}
+
+.phone-deal-avatar {
+  width: 85px !important;
+  height: 75px !important;
+  position: absolute !important;
+  left: -5px;
+  top: -29px;
+  object-fit: cover;
+}
+
+.phone-deal-text {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.deal-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: #000;
+  margin: 0;
+}
+
+@media (max-width: 380px) {
+  .phone-deal-content {
+    padding: 8px 16px 8px 60px;
+    min-height: 40px;
+  }
+  
+  .phone-deal-avatar {
+    width: 65px !important;
+    height: 55px !important;
+    left: -4px;
+    top: -24px;
+  }
+  
+  .deal-title {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 768px) {
+  .phone-deal-float {
+    display: none;
+  }
+}

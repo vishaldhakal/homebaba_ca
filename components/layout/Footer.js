@@ -3,29 +3,29 @@ import Image from "next/image";
 
 const Footer = () => {
   const popularCities = [
-    { name: "Ajax", link: "/pre-construction-homes-in-ajax" },
-    { name: "Aurora", link: "/pre-construction-homes-in-aurora" },
-    { name: "Barrie", link: "/pre-construction-homes-in-barrie" },
-    { name: "Brampton", link: "/pre-construction-homes-in-brampton" },
-    { name: "Burlington", link: "/pre-construction-homes-in-burlington" },
-    { name: "Calgary", link: "/pre-construction-homes-in-calgary" },
-    { name: "Cambridge", link: "/pre-construction-homes-in-cambridge" },
-    { name: "Georgetown", link: "/pre-construction-homes-in-georgetown" },
-    { name: "Grimsby", link: "/pre-construction-homes-in-grimsby" },
-    { name: "Hamilton", link: "/pre-construction-homes-in-hamilton" },
-    { name: "Innisfil", link: "/pre-construction-homes-in-innisfil" },
-    { name: "Kitchener", link: "/pre-construction-homes-in-kitchener" },
-    { name: "Markham", link: "/pre-construction-homes-in-markham" },
-    { name: "Milton", link: "/pre-construction-homes-in-milton" },
-    { name: "Mississauga", link: "/pre-construction-homes-in-mississauga" },
-    { name: "Niagara", link: "/pre-construction-homes-in-niagara" },
-    { name: "Oakville", link: "/pre-construction-homes-in-oakville" },
-    { name: "Oshawa", link: "/pre-construction-homes-in-oshawa" },
-    { name: "Ottawa", link: "/pre-construction-homes-in-ottawa" },
-    { name: "Thorold", link: "/pre-construction-homes-in-thorold" },
-    { name: "Toronto", link: "/pre-construction-homes-in-toronto" },
-    { name: "Vaughan", link: "/pre-construction-homes-in-vaughan" },
-    { name: "Waterloo", link: "/pre-construction-homes-in-waterloo" },
+    { name: "Ajax", link: "/ajax" },
+    { name: "Aurora", link: "/aurora" },
+    { name: "Barrie", link: "/barrie" },
+    { name: "Brampton", link: "/brampton" },
+    { name: "Burlington", link: "/burlington" },
+    { name: "Calgary", link: "/calgary" },
+    { name: "Cambridge", link: "/cambridge" },
+    { name: "Georgetown", link: "/georgetown" },
+    { name: "Grimsby", link: "/grimsby" },
+    { name: "Hamilton", link: "/hamilton" },
+    { name: "Innisfil", link: "/innisfil" },
+    { name: "Kitchener", link: "/kitchener" },
+    { name: "Markham", link: "/markham" },
+    { name: "Milton", link: "/milton" },
+    { name: "Mississauga", link: "/mississauga" },
+    { name: "Niagara", link: "/niagara" },
+    { name: "Oakville", link: "/oakville" },
+    { name: "Oshawa", link: "/oshawa" },
+    { name: "Ottawa", link: "/ottawa" },
+    { name: "Thorold", link: "/thorold" },
+    { name: "Toronto", link: "/toronto" },
+    { name: "Vaughan", link: "/vaughan" },
+    { name: "Waterloo", link: "/waterloo" },
   ].sort((a, b) => a.name.localeCompare(b.name));
 
   const socialLinks = [
@@ -152,7 +152,7 @@ const Footer = () => {
               {popularCities.map((city) => (
                 <Link
                   key={city.name}
-                  href={city.link.replace("homes", "condos")}
+                  href={city.link + "/condos"}
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
                   Pre construction condos in {city.name}
@@ -170,7 +170,7 @@ const Footer = () => {
               {popularCities.map((city) => (
                 <Link
                   key={city.name}
-                  href={`${city.link}/townhomes`}
+                  href={city.link + "/pre-construction/townhomes"}
                   className="text-sm text-gray-600 hover:text-gray-900"
                 >
                   Pre construction townhomes in {city.name}

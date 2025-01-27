@@ -1,16 +1,132 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Menu } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import AnticipatedBottom from "@/components/AnticipatedBottom";
+import Dropdown from "@/components/resale/Dropdown";
+import { usePathname } from "next/navigation";
+import { generateURL } from "@/helpers/generateResaleURL";
+import citiesWithProvinces from "@/constant/cities";
+import capitalizeFirstLetter from "@/helpers/capitalizeFirstLetter";
+import ResaleSearchBar from "@/components/resale/SearchBar";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showAnticipated, setShowAnticipated] = useState(false);
+  const pathname = usePathname();
+
+  const cities = citiesWithProvinces.map((obj) => obj.city.toLowerCase());
+  const cityName = cities.find((city) => !!pathname?.match(city));
+
+  const buyOpts = [
+    {
+      name:
+        "Semi Detached Homes for Sale" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "semi detached",
+        saleLeaseVal: "sale",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Detached Homes for Sale" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "detached",
+        saleLeaseVal: "sale",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Townhomes for Sale" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "town house",
+        saleLeaseVal: "sale",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Duplex Homes for Sale" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "duplex",
+        saleLeaseVal: "sale",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Triplex Homes for Sale" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "triplex",
+        saleLeaseVal: "sale",
+        cityVal: cityName || null,
+      }),
+    },
+  ];
+
+  const rentOpts = [
+    {
+      name:
+        "Semi Detached Homes for Lease" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "semi detached",
+        saleLeaseVal: "lease",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Detached Homes for Lease" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "detached",
+        saleLeaseVal: "lease",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Townhomes for Lease" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "town house",
+        saleLeaseVal: "lease",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Duplex Homes for Lease" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "duplex",
+        saleLeaseVal: "lease",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Triplex Homes for Lease" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "triplex",
+        saleLeaseVal: "lease",
+        cityVal: cityName || null,
+      }),
+    },
+  ];
 
   return (
     <>
@@ -37,30 +153,29 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Search Section - Always visible */}
+          {/* Search Section */}
           <div className="flex-1 max-w-[280px] lg:max-w-[350px] mx-4 hidden sm:block">
-            <SearchBar
-              padding="py-2.5"
-              width="w-[300px] md:w-[350px]"
-              shadow="shadow-none border-none bg-gray-100 rounded-[7px]"
-            />
+            {pathname.includes("/resale") ? (
+              <ResaleSearchBar small={true} />
+            ) : (
+              <SearchBar
+                padding="py-2.5"
+                width="w-[300px] md:w-[350px]"
+                shadow="shadow-none border-none bg-gray-100 rounded-[7px]"
+              />
+            )}
           </div>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-3 xl:gap-6">
-          <Link
-            href="/resale/ontario"
-            className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
-          >
-            Buy
-          </Link>
-          <Link
-            href="/rental/ontario"
-            className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
-          >
-            Rent
-          </Link>
+          <Dropdown name="Lease" text={"red"} options={rentOpts} width="auto" />
+          <Dropdown
+            name="Resale Homes"
+            text={"red"}
+            options={buyOpts}
+            width="auto"
+          />
           <button
             onClick={() => setShowAnticipated(true)}
             className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors flex items-center gap-1 whitespace-nowrap"
@@ -76,7 +191,6 @@ const Navbar = () => {
           >
             New Construction
           </Link>
-
           <Link
             href="/contact"
             className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
@@ -100,13 +214,16 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div className="lg:hidden flex items-center justify-between gap-4">
-          {/* Search toggle for mobile */}
           <div className="flex-1 max-w-xs mx-4 me-auto sm:hidden">
-            <SearchBar
-              padding="py-2.5"
-              width="w-[200px] md:w-[350px] ms-auto"
-              shadow="shadow-none border-none bg-gray-100 rounded-[7px]"
-            />
+            {pathname.includes("/resale") ? (
+              <ResaleSearchBar />
+            ) : (
+              <SearchBar
+                padding="py-2.5"
+                width="w-[200px] md:w-[350px] ms-auto"
+                shadow="shadow-none border-none bg-gray-100 rounded-[7px]"
+              />
+            )}
           </div>
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -117,19 +234,19 @@ const Navbar = () => {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0">
               <div className="flex flex-col h-full bg-white">
-                <div className="flex flex-col py-4">
-                  <Link
-                    href="/resale/ontario"
-                    className="px-6 py-4 text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    Buy
-                  </Link>
-                  <Link
-                    href="/rental/ontario"
-                    className="px-6 py-4 text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    Rent
-                  </Link>
+                <div className="flex flex-col py-3 mt-10">
+                  <Dropdown
+                    name="Rent Resale Properties"
+                    text={"red"}
+                    options={rentOpts}
+                    width="auto"
+                  />
+                  <Dropdown
+                    name="Buy Resale Properties"
+                    text={"red"}
+                    options={buyOpts}
+                    width="auto"
+                  />
                   <button
                     onClick={() => {
                       setIsOpen(false);
@@ -168,7 +285,7 @@ const Navbar = () => {
                     alt="Email Icon"
                     width={150}
                     height={30}
-                    className="cursor-pointer ml-1 px-6 py-4 "
+                    className="cursor-pointer ml-1 px-6 py-4"
                   />
                 </div>
               </div>

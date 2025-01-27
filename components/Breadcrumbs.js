@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronRight, ArrowLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+export const revalidate = 3600;
 
 export default function Breadcrumbs({ className, ...props }) {
   const pathname = usePathname();
@@ -42,21 +44,36 @@ export default function Breadcrumbs({ className, ...props }) {
         Home
       </Link>
 
-      {breadcrumbItems.map(({ href, title, isLast }, index) => (
-        <div key={href} className="flex items-center">
-          <ChevronRight className="h-4 w-4 mx-1" />
-          {isLast ? (
-            <span className="font-medium text-foreground">{title}</span>
-          ) : (
-            <Link
-              href={href}
-              className="hover:text-foreground transition-colors duration-200"
-            >
-              {title}
-            </Link>
-          )}
-        </div>
-      ))}
+      {breadcrumbItems
+        .filter(({ href, title }) => {
+          // Skip "category" segment in blog category pages
+          if (href.includes("/blog/category/")) {
+            return title !== "Category";
+          }
+          return true;
+        })
+        .map(({ href, title, isLast }, index) => {
+          // For blog category pages, modify the href to point to /blog for the Blog link
+          if (href.includes("/blog/category/")) {
+            href = "/blog";
+          }
+
+          return (
+            <div key={href} className="flex items-center">
+              <ChevronRight className="h-4 w-4 mx-1" />
+              {isLast ? (
+                <span className="font-medium text-foreground">{title}</span>
+              ) : (
+                <Link
+                  href={href}
+                  className="hover:text-foreground transition-colors duration-200"
+                >
+                  {title}
+                </Link>
+              )}
+            </div>
+          );
+        })}
     </nav>
   );
 }

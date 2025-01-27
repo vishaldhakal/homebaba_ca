@@ -1,12 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CalendarDays, Clock } from "lucide-react";
 import Link from "next/link";
+import BlogCard from "@/components/BlogCard";
+import Heading from "@/components/design/Heading";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import ContactForm from "@/components/ContactForm";
+
+export const revalidate = 3600;
 
 const categories = [
   { name: "News", slug: "news" },
@@ -15,76 +13,54 @@ const categories = [
   { name: "Innisfil", slug: "innisfil" },
   { name: "Grimsby", slug: "grimsby" },
   { name: "Mississauga", slug: "mississauga" },
-  { name: "Calgary", slug: "calgary" }
+  { name: "Calgary", slug: "calgary" },
 ];
 
 async function getBlogs() {
   try {
-    const res = await fetch('https://api.homebaba.ca/api/posts/', {
+    const res = await fetch("https://api.homebaba.ca/api/posts/", {
       next: { revalidate: 3600 },
       headers: {
-        'Accept': 'application/json'
-      }
+        Accept: "application/json",
+      },
     });
-    
+
     if (!res.ok) {
       return { results: [] };
     }
-    
+
     const data = await res.json();
     return data.data || { results: [] };
   } catch (error) {
+    console.error("Error fetching blogs:", error);
     return { results: [] };
   }
 }
 
-export default function BlogListing() {
-  const [blogs, setBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const pathname = usePathname();
-
-  useEffect(() => {
-    getBlogs().then((data) => {
-      setBlogs(data.results || []);
-      setIsLoading(false);
-    });
-  }, []);
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
-  const calculateReadTime = (content) => {
-    if (!content) return "5 min read";
-    const wordsPerMinute = 200;
-    const words = content.split(/\s+/).length;
-    const readTime = Math.ceil(words / wordsPerMinute);
-    return `${readTime} min read`;
-  };
+export default async function BlogListing() {
+  const { results: blogs = [] } = await getBlogs();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      {/* Categories Navigation */}
-      <nav className="mb-12 overflow-x-auto">
-        <ul className="flex justify-start md:justify-start items-center min-w-max px-4">
-          {categories.map((category, index) => {
-            const isActive = pathname === `/blog/category/${category.slug}` || 
-                           (pathname === '/blog' && category.slug === 'news');
-            return (
+    <>
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="text-center mb-3">
+          <Heading
+            subtitle="Explore our latest blog posts and stay updated on the latest real
+          estate"
+          >
+            The Homebaba Insights
+          </Heading>
+        </div>
+        <nav className="mb-3 md:mb-7 overflow-auto scrollbar-hide">
+          <ul className="flex justify-center items-center px-4">
+            {categories.map((category, index) => (
               <li key={category.slug} className="flex items-center">
-                <Link 
+                <Link
                   href={`/blog/category/${category.slug}`}
                   className={`
-                    relative py-1 text-base font-medium transition-colors duration-200
-                    ${isActive 
-                      ? 'text-gray-900 border-b border-gray-900' 
-                      : 'text-gray-600 hover:text-gray-900'}
-                  `}
+                  relative py-1 text-base font-medium transition-colors duration-200
+                  text-gray-600 hover:text-gray-900
+                `}
                 >
                   {category.name}
                 </Link>
@@ -92,83 +68,37 @@ export default function BlogListing() {
                   <span className="mx-4 text-gray-300">•</span>
                 )}
               </li>
-            );
-          })}
-        </ul>
-      </nav>
-
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Our Blog</h1>
-        <p className="text-gray-600 text-lg">
-          Stay updated with the latest insights in real estate
+            ))}
+          </ul>
+        </nav>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-7">
+          {blogs.length > 0 ? (
+            blogs.map((blog) => <BlogCard key={blog.slug} blog={blog} />)
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <h2 className="text-2xl font-semibold mb-2">No Posts Found</h2>
+              <p className="text-gray-600">Check back later for new content.</p>
+            </div>
+          )}
+        </div>
+      </div>
+      <div className="flex flex-col items-center mb-4 md:mb-5 mt-20">
+        <Image
+          src="/contact-bottom-2.png"
+          alt="Real Estate Agent"
+          width={300}
+          height={300}
+          className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
+          priority
+        />
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+          Looking to buy a New Home?
+        </h1>
+        <p className="text-gray-600 text-center text-sm md:text-base">
+          Don't know where to start? Contact Homebaba now!
         </p>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {!isLoading ? (
-          blogs.map((blog) => (
-            <Link href={`/blog/${blog.slug}`} key={blog.slug}>
-              <Card className="group h-full hover:shadow-lg transition-all duration-300 overflow-hidden border-none shadow-xl rounded-xl">
-                <div className="relative h-48 overflow-hidden rounded-t-xl">
-                  <Image
-                    src={blog.thumbnail_image || "/placeholder-blog.jpg"}
-                    alt={blog.thumbnail_image_alt_description || blog.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <Badge className="absolute top-4 left-4 z-10 bg-white/30 backdrop-blur-md border border-white/50 text-white shadow-lg hover:bg-white/50 hover:text-white transition-colors duration-300 rounded-full">
-                    {blog.category?.name || "News"}
-                  </Badge>
-                </div>
-
-                <CardHeader className="mb-0 pb-2 px-3">
-                  <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors leading-7 text-xl">
-                    {blog.title}
-                  </CardTitle>
-                </CardHeader>
-
-                <CardContent className="px-3">
-                  <CardDescription className="line-clamp-3 text-sm">
-                    {blog.meta_description}
-                  </CardDescription>
-                </CardContent>
-
-                <CardFooter className="flex justify-between text-sm text-muted-foreground px-3">
-                  <div className="flex items-center gap-2">
-                    <CalendarDays className="h-4 w-4" />
-                    <span>{formatDate(blog.created_at)}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-4 w-4" />
-                    <span>{calculateReadTime(blog.content)}</span>
-                  </div>
-                </CardFooter>
-              </Card>
-            </Link>
-          ))
-        ) : (
-          [...Array(6)].map((_, index) => (
-            <Card key={index} className="h-full border-none shadow-xl animate-pulse rounded-xl">
-              <div className="relative h-48 bg-gray-200 rounded-t-xl"></div>
-              <CardHeader className="mb-0 pb-2 px-3">
-                <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-              </CardHeader>
-              <CardContent className="px-3">
-                <div className="space-y-2">
-                  <div className="h-4 bg-gray-200 rounded w-full"></div>
-                  <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                </div>
-              </CardContent>
-              <CardFooter className="px-3">
-                <div className="flex justify-between w-full">
-                  <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-                  <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-                </div>
-              </CardFooter>
-            </Card>
-          ))
-        )}
-      </div>
-    </div>
+      <ContactForm />
+    </>
   );
 }
