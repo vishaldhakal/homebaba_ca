@@ -10,7 +10,7 @@ const Neighbourhood = ({ projectName, street_map }) => {
           height={44}
           width={44}
         />
-        <h2 className="text-[1.5rem] font-[700]">
+        <h2 className="text-[1rem] font-[700]">
           Walk around the neighbourhood
         </h2>
       </div>

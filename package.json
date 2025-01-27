@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "@nextui-org/accordion": "^2.2.5",
-    "@nextui-org/react": "^2.6.8",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -45,6 +43,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.1",
+    "framer-motion": "^12.0.5",
     "input-otp": "^1.4.0",
     "leaflet": "^1.9.4",
     "lightgallery": "^2.8.2",

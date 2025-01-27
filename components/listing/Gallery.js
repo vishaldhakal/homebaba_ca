@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { Gallery as PhotoSwipeGallery, Item } from "react-photoswipe-gallery";
 import "photoswipe/dist/photoswipe.css";
@@ -18,7 +17,7 @@ export default function Gallery({ images, projectName }) {
 
   return (
     <PhotoSwipeGallery>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-2 relative">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-1.5 md:gap-2">
         {/* Main large image */}
         <Item
           original={displayImages[0].images}
@@ -27,7 +26,7 @@ export default function Gallery({ images, projectName }) {
           height={800}
         >
           {({ ref, open }) => (
-            <div className="col-span-2 row-span-2 md:row-span-4 relative aspect-square h-[250px] md:h-[410px] w-full rounded-[8px] overflow-hidden">
+            <div className="col-span-2 row-span-2 md:row-span-4 relative aspect-[4/3] md:aspect-square h-[200px] sm:h-[250px] md:h-[410px] w-full rounded-[8px] overflow-hidden">
               <Image
                 ref={ref}
                 src={displayImages[0].images}
@@ -42,28 +41,30 @@ export default function Gallery({ images, projectName }) {
         </Item>
 
         {/* Smaller images grid */}
-        {displayImages.slice(1, 7).map((image, index) => (
-          <Item
-            key={image.id}
-            original={image.images}
-            thumbnail={image.images}
-            width={1200}
-            height={800}
-          >
-            {({ ref, open }) => (
-              <div className="relative aspect-square h-[150px] md:h-[200px] w-full rounded-[8px] overflow-hidden">
-                <Image
-                  ref={ref}
-                  src={image.images}
-                  alt={`${projectName} - View ${index + 2}`}
-                  fill
-                  className="object-cover !rounded-[8px] cursor-pointer hover:opacity-90 transition"
-                  onClick={open}
-                />
-              </div>
-            )}
-          </Item>
-        ))}
+        <div className="col-span-2 md:col-span-3 grid grid-cols-3 md:grid-cols-3 gap-1.5 md:gap-2">
+          {displayImages.slice(1, 7).map((image, index) => (
+            <Item
+              key={image.id}
+              original={image.images}
+              thumbnail={image.images}
+              width={1200}
+              height={800}
+            >
+              {({ ref, open }) => (
+                <div className="relative aspect-[4/3] md:aspect-square h-[100px] sm:h-[120px] md:h-[200px] w-full rounded-[8px] overflow-hidden">
+                  <Image
+                    ref={ref}
+                    src={image.images}
+                    alt={`${projectName} - View ${index + 2}`}
+                    fill
+                    className="object-cover !rounded-[8px] cursor-pointer hover:opacity-90 transition"
+                    onClick={open}
+                  />
+                </div>
+              )}
+            </Item>
+          ))}
+        </div>
       </div>
     </PhotoSwipeGallery>
   );

@@ -3,6 +3,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SocialMediaShare from "@/components/SocialMediaShare";
 import ListingInfo from "@/components/listing/ListingInfo";
 import SidebarContact from "@/components/listing/SidebarContact";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 async function getListingData(listingId) {
   const response = await fetch(
@@ -18,28 +24,68 @@ export default async function ListingPage({ params }) {
   const data = await getListingData(params.listing_id);
   const { house_detail, images, partnerdata } = data;
 
+  const accordionData = [
+    {
+      title: "Who is the builder for " + house_detail.project_name + " ?",
+      content: (
+        <strong>
+          {house_detail.project_name} is developed by{" "}
+          {house_detail.developer.name}
+        </strong>
+      ),
+    },
+    {
+      title: "Where is " + house_detail.project_name + " located ?",
+      content: (
+        <strong>
+          {house_detail.project_name} is located in{" "}
+          {house_detail.project_address}
+        </strong>
+      ),
+    },
+    {
+      title:
+        "What is the starting price for the homes or unit in " +
+        house_detail.project_name +
+        " ?",
+      content: (
+        <strong>
+          The price of the homes or unit could change. Please contact the real
+          estate agent{" "}
+          <a
+            href="#mycontact"
+            className="text-primary text-decoration-underline"
+          >
+            here
+          </a>{" "}
+          to get more information
+        </strong>
+      ),
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4">
-        <div className="w-full">
+      <div className="max-w-7xl mx-auto px-0 sm:px-4">
+        <div className="w-full mt-2 md:mt-4 px-2 md:px-0">
           <Breadcrumbs />
           <Gallery images={images} projectName={house_detail.project_name} />
-          <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8">
+          <div className="max-w-5xl mx-auto px-2 sm:px-8 md:px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-8 mt-8">
               <div className="col-span-2">
                 <SocialMediaShare />
                 <ListingInfo house_detail={house_detail} city={params.city} />
               </div>
 
-              <div className="col-span-1 flex flex-col items-center min-w-[409px] space-y-8">
+              <div className="col-span-1 flex flex-col items-center mt-14 md:mt-0">
                 <img
                   src="/reg.png"
                   alt="Register Now"
-                  className="w-[200px] sm:w-[250px] rounded-lg !rounded-[8px] rounded overflow-hidden"
+                  className="w-[200px] sm:w-[250px] rounded-xl overflow-hidden"
                   style={{ borderRadius: "8px" }}
                 />
                 <div className="sticky top-24 w-full flex justify-center">
-                  <div className="w-[409px] min-w-[409px]">
+                  <div className="w-[350px] min-w-[350px] mx-auto">
                     <SidebarContact
                       projectName={house_detail.project_name}
                       city={params.city}
@@ -52,12 +98,21 @@ export default async function ListingPage({ params }) {
 
             {/* <NewsLetter /> */}
 
-            {/* <FAQ projectName={house_detail.project_name} />
-
-            <RelatedListings
-              listings={house_detail.related1}
-              cityName={house_detail.city.name}
-            /> */}
+            <div className="max-w-3xl mx-auto mt-40">
+              <h2 className="text-2xl font-extrabold text-center my-4 border-b border-gray-800 pb-4">
+                Frequently Asked Questions about {house_detail.project_name}
+              </h2>
+              <Accordion type="single" collapsible className="w-full">
+                {accordionData.map((item, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="hover:no-underline text-start items-center">
+                      {item.title}
+                    </AccordionTrigger>
+                    <AccordionContent>{item.content}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
         </div>
       </div>

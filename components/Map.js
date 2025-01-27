@@ -93,11 +93,7 @@ export default function Map({ citydetail, datas = [], heightt, onClose }) {
 
   // Early return if no valid data
   if (!citydetail || markers.length === 0) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-gray-100">
-        <p>No map data available</p>
-      </div>
-    );
+    return <></>;
   }
 
   return (

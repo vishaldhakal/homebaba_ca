@@ -98,6 +98,7 @@ module.exports = {
         featured: "0 .125rem .5rem rgba(10, 160, 250, .2)",
         nav: "0 0 1rem 1px rgb(0 0 0/3%)",
         badge: "0 .5rem 1rem rgba(0,0,0,.15)",
+        large: "0 1rem 3rem rgba(0, 0, 0, .175) !important",
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

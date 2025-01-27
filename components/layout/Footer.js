@@ -181,7 +181,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h6 className="text-center mt-10 font-black text-4xl border-b border-gray-200 inline-block w-full pb-3">
+          <h6 className="text-center mt-10 font-black  text-2xl md:text-4xl border-b border-gray-200 inline-block w-full pb-3">
             Our Trusted <span className="text-red-600">Platform Network</span>
           </h6>
           <div className="flex justify-center items-center gap-10 mb-10 mt-3">
