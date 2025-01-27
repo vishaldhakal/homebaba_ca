@@ -168,7 +168,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-3 xl:gap-6">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-4">
           <Dropdown name="Lease" text={"red"} options={rentOpts} width="auto" />
           <Dropdown
             name="Resale Homes"
@@ -178,7 +178,7 @@ const Navbar = () => {
           />
           <button
             onClick={() => setShowAnticipated(true)}
-            className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors flex items-center gap-1 whitespace-nowrap"
+            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors flex items-center gap-1 whitespace-nowrap"
           >
             Most Anticipated
             <span className="bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-sm font-medium">
@@ -187,19 +187,19 @@ const Navbar = () => {
           </button>
           <Link
             href="/new-construction-homes"
-            className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
+            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
           >
             New Construction
           </Link>
           <Link
             href="/contact"
-            className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
+            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
           >
             Contact
           </Link>
           <Link
             href="/blog"
-            className="text-[14px] xl:text-[15px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
+            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
           >
             Blogs
           </Link>
@@ -235,18 +235,24 @@ const Navbar = () => {
             <SheetContent side="right" className="w-[300px] sm:w-[400px] p-0">
               <div className="flex flex-col h-full bg-white">
                 <div className="flex flex-col py-3 mt-10">
-                  <Dropdown
-                    name="Rent Resale Properties"
-                    text={"red"}
-                    options={rentOpts}
-                    width="auto"
-                  />
-                  <Dropdown
-                    name="Buy Resale Properties"
-                    text={"red"}
-                    options={buyOpts}
-                    width="auto"
-                  />
+                  <div className="px-3 py-2">
+                    <Dropdown
+                      name="Lease"
+                      text={"red"}
+                      options={rentOpts}
+                      width="w-full"
+                      className="!justify-start text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors py-2"
+                    />
+                  </div>
+                  <div className="px-3 py-2">
+                    <Dropdown
+                      name="Resale Homes"
+                      text={"red"}
+                      options={buyOpts}
+                      width="w-full"
+                      className="!justify-start text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors py-2"
+                    />
+                  </div>
                   <button
                     onClick={() => {
                       setIsOpen(false);

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ListingCard from "@/components/ListingCard";
-import Heading from "@/components/design/Heading";
+import CityLinks from "@/components/CityLinks";
 import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
 
@@ -177,11 +177,9 @@ export default async function NewConstructionHomes() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
               {cityResults[city]?.results?.slice(0, 4).map((listing) => (
-                <ListingCard
-                  key={listing.id}
-                  listing={listing}
-                  cityName={city}
-                />
+                <>
+                  <ListingCard key={listing.id} listing={listing} city={city} />
+                </>
               ))}
               {cityResults[city]?.results?.length === 0 && (
                 <div className="col-span-full text-center py-8">
@@ -194,6 +192,9 @@ export default async function NewConstructionHomes() {
           </div>
         ))}
       </div>
+
+      <div className="my-10 md:my-32"></div>
+      <CityLinks />
 
       <div className="flex flex-col items-center mb-4 md:mb-5">
         <Image
