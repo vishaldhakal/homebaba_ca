@@ -286,13 +286,13 @@ const Navbar = () => {
                   >
                     Blogs
                   </Link>
-                  <Image
+                  {/* <Image
                     src="/cont.png"
                     alt="Email Icon"
                     width={150}
                     height={30}
                     className="cursor-pointer ml-1 px-6 py-4"
-                  />
+                  /> */}
                 </div>
               </div>
             </SheetContent>
