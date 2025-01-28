@@ -234,6 +234,6 @@ export const roads = {
 export const homeText = {
   "Semi Detached": "Semi Detached Homes",
   Detached: "Detached Homes",
-  "Town House": "Town Homes",
+  "Town House": "Townhomes",
   Condos: "Condos",
 };
