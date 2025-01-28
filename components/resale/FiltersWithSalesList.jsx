@@ -192,7 +192,7 @@ const FiltersWithSalesList = ({
 
   return (
     <div className="relative">
-      <div className="sticky top-[3.5rem] h-12 z-50 bg-white">
+      <div className="sticky top-16 sm:top-[3.5rem] h-12 z-50 bg-white">
         <div
           className={`relative flex ${
             isFilterOpen ? "h-screen" : "h-12"

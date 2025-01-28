@@ -1,5 +1,5 @@
 import { getPropertiesCount } from "@/app/_resale-api/getSalesData";
-import { houseType, saleLease } from "@/constant";
+import { homeText, houseType, saleLease } from "@/constant";
 import capitalizeFirstLetter from "@/helpers/capitalizeFirstLetter";
 import React from "react";
 
@@ -20,19 +20,18 @@ const CityTitle = async ({
     return propertyCount;
   });
 
-  const homeText = !requiredType
-    ? "Homes"
-    : !requiredType?.toLowerCase().includes("house")
-    ? "Homes"
-    : "";
+  // const homeText = !requiredType
+  //   ? "Homes"
+  //   : !requiredType?.toLowerCase().includes("house")
+  //   ? "Homes"
+  //   : "";
 
   const getTitle = () => {
     return (
       <>
         {[
           totalPropertyCount || "100+",
-          capitalizeFirstLetter(requiredType),
-          homeText,
+          homeText[requiredType],
           capitalizeFirstLetter(saleLeaseVal)?.toLowerCase() == "lease"
             ? "for Rent"
             : "for Sale",
@@ -50,8 +49,7 @@ const CityTitle = async ({
         {getTitle()}
       </h1>
       <h2 className="text-sm mb-2 mt-1 text-center sm:text-left">
-        {capitalizeFirstLetter(city)}{" "}
-        {capitalizeFirstLetter(requiredType) || ""} homes for{" "}
+        {capitalizeFirstLetter(city)} {homeText[requiredType]} homes for{" "}
         {saleLeaseVal?.toLowerCase() == "lease" ? "Rent or Lease" : "sale"}.
         Prices from $1 to $5,000,000. Open houses available.
       </h2>

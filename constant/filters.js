@@ -215,7 +215,7 @@ export const houseType = {
     slug: "semi-detached-homes",
   },
   detached: { name: "Detached", value: "Detached", slug: "detached-homes" },
-  town: { name: "Town House", value: "Att/Row/Townhouse", slug: "town-house" },
+  town: { name: "Townhomes", value: "Att/Row/Townhouse", slug: "town-house" },
   duplex: { name: "Duplex", value: "Duplex", slug: "duplex-homes" },
   triplex: { name: "Triplex", value: "Triplex", slug: "triplex-homes" },
 };
