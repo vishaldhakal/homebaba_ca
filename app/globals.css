@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+  scroll-padding-top: 400px;
+}
+
+::-webkit-scrollbar {
+  
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -74,14 +74,14 @@ const websiteSchema = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+1 647-527-4970",
+    telephone: "+1 647-239-5555",
     contactType: "customer support",
   },
   openingHours: "Mo-Su 09:00-18:00",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Brampton Street",
-    addressLocality: "Brampton",
+    streetAddress: "8300 Woodbine Ave",
+    addressLocality: "Markham",
     addressRegion: "ON",
     addressCountry: "CA",
   },
@@ -141,9 +141,9 @@ export default async function Home() {
           className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
           priority
         />
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
           Looking to buy a New Home?
-        </h1>
+        </h2>
         <p className="text-gray-600 text-center text-sm md:text-base">
           Don't know where to start? Contact Homebaba now!
         </p>

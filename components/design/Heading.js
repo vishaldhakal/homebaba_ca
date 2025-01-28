@@ -28,21 +28,7 @@ const Heading = ({
           maxWidth,
         }}
       >
-        {typeof children === "string"
-          ? children
-              .split(" ")
-              .map((word, index) => (
-                <span key={index}>
-                  {word.includes("::highlight::") ? (
-                    <span style={{ color: highlightColor }}>
-                      {word.replace("::highlight::", "")}
-                    </span>
-                  ) : (
-                    word + " "
-                  )}
-                </span>
-              ))
-          : children}
+        {children}
       </h2>
       {subtitle && (
         <p

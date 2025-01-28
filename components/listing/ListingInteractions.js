@@ -9,7 +9,6 @@ import swal from "sweetalert";
 export default function ListingInteractions({ house_detail }) {
   const [showContactModal, setShowContactModal] = useState(false);
   const [requestType, setRequestType] = useState("");
-  const [showFullDescription, setShowFullDescription] = useState(false);
   const [credentials, setCredentials] = useState({
     name: "",
     phone: "",

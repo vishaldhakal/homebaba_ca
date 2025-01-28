@@ -28,7 +28,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="max-w-[700px] mx-auto px-4">
+    <div className="max-w-[700px] mx-auto px-4" id="mycontact">
       <form onSubmit={handleFormSubmit} className="space-y-4">
         <div className="relative">
           <input

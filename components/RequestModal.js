@@ -10,7 +10,7 @@ const RequestModal = ({
   handleCloseModal,
   projectName,
 }) => {
-  const [submitBtn, setSubmitBtn] = useState("Contact now");
+  const [submitBtn, setSubmitBtn] = useState("Request Information");
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ const RequestModal = ({
         </button>
 
         <div className="p-3 sm:p-4">
-          <div className="flex items-center justify-center gap-20 sm:gap-4 mb-6">
+          <div className="flex items-center justify-center gap-4 sm:gap-4 mb-6">
             <div className="w-[90px] h-[90px] sm:w-[80px] sm:h-[80px] relative">
               <div className="w-full h-full rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] overflow-hidden">
                 <img

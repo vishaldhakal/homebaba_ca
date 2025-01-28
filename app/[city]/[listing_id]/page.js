@@ -9,6 +9,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import ContactForm from "@/components/ContactForm";
+import Image from "next/image";
 
 async function getListingData(listingId) {
   const response = await fetch(
@@ -66,13 +68,19 @@ export default async function ListingPage({ params }) {
 
   return (
     <main className="min-h-screen bg-background">
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(createSchema(house_detail)),
+        }}
+      />
       <div className="max-w-7xl mx-auto px-0 sm:px-4">
         <div className="w-full mt-2 md:mt-4 px-2 md:px-0">
           <Breadcrumbs />
           <Gallery images={images} projectName={house_detail.project_name} />
           <div className="max-w-5xl mx-auto px-2 sm:px-8 md:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-8 mt-8">
-              <div className="col-span-2">
+              <div className="col-span-2 pe-0 md:pe-2">
                 <SocialMediaShare />
                 <ListingInfo house_detail={house_detail} city={params.city} />
               </div>
@@ -113,6 +121,26 @@ export default async function ListingPage({ params }) {
                 ))}
               </Accordion>
             </div>
+            <div className="mt-40"></div>
+            <div className="hidden md:block">
+              <div className="flex flex-col items-center mb-4 md:mb-5">
+                <Image
+                  src="/contact-bottom-2.png"
+                  alt="Real Estate Agent"
+                  width={300}
+                  height={300}
+                  className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
+                  priority
+                />
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+                  Looking to buy a New Home?
+                </h2>
+                <p className="text-gray-600 text-center text-sm md:text-base">
+                  Don't know where to start? Contact Homebaba now!
+                </p>
+              </div>
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
@@ -132,6 +160,9 @@ export async function generateMetadata({ params }) {
       title: house_detail.meta_title,
       description: house_detail.meta_description,
       images: data.images[0]?.images || "https://homebaba.ca/noimage.webp",
+    },
+    alternates: {
+      canonical: `https://homebaba.ca/${params.city}/${params.listing_id}`,
     },
   };
 }

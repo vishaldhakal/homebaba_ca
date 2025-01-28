@@ -28,6 +28,73 @@ async function getBlogsByCategory(category) {
   }
 }
 
+async function getCategoryInfo(category) {
+  try {
+    const res = await fetch(
+      `https://api.homebaba.ca/api/categories/${category}`,
+      {
+        next: { revalidate: 3600 },
+      }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.data;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function generateMetadata({ params }) {
+  const categorySlug = params.category;
+  const categoryName = categorySlug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  const blogs = await getBlogsByCategory(categorySlug);
+
+  return {
+    title: `${categoryName} Real Estate Blog Posts (${blogs.results.length}+) | Homebaba`,
+    description: `Read the latest ${categoryName} real estate blog posts. Get insights on new construction projects, market trends, and investment opportunities in ${categoryName}.`,
+    keywords: `${categoryName} real estate, ${categoryName} new construction, ${categoryName} property market, ${categoryName} homes, ${categoryName} real estate news`,
+    openGraph: {
+      url: `https://homebaba.ca/blog/category/${categorySlug}`,
+      siteName: "Homebaba",
+      title: `${categoryName} Real Estate Blog Posts | Homebaba`,
+      description: `Latest ${categoryName} real estate insights and new construction updates. Stay informed about the ${categoryName} property market.`,
+      images: [
+        {
+          url: "https://homebaba.ca/aeee.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${categoryName} Real Estate Blog`,
+        },
+      ],
+      locale: "en_CA",
+      type: "website",
+    },
+    alternates: {
+      canonical: `https://homebaba.ca/blog/category/${categorySlug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${categoryName} Real Estate Blog Posts | Homebaba`,
+      description: `Latest ${categoryName} real estate insights and market updates.`,
+      images: ["https://homebaba.ca/aeee.jpg"],
+    },
+  };
+}
+
 export default async function CategoryPage({ params }) {
   const { results: blogs = [] } = await getBlogsByCategory(params.category);
   const category = params.category;
@@ -66,9 +133,9 @@ export default async function CategoryPage({ params }) {
           className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
           priority
         />
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
           Looking to buy a New Home?
-        </h1>
+        </h2>
         <p className="text-gray-600 text-center text-sm md:text-base">
           Don't know where to start? Contact Homebaba now!
         </p>

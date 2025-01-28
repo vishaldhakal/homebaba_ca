@@ -3,7 +3,7 @@ import Link from "next/link";
 
 async function getDevelopers() {
   const response = await fetch("https://api.homebaba.ca/api/developers/", {
-    next: { revalidate: 3600 } // Revalidate every hour
+    next: { revalidate: 3600 }, // Revalidate every hour
   });
   const data = await response.json();
   return data.data;
@@ -11,13 +11,48 @@ async function getDevelopers() {
 
 export async function generateMetadata() {
   const developers = await getDevelopers();
-  
+
   return {
     title: "Top Home Builders & Developers in Canada | New Construction Homes",
     description: `Discover ${developers.length}+ top rated home builders and developers in Canada. Find new construction homes, condos & townhomes by leading builders on homebaba.`,
+    keywords:
+      "home builders Canada, property developers, new construction builders, Canadian developers, real estate developers, condo builders, residential developers",
     openGraph: {
-      title: "Top Home Builders & Developers in Canada | New Construction Homes",
-      description: `Discover ${developers.length}+ top rated home builders and developers in Canada. Find new construction homes, condos & townhomes by leading builders on homebaba.`,
+      url: "https://homebaba.ca/developers",
+      siteName: "Homebaba",
+      title:
+        "Top Home Builders & Developers in Canada | New Construction Homes",
+      description: `Browse ${developers.length}+ leading home builders and developers in Canada. Find your perfect new construction home from trusted builders.`,
+      images: [
+        {
+          url: "https://homebaba.ca/aeee.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Top Home Builders in Canada",
+        },
+      ],
+      locale: "en_CA",
+      type: "website",
+    },
+    alternates: {
+      canonical: "https://homebaba.ca/developers",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Top Home Builders & Developers in Canada",
+      description: `Explore ${developers.length}+ leading Canadian home builders and their new construction projects.`,
+      images: ["https://homebaba.ca/aeee.jpg"],
     },
   };
 }
@@ -33,9 +68,10 @@ export default async function DevelopersPage() {
         </h1>
         <div className="max-w-[700px] mx-auto">
           <p className="text-gray-600 text-lg">
-            Explore the builders behind your favourite condominium & freehold home projects. 
-            These developers are driven by a passion to transform ideas into tangible structures, 
-            demonstrating leading-edge practices year after year.
+            Explore the builders behind your favourite condominium & freehold
+            home projects. These developers are driven by a passion to transform
+            ideas into tangible structures, demonstrating leading-edge practices
+            year after year.
           </p>
         </div>
       </div>

@@ -1,7 +1,3 @@
 export default function DeveloperLayout({ children }) {
-  return (
-    <div className="min-h-screen">
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen">{children}</div>;
 }

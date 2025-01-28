@@ -133,6 +133,70 @@ async function getCityData(cityName) {
   }
 }
 
+async function getTotalListings() {
+  try {
+    const allCitiesData = await Promise.all(
+      cities.map((city) => getCityData(city))
+    );
+
+    const totalCount = allCitiesData.reduce((total, cityData) => {
+      return total + (cityData.totalCount || 0);
+    }, 0);
+
+    return totalCount;
+  } catch (error) {
+    console.error("Error getting total listings:", error);
+    return 0;
+  }
+}
+
+export async function generateMetadata() {
+  const totalListings = await getTotalListings();
+
+  return {
+    title: `New Construction Homes in Canada (${totalListings}+ Pre Construction Projects)`,
+    description: `Discover ${totalListings}+ new construction homes across Canada. Browse pre-construction condos, townhouses & detached homes in Toronto, Mississauga, Brampton & more. Get VIP access to floor plans, pricing & exclusive launches.`,
+    keywords:
+      "new construction homes Canada, pre construction homes, new condos Canada, new townhomes Canada, pre construction condos, new houses Canada, vip access new homes",
+    openGraph: {
+      url: "https://homebaba.ca/new-construction-homes",
+      siteName: "Homebaba",
+      title: "New Construction Homes Canada - Pre Construction Projects",
+      description: `Explore ${totalListings}+ new construction homes in Canada's top cities. Find pre-construction condos, townhouses & single-family homes with exclusive VIP access to launches, pricing & floor plans.`,
+      images: [
+        {
+          url: "https://homebaba.ca/og-image.jpg", // Add your default OG image
+          width: 1200,
+          height: 630,
+          alt: "New Construction Homes Canada",
+        },
+      ],
+      locale: "en_CA",
+      type: "website",
+    },
+    alternates: {
+      canonical: "https://homebaba.ca/new-construction-homes",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "New Construction Homes Canada - Pre Construction Projects",
+      description: `Browse ${totalListings}+ new construction homes in Canada. Find pre-construction condos, townhouses & houses with VIP access.`,
+      images: ["https://homebaba.ca/aeee.jpg"], // Add your Twitter card image
+    },
+  };
+}
+
 export default async function NewConstructionHomes() {
   const cityDataPromises = cities.map((city) => getCityData(city));
   const citiesData = await Promise.all(cityDataPromises);

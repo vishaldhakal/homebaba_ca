@@ -4,11 +4,6 @@ import Heading from "@/components/design/Heading";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
-export const metadata = {
-  title: "Homebaba Blogs | Real Estate Insights",
-  description: "Homebaba Insights is a blog for all new construction homes. We provide knowledge on industry news and trends, real estate tech, and many more.",
-};
-
 export const revalidate = 3600;
 
 const categories = [
@@ -96,14 +91,64 @@ export default async function BlogListing() {
           className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
           priority
         />
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
           Looking to buy a New Home?
-        </h1>
+        </h2>
         <p className="text-gray-600 text-center text-sm md:text-base">
-          Don’t know where to start? Contact Homebaba now!
+          Don't know where to start? Contact Homebaba now!
         </p>
       </div>
       <ContactForm />
     </>
   );
+}
+
+export async function generateMetadata() {
+  const { results: blogs = [] } = await getBlogs();
+
+  return {
+    title: "Real Estate Blog - New Homes Insights | Homebaba",
+    description:
+      "Stay informed with Homebaba's real estate blog. Get expert insights on new homes, market trends, and investment opportunities across Canada.",
+    keywords:
+      "real estate blog, new homes, real estate insights, property market news, home buying tips, real estate investment, Canadian real estate",
+    openGraph: {
+      url: "https://homebaba.ca/blog",
+      siteName: "Homebaba",
+      title: "Real Estate Blog - New Homes Insights",
+      description:
+        "Expert insights on new homes, market trends, and real estate investment opportunities across Canada.",
+      images: [
+        {
+          url: "https://homebaba.ca/aeee.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Homebaba Real Estate Blog",
+        },
+      ],
+      locale: "en_CA",
+      type: "website",
+    },
+    alternates: {
+      canonical: "https://homebaba.ca/blog",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Real Estate Blog - New Homes Insights",
+      description:
+        "Expert insights on new homes and real estate trends across Canada.",
+      images: ["https://homebaba.ca/aeee.jpg"],
+    },
+  };
 }

@@ -8,17 +8,76 @@ import BlogCard from "@/components/BlogCard";
 // Generate metadata for the page
 export async function generateMetadata({ params }) {
   const post = await getBlogPost(params.slug);
-  
+
   if (!post) {
     return {
       title: "Blog Post Not Found | Homebaba",
       description: "The requested blog post could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
+  const postTitle = post.meta_title || post.title;
+  const postDescription = post.meta_description || post.excerpt;
+  const postImage = post.featured_image || "https://homebaba.ca/aeee.jpg";
+
   return {
-    title: post.meta_title || post.title,
-    description: post.meta_description || post.excerpt,
+    title: `${postTitle} | Homebaba Real Estate Blog`,
+    description: postDescription,
+    keywords: `${
+      post.category?.name || "real estate"
+    }, new construction homes, ${
+      post.tags?.join(", ") || "property market"
+    }, Canadian real estate`,
+    openGraph: {
+      url: `https://homebaba.ca/blog/${params.slug}`,
+      siteName: "Homebaba",
+      title: postTitle,
+      description: postDescription,
+      images: [
+        {
+          url: postImage,
+          width: 1200,
+          height: 630,
+          alt: postTitle,
+        },
+      ],
+      locale: "en_CA",
+      type: "article",
+      article: {
+        publishedTime: post.created_at,
+        modifiedTime: post.updated_at,
+        authors: [
+          `${post.author?.user?.first_name} ${post.author?.user?.last_name}`,
+        ],
+        tags: post.tags,
+        section: post.category?.name,
+      },
+    },
+    alternates: {
+      canonical: `https://homebaba.ca/blog/${params.slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: postTitle,
+      description: postDescription,
+      images: [postImage],
+      creator: post.author?.twitter_handle || "@homebaba",
+    },
   };
 }
 
@@ -105,15 +164,8 @@ export default async function BlogPost({ params }) {
     <>
       <article className="max-w-7xl mx-auto px-4">
         {/* Back Link and Breadcrumbs */}
-        <div className="flex justify-between items-center py-8 max-w-4xl mx-auto">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-xs"
-          >
-            <ArrowLeft className="h-3 w-3" />
-            Blogs
-          </Link>
-          <nav className="text-sm text-gray-500">
+        <div className="flex flex-col md:flex-row justify-center items-center py-8 max-w-4xl mx-auto">
+          <nav className="text-sm text-center md:text-left text-gray-500">
             <Link href="/" className="hover:text-gray-700 text-xs">
               Home
             </Link>
@@ -128,7 +180,7 @@ export default async function BlogPost({ params }) {
 
         {/* Hero Section */}
         <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8 leading-snug text-center max-w-4xl mx-auto">
+          <h1 className="text-xl md:text-4xl font-extrabold mb-8 leading-snug text-center max-w-4xl mx-auto">
             {blog.title}
           </h1>
 
@@ -195,9 +247,9 @@ export default async function BlogPost({ params }) {
           className="rounded-full mb-6 md:mb-8 w-[200px] h-[200px] md:w-[300px] md:h-[300px] object-cover"
           priority
         />
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 text-center">
           Looking to buy a New Home?
-        </h1>
+        </h2>
         <p className="text-gray-600 text-center text-sm md:text-base">
           Don't know where to start? Contact Homebaba now!
         </p>

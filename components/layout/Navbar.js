@@ -192,24 +192,24 @@ const Navbar = () => {
             New Construction
           </Link>
           <Link
-            href="/contact"
-            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
-          >
-            Contact
-          </Link>
-          <Link
             href="/blog"
             className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
           >
             Blogs
           </Link>
-          <Image
+          <Link
+            href="/contact-us"
+            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
+          >
+            Contact
+          </Link>
+          {/* <Image
             src="/cont.png"
             alt="Email Icon"
             width={150}
             height={30}
             className="cursor-pointer ml-1"
-          />
+          /> */}
         </div>
 
         {/* Mobile Menu */}
@@ -273,7 +273,7 @@ const Navbar = () => {
                     New Construction
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/contact-us"
                     onClick={() => setIsOpen(false)}
                     className="px-6 py-4 text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
                   >

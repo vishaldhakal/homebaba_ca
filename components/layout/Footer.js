@@ -90,10 +90,16 @@ const Footer = () => {
                   Blogs
                 </Link>
                 <Link
-                  href="#"
+                  href="/contact-us"
                   className="text-gray-600 hover:text-gray-900"
                 >
                   Contact us
+                </Link>
+                <Link
+                  href="/developers"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Developers
                 </Link>
                 <Link
                   href="/privacy"
