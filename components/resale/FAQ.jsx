@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { Accordion, AccordionItem } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const FAQ = ({ main_data }) => {
   return (
@@ -9,49 +14,42 @@ const FAQ = ({ main_data }) => {
         Some information about this property - {main_data?.Street}{" "}
         {main_data.StreetName} {main_data.StreetSuffix}
       </h2>
-      <Accordion variant="splitted" className="px-0">
-        <AccordionItem
-          key="1"
-          aria-label="Accordion 1"
-          title="What type of property is this?"
-        >
-          <div className="text-sm">
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger className="text-left">
+            What type of property is this?
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
             This is a {main_data.PropertySubType.toLowerCase()} home.
-          </div>
+          </AccordionContent>
         </AccordionItem>
-        <AccordionItem
-          key="2"
-          aria-label="Accordion 2"
-          title="How many bedrooms and bathrooms does this property have ?"
-          className="text-md"
-        >
-          <div className="text-sm">
+        <AccordionItem value="item-2">
+          <AccordionTrigger className="text-left">
+            How many bedrooms and bathrooms does this property have?
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
             This property has {main_data.BedroomsTotal} bedrooms and{" "}
             {main_data.BathroomsTotalInteger} bathrooms.
-          </div>
+          </AccordionContent>
         </AccordionItem>
-        <AccordionItem
-          key="3"
-          aria-label="Accordion 2"
-          title="How many parking spaces are available?"
-          className="text-md"
-        >
-          <div className="text-sm">
+        <AccordionItem value="item-3">
+          <AccordionTrigger className="text-left">
+            How many parking spaces are available?
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
             There are {main_data.ParkingSpaces} parking spaces.
-          </div>
+          </AccordionContent>
         </AccordionItem>
-        <AccordionItem
-          key="4"
-          aria-label="Accordion 3"
-          title="Where is this property located?"
-          className="text-md"
-        >
-          <div className="text-sm">
+        <AccordionItem value="item-4">
+          <AccordionTrigger className="text-left">
+            Where is this property located?
+          </AccordionTrigger>
+          <AccordionContent className="text-left">
             This property is located in{" "}
             {main_data.Community ? main_data.Community : ""}{" "}
             {main_data?.StreetNumber} {main_data?.StreetName}{" "}
             {main_data?.StreetSuffix}
-          </div>
+          </AccordionContent>
         </AccordionItem>
       </Accordion>
     </>

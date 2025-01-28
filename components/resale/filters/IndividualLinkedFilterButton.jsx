@@ -23,7 +23,7 @@ export const IndividualLinkedFilterButton = ({
   };
 
   return (
-    <div className="inline-flex flex-wrap gap-y-2">
+    <div className="inline-flex flex-none sm:flex-wrap gap-y-2">
       {options.map((option, index) => {
         return (
           <div

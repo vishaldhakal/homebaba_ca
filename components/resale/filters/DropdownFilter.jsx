@@ -1,9 +1,10 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { generateURL } from "@/helpers/generateResaleURL";
 import Link from "next/link";
 import { Cross, CrossIcon, X } from "lucide-react";
+import { FilterOpenContext } from "@/components/context/FilterOpenContext";
 
 const CustomDropdown = ({
   options,
@@ -17,6 +18,7 @@ const CustomDropdown = ({
   saleLease,
   filterObj,
 }) => {
+  const { setIsFilterOpen } = useContext(FilterOpenContext);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValues, setSelectedValues] = useState(
     isMulti ? [...value] : [value]
@@ -79,6 +81,10 @@ const CustomDropdown = ({
       Object.values(filterObj).find((obj) => !obj.value).value
     );
   };
+
+  useEffect(() => {
+    isOpen ? setIsFilterOpen(true) : setIsFilterOpen(false);
+  }, [isOpen]);
   return (
     <div className="inline-block" ref={dropdownRef}>
       <button
@@ -91,7 +97,7 @@ const CustomDropdown = ({
             ${
               optionSelected
                 ? `bg-[#ffe3e3] text-black border-black`
-                : "border-gray-300 text-gray-700 bg-white "
+                : "border-[#b2b2b2] text-gray-700 bg-white "
             }
             hover:shadow-md transition-all text-center
           `}
@@ -107,6 +113,7 @@ const CustomDropdown = ({
               })}
               className="hover:pointer"
             >
+              {console.log("##")}
               <X className="w-5 h-5" />
             </Link>
           ) : (
@@ -127,7 +134,7 @@ const CustomDropdown = ({
       {isOpen && (
         <div
           className={`
-              min-w-[120px] sm:min-w-[150px] max-h-[300px] overflow-y-auto
+              absolute top-6 min-w-[120px] sm:min-w-[150px] max-h-[300px] overflow-y-auto
               bg-white rounded-lg shadow-lg
               border border-gray-200
               mt-2 py-2

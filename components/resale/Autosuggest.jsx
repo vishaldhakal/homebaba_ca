@@ -22,7 +22,7 @@ const Autosuggest = ({
       : [];
   return (
     <div
-      className={`absolute z-50 top-0 border-r-1 border-l-1 border-b-1 border-gray-300 rounded-b-md w-full bg-white p-4 overflow-hidden shadow-xl ${
+      className={`absolute z-[999] top-0 border-r-1 border-l-1 border-b-1 border-gray-300 rounded-b-md w-full bg-white p-4 overflow-hidden shadow-xl text-xs sm:text-md ${
         displaySuggestions
           ? "searchbar-animation-open"
           : "searchbar-animation-close"

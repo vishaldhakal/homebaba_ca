@@ -17,7 +17,6 @@ import {
   MessageSquareText,
   UserCircle,
 } from "lucide-react";
-import { Avatar } from "../ui/avatar";
 import Image from "next/image";
 const BookShowingForm = ({ address }) => {
   return (
@@ -30,20 +29,16 @@ const BookShowingForm = ({ address }) => {
             className="object-cover w-full h-full"
           />
         </div> */}
-        <div className="w-full px-5 py-8 flex flex-col justify-center items-center">
+        <div className="w-full flex flex-col justify-center items-center">
           {/**Schedule a viewing form */}
-          <section className="w-full flex flex-row justify-between">
+          {/* <section className="w-full flex flex-row justify-between">
             <div className="flex flex-row space-x-4 items-center">
-              {/* <Image width={20} height={20} /> */}
-              {/* <Avatar className="w-12 h-12 bg-white" /> */}
+            
               <div className="bg-white rounded-full">
                 <img src="/milan-2.png" className="w-14 h-12 " />
               </div>
               <div className="flex flex-col space-y-0 text-2xl font-semibold">
-                {/* John Doe */}
-                {/* <button className="border-2 border-gray-600 rounded-md px-1 py-[0.15rem] uppercase tracking-wide text-xs">
-                  Agent
-                </button> */}
+                
                 <p>Contact Agent</p>
                 <div className="flex items-center flex-row">
                   <span className="text-xs sm:text-sm font-bold">homebaba</span>
@@ -64,7 +59,7 @@ const BookShowingForm = ({ address }) => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* <Dialog>
             <div className="p-4 rounded-lg flex flex-col space-y-4 justify-center">

@@ -3,6 +3,7 @@ import { ImSpinner } from "react-icons/im";
 import Breadcrumbs from "@/components/resale/Breadcrumbs";
 import CanadianCitiesShowcase from "@/components/resale/CanadianCitiesShowcase";
 import CityTitle from "@/components/resale/CityTitle";
+import FilterComponent from "@/components/resale/FilterComponent";
 
 const FiltersWithSalesList = dynamic(
   () => import("@/components/resale/FiltersWithSalesList"),
@@ -34,7 +35,7 @@ const page = async ({ params }) => {
       <Breadcrumbs items={breadcrumbItems} />
       <div className="container-fluid">
         <CityTitle />
-        <FiltersWithSalesList
+        <FilterComponent
           {...{
             INITIAL_LIMIT,
           }}

@@ -130,7 +130,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-50 shadow-nav">
+      <nav className="flex items-center justify-between px-4 py-3 bg-white sticky top-0 z-[999] shadow-nav">
         {/* Logo Section */}
         <div className="flex items-center">
           <div className="flex items-center">
@@ -214,9 +214,9 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div className="lg:hidden flex items-center justify-between gap-4">
-          <div className="flex-1 max-w-xs mx-4 me-auto sm:hidden">
+          <div className="flex-1 max-w-xs mx-4 me-auto sm:hidden z-[9999]">
             {pathname.includes("/resale") ? (
-              <ResaleSearchBar />
+              <ResaleSearchBar small={true} />
             ) : (
               <SearchBar
                 padding="py-2.5"

@@ -1,5 +1,11 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+  useRef,
+} from "react";
 
 //CONSTANT
 import {
@@ -15,34 +21,10 @@ import {
 } from "@/constant";
 
 import useDeviceView from "@/helpers/useDeviceView";
-import { FaChevronDown } from "react-icons/fa";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { generateURL } from "@/helpers/generateResaleURL";
 import { IndividualFilterButton } from "./filters/IndividualFilterButton";
 import { DropdownFilter } from "./filters/DropdownFilter";
 import { IndividualLinkedFilterButton } from "./filters/IndividualLinkedFilterButton";
-import { ChartNoAxesCombined } from "lucide-react";
 // import Dropdown from "./Dropdown";
-
-const bgColor = {
-  saleLease: "bg-black",
-  priceDecreased: "bg-black",
-  time: "bg-black",
-  type: "bg-black",
-  minTimestampSql: "bg-[#eb7e6c]/1",
-  bed: "bg-black",
-};
-
-const textColor = {
-  saleLease: "text-white",
-  areas: "text-white",
-  time: "text-black",
-  type: "text-white",
-  minTimestampSql: "text-black",
-  bed: "text-white",
-};
-
 const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
   const [navbar, setNavbar] = useState(false);
 
@@ -159,9 +141,9 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
       : priceRangesLeaseProperties;
 
   return (
-    <>
+    <div className="bg-white flex">
       <div
-        className={`justify-center sm:justify-start gap-0 gap-md-0 mt-2 sm:my-2 flex flex-wrap bg-white overflow-visible${
+        className={`justify-start gap-0 gap-md-0 sm:my-2 flex flex-nowrap bg-white overflow-visible ${
           navbar
             ? `filter__scrolled mt-4 pb-2 container-fluid`
             : `top-[0px] items-center`
@@ -176,8 +158,8 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
           city={filterState.city}
           type={filterState.type}
         />
-        <div className="mx-4 flex">
-          <div className="rounded-full mx-[0.1rem]">
+        <div className="mx-4 flex items-center sm:mt-0">
+          <div className="relative rounded-full mx-[0.1rem] flex-items-center">
             <DropdownFilter
               options={bedCountOptions}
               defaultValue="Beds"
@@ -193,7 +175,7 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
             />
           </div>
 
-          <div className="rounded-full overflow-hidden hover:shadow-lg mx-[0.1rem]">
+          <div className="relative rounded-full hover:shadow-lg mx-[0.1rem]">
             <DropdownFilter
               options={houseTypeOptions}
               defaultValue={
@@ -210,7 +192,7 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
               filterObj={houseType}
             />
           </div>
-          <div className="flex justify-center sm:justify-start mx-[0.1rem]">
+          <div className="relative flex justify-center sm:justify-start mx-[0.1rem]">
             <DropdownFilter
               options={
                 filterState.saleLease == saleLease.sale.name
@@ -236,6 +218,11 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
         </div>
       </div>
 
+      {/* <div className="rounded-full">
+        <MoreFilter
+          {...{ washroomCountOptions, additonalFilterChange, filterState }}
+        />
+      </div> */}
       <IndividualFilterButton
         name="Basement"
         options={Object.keys(basementType)}
@@ -250,7 +237,7 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
         handleFilterChange={handleFilterChange}
         filterObj={roads}
       />
-    </>
+    </div>
   );
 };
 

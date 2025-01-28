@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 
 const PriceButton = ({ price }) => {
@@ -36,9 +37,12 @@ const PriceButton = ({ price }) => {
     //   </div> */}
     // </Link>
     <div onClick={handleClick} className="fixed bottom-3 flex justify-center">
-      <button className="mx-auto z-[1000] overflow-hidden block sm:hidden rounded-xl shadow-btn bg-black text-white text-xs font-semibold py-2 px-4 transform transition-all duration-300 ease-in-out hover:scale-105 scale-100">
+      <Link
+        href="#contactform"
+        className="mx-auto z-[1000] overflow-hidden block sm:hidden rounded-xl shadow-btn bg-black text-white text-xs font-semibold py-2 px-4 transform transition-all duration-300 ease-in-out hover:scale-105 scale-100"
+      >
         Tour this home
-      </button>
+      </Link>
     </div>
   );
 };

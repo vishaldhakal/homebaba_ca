@@ -28,6 +28,7 @@ import TimeAgo from "@/components/resale/TimeAgo";
 import { homeText, houseType } from "@/constant";
 import { isLocalStorageAvailable } from "@/helpers/checkLocalStorageAvailable";
 import UnlockableCards from "@/components/resale/UnlockableCards";
+import SideContactForm from "@/components/resale/SideContactForm";
 
 // import { getNotes } from "@/helpers/getNotes";
 // import { Button } from "@nextui-org/react";
@@ -152,11 +153,11 @@ const page = async ({ params }) => {
 
                   <div
                     className="sm:col-span-3 col-span-9 relative"
-                    id="contact"
+                    id="mycontact"
                   >
-                    <BookShowingForm
+                    <SideContactForm
                       address={address + `, ${main_data?.City}, Ontario`}
-                    ></BookShowingForm>
+                    ></SideContactForm>
                   </div>
                   <div className="mt-24 mb-10 col-span-7">
                     <FAQ main_data={main_data} />
@@ -201,7 +202,7 @@ const page = async ({ params }) => {
                 </section>
               )}
 
-              <PriceButton price={formatCurrency(main_data?.ListPrice)} />
+              {/* <PriceButton price={formatCurrency(main_data?.ListPrice)} /> */}
             </section>
           </div>
         </div>

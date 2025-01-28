@@ -3,6 +3,7 @@ import { houseType, saleLease } from "@/constant";
 import FiltersWithSalesList from "@/components/resale/FiltersWithSalesList";
 import CanadianCitiesShowcase from "@/components/resale/CanadianCitiesShowcase";
 import CityTitle from "@/components/resale/CityTitle";
+import FilterComponent from "@/components/resale/FilterComponent";
 
 const page = async ({ params }) => {
   let saleLeaseValue = undefined;
@@ -28,7 +29,7 @@ const page = async ({ params }) => {
     return (
       <div className="">
         <CityTitle requiredType={type} saleLeaseVal={saleLeaseValue} />
-        <FiltersWithSalesList
+        <FilterComponent
           {...{
             INITIAL_LIMIT,
             saleLeaseVal: saleLeaseValue,

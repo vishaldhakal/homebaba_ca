@@ -4,6 +4,7 @@ import capitalizeFirstLetter from "@/helpers/capitalizeFirstLetter";
 import FiltersWithSalesList from "@/components/resale/FiltersWithSalesList";
 import { plural } from "@/constant/plural";
 import CityTitle from "@/components/resale/CityTitle";
+import FilterComponent from "@/components/resale/FilterComponent";
 
 const page = async ({ params }) => {
   let saleLeaseValue;
@@ -30,7 +31,7 @@ const page = async ({ params }) => {
           requiredType={type}
           saleLeaseVal={saleLeaseValue}
         />
-        <FiltersWithSalesList
+        <FilterComponent
           {...{
             city,
             INITIAL_LIMIT,

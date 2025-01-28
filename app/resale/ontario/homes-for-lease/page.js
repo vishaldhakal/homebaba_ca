@@ -6,18 +6,16 @@ import FilterComponent from "@/components/resale/FilterComponent";
 
 const INITIAL_LIMIT = 30;
 const page = async ({ params }) => {
-  const city = params.city.split("-").join(" ");
-  const formattedSlug = encodeURIComponent(capitalizeFirstLetter(city));
-  const salesListData = await getSalesData(0, INITIAL_LIMIT, formattedSlug);
+  const salesListData = await getSalesData(0, INITIAL_LIMIT);
   const saleLeaseVal = "lease";
   return (
     <>
       <div className="container-fluid mt-4">
         <div className="">
           <div className="">
-            <CityTitle city={city} saleLeaseVal={saleLeaseVal} />
+            <CityTitle saleLeaseVal={saleLeaseVal} />
             <FilterComponent
-              {...{ salesListData, INITIAL_LIMIT, city, saleLeaseVal }}
+              {...{ salesListData, INITIAL_LIMIT, saleLeaseVal }}
             />
           </div>
         </div>
@@ -27,11 +25,10 @@ const page = async ({ params }) => {
 };
 
 export async function generateMetadata({ params }, parent) {
-  const formattedCity = capitalizeFirstLetter(params.city.replace("-", " "));
   return {
     ...parent,
     alternates: {
-      canonical: `https://homebaba.ca/ontario/${params.city}/homes-for-lease`,
+      canonical: `https://homebaba.ca/resale/ontario/homes-for-lease`,
     },
     openGraph: {
       images: "/favicon.ico",
@@ -42,7 +39,7 @@ export async function generateMetadata({ params }, parent) {
       "New Listings",
       "Homebaba.ca",
     ].join(" | "),
-    description: `Find houses for sale in ${formattedCity}, ON. Visit Homebaba.ca to see all the ${params.city}, ON real estate listings on the MLS® Systems today! Prices starting at $1 💰`,
+    description: `Find houses for sale in ON. Visit Homebaba.ca to see all the ON real estate listings on the MLS® Systems today! Prices starting at $1 💰`,
   };
 }
 

@@ -64,6 +64,7 @@ export const getSalesData = async (
     if (listingType) {
       filterQuery += ` and PropertySubType eq ${listingType}`;
     }
+    console.log(url);
     const res = await fetch(url, options);
     const data = await res.json();
     return data.value;

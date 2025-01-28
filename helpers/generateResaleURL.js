@@ -10,11 +10,14 @@ export const generateURL = ({
   saleLeaseVal,
   listingIDVal = null,
   embeddedSite = false,
+  useLocalStorage = true,
 }) => {
   const filterState =
+    useLocalStorage &&
     isLocalStorageAvailable() &&
     JSON.parse(localStorage.getItem("filterState"));
   const city = cityVal?.toLowerCase().replaceAll(" ", "-");
+  // const storedFilterType = Object;
   let houseType =
     houseTypeVal?.toLowerCase() || filterState?.type?.toLowerCase() || null;
   if (houseType == "house type") {
@@ -30,18 +33,18 @@ export const generateURL = ({
       ?.toLowerCase();
   null;
   if (listingIDVal && city)
-    return `/resale/ontario/${city}/listings/${listingIDVal}`;
+    return `/resale/ontario/${city}/listings/${encodeURIComponent(
+      listingIDVal
+    )}`;
   let finalLink = `/resale/ontario`;
 
   if (city) finalLink += "/" + city;
 
   if (!houseType && !saleLeaseType) return finalLink + "/homes-for-sale";
-
-  // console.log(houseTypeLinkObj, houseType);
   if (houseType && !city) finalLink += "/homes/" + houseTypeLinkObj[houseType];
-  if (houseType && city) finalLink += "/" + houseTypeLinkObj[houseType];
+  if (houseType && city)
+    finalLink += "/" + (houseTypeLinkObj[houseType] || "homes");
   if (saleLeaseType && houseType) finalLink += "-for-" + saleLeaseType;
   if (saleLeaseType && !houseType) finalLink += "/homes-for-" + saleLeaseType;
-
-  return finalLink;
+  return encodeURI(finalLink);
 };

@@ -23,7 +23,7 @@ export const IndividualFilterButton = ({
   };
 
   return (
-    <div className="inline-flex sm:justify-normal justify-center sm:mr-4 flex-wrap gap-y-2 py-2 sm:py-0 sm:mx-2">
+    <div className="inline-flex sm:justify-normal justify-center sm:mr-4 flex-nowrap gap-y-2 py-1 sm:py-0 sm:mx-2 my-0 sm:my-2 bg-white">
       {options.map((option, index) => {
         return (
           <div
