@@ -14,6 +14,7 @@ const citiesWithProvinces = [
   { city: "Bowmanville", province: "Ontario" },
   { city: "Innisfil", province: "Ontario" },
   { city: "Bradford", province: "Ontario" },
+  { city: "Brampton", province: "Ontario" },
   { city: "Calgary", province: "Ontario" },
   { city: "Richmond Hill", province: "Ontario" },
   { city: "Aurora", province: "Ontario" },

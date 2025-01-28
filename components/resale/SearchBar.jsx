@@ -5,7 +5,7 @@ import { searchProperties } from "@/app/_resale-api/getSalesData";
 import debounce from "lodash.debounce";
 import Autosuggest from "./Autosuggest";
 import useDeviceView from "@/helpers/useDeviceView";
-import { citiesWithProvinces } from "@/data/ontarioCities";
+import citiesWithProvinces from "@/constant/cities";
 
 const ResaleSearchBar = ({
   numberOfSuggestions = 10,
