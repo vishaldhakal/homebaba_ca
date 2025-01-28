@@ -30,7 +30,7 @@ export const IndividualLinkedFilterButton = ({
             key={index}
             className={`flex items-center justify-center mx-[2px] px-3 text-xs font-semibold h-8 border-[#b2b2b2] tracking-[0.01125] border-[1px] cursor-pointer text-nowrap leading-[1.2rem] sm:leading-normal rounded-full hover:shadow-lg  ${
               isActive(option)
-                ? `border-black! text-black bg-[#fcdaf4]`
+                ? `border-black! text-black bg-[#ffe3e3]`
                 : "text-gray-700"
             }`}
             // onClick={() => handleClick(name, option)}

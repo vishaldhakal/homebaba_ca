@@ -136,7 +136,7 @@ const PropertyDescription = ({ main_data, fullAddress }) => {
         </div>
         {isOverflowing && (
           <button
-            className="mt-2 px-2 border-2 py-[3px] font-semibold rounded-lg  sm:my-2 text-[#fcdaf4] mb-4"
+            className="mt-2 px-2 border-2 py-[3px] font-semibold rounded-lg  sm:my-2 text-[#ffe3e3] mb-4"
             onClick={toggleShowMore}
           >
             {showMoreDesc ? "See Less ↑" : "See More ↓"}

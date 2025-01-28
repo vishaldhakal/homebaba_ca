@@ -1,9 +1,8 @@
 "use client";
 import { generateURL } from "@/helpers/generateResaleURL";
 import Link from "next/link";
-import React, { useRef } from "react";
-import { CSSTransition, Transition } from "react-transition-group";
-import { CgPin, CgSpinner } from "react-icons/cg";
+import React from "react";
+import { CgPin } from "react-icons/cg";
 import FadeLoader from "react-spinners/FadeLoader";
 
 const Autosuggest = ({
@@ -23,7 +22,7 @@ const Autosuggest = ({
       : [];
   return (
     <div
-      className={`absolute top-0 border-r-1 border-l-1 border-b-1 border-gray-300 rounded-b-md w-full bg-white p-4 overflow-hidden shadow-xl z-0 ${
+      className={`absolute z-50 top-0 border-r-1 border-l-1 border-b-1 border-gray-300 rounded-b-md w-full bg-white p-4 overflow-hidden shadow-xl ${
         displaySuggestions
           ? "searchbar-animation-open"
           : "searchbar-animation-close"
@@ -35,7 +34,7 @@ const Autosuggest = ({
             </section> */}
 
       {/* SUGGESTIONS */}
-      <div className="text-xs text-center text-gray-600 font-bold">
+      <div className="text-xs text-start text-gray-600 font-bold">
         SUGGESTIONS
       </div>
       {searchTerm && suggestions.length > 0 ? (
@@ -75,7 +74,7 @@ const Autosuggest = ({
               suggestions.length > 0 && searchTerm && "border-t-1 mt-2 pt-2"
             }`}
           >
-            <div className="text-xs text-gray-600 font-bold text-center">
+            <div className="text-xs text-gray-600 font-bold text-start">
               RECENT SEARCHES
             </div>
             <div>
@@ -146,7 +145,7 @@ const SearchOption = ({ suggestion, setSearchTerm }) => {
             <CgPin className="1.25rem"></CgPin>
           </div>
 
-          <span className="ml-2 text-center">
+          <span className="ml-2 text-start">
             {suggestion?.UnparsedAddress || suggestion.city}
           </span>
         </div>

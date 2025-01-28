@@ -37,7 +37,7 @@ const BookShowingForm = ({ address }) => {
               {/* <Image width={20} height={20} /> */}
               {/* <Avatar className="w-12 h-12 bg-white" /> */}
               <div className="bg-white rounded-full">
-                <img src="/contact-form.png" className="w-14 h-12 " />
+                <img src="/milan-2.png" className="w-14 h-12 " />
               </div>
               <div className="flex flex-col space-y-0 text-2xl font-semibold">
                 {/* John Doe */}
@@ -48,14 +48,14 @@ const BookShowingForm = ({ address }) => {
                 <div className="flex items-center flex-row">
                   <span className="text-xs sm:text-sm font-bold">homebaba</span>
                   <Image
-                    src="/maple-leaf.svg"
+                    src="/canadaleaf.svg"
                     alt="Maple Leaf Icon for Logo"
                     width={12}
                     height={12}
                     className="hidden md:block"
                   />
                   <Image
-                    src="/maple-leaf.svg"
+                    src="/canadaleaf.svg"
                     alt="Maple Leaf Icon for Logo"
                     width={15}
                     height={15}

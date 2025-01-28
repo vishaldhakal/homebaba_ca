@@ -118,15 +118,13 @@ const ResaleCard = ({
       >
         <div className="lg:px-0 h-full w-full">
           <div className={`flex flex-col overflow-hidden relative`}>
-            <div className={`${"h-52 sm:h-80"} overflow-hidden relative`}>
+            <div className={`${"h-52 sm:h-60"} overflow-hidden relative`}>
               <div
                 className={`${
-                  small ? "h-44" : "h-52 sm:h-80"
-                } sm:h-80 relative z-10 rounded-t-2xl`}
+                  small ? "h-44" : "h-52 sm:h-60"
+                } sm:h-60 relative z-10 rounded-t-2xl`}
               >
-                {loadingImage ? (
-                  <Skeleton className="object-cover w-full h-full rounded-t-2xl" />
-                ) : imgUrl ? (
+                {imgUrl ? (
                   <img
                     className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110 rounded-t-2xl"
                     src={imgUrl}
@@ -163,7 +161,7 @@ const ResaleCard = ({
                   </div>
                 )}
                 {isHotListing && (
-                  <div className="text-black text-[0.7rem] p-[3px] px-2 shadow-2xl rounded-md mx-1 bg-[#fcdaf4] items-center hidden sm:block">
+                  <div className="text-black border border-red-600 text-[0.7rem] p-[3px] px-2 rounded-md mx-1 bg-red-50 shadow-large items-center hidden sm:block">
                     <span>🔥 New Listing</span>
                   </div>
                 )}

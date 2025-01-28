@@ -90,7 +90,7 @@ const CustomDropdown = ({
             ${isMobileView ? "px-s gap-1 min-w-[40px]" : "min-w-[120px]"}
             ${
               optionSelected
-                ? `bg-[#fcdaf4] text-black border-black`
+                ? `bg-[#ffe3e3] text-black border-black`
                 : "border-gray-300 text-gray-700 bg-white "
             }
             hover:shadow-md transition-all text-center

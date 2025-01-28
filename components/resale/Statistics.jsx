@@ -65,7 +65,7 @@ const Statistics = ({ city, propertyType }) => {
       <div
         className="absolute inset-0"
         // style={{
-        //   backgroundImage: "url(/maple-leaf.svg)",
+        //   backgroundImage: "url(/canadaleaf.svg)",
         //   backgroundRepeat: "repeat",
         //   backgroundSize: "50px 50px",
         //   filter: "opacity(0.1)",

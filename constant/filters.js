@@ -170,7 +170,7 @@ export const numberOfDays = {
 };
 
 export const bedCount = {
-  any: { name: "", value: 0 },
+  any: { name: "Beds", value: 0 },
   one: { name: "1 Beds", value: 1 },
   two: { name: "2 Beds", value: 2 },
   three: { name: "3 Beds", value: 3 },
@@ -188,9 +188,15 @@ export const washroomCount = {
 };
 
 export const priceRangesSaleProperties = {
-  "$0 - 500k": { min: 0, max: 500000 },
-  "$500k-$999k": { min: 500000, max: 999000 },
-  "1mil - 1.5mil": { min: 1000000, max: 1500000 },
+  "$0 - 500K": { min: 0, max: 500000 },
+  "$500K-$600K": { min: 500000, max: 600000 },
+  "$600K-$700K": { min: 600000, max: 700000 },
+  "$700K-$800K": { min: 700000, max: 800000 },
+  "$800K - $1mil": { min: 800000, max: 1000000 },
+  "$1mil - $1.5mil": { min: 1000000, max: 1500000 },
+  "$1.5mil - $2mil": { min: 1500000, max: 2000000 },
+  "$2mil - $2.5mil": { min: 2000000, max: 2500000 },
+  "$2mil and above": { min: 1000000, max: 0 }, //if max less than min, max is ignored
 };
 
 export const priceRangesLeaseProperties = {
@@ -203,9 +209,31 @@ export const priceRangesLeaseProperties = {
 export const houseType = {
   all: { name: "House Type", value: null },
   // condo: { name: "Condo", value: "CondoProperty" },
-  semi: { name: "Semi Detached", value: ".S.", slug: "semi-detached-homes" },
-  detached: { name: "Detached", value: ".D.", slug: "detached-homes" },
-  town: { name: "Town House", value: ".A.", slug: "town-house" },
-  duplex: { name: "Duplex", value: ".J.", slug: "duplex-homes" },
-  triplex: { name: "Triplex", value: ".K.", slug: "triplex-homes" },
+  semi: {
+    name: "Semi Detached",
+    value: "Semi-Detached ",
+    slug: "semi-detached-homes",
+  },
+  detached: { name: "Detached", value: "Detached", slug: "detached-homes" },
+  town: { name: "Town House", value: "Att/Row/Townhouse", slug: "town-house" },
+  duplex: { name: "Duplex", value: "Duplex", slug: "duplex-homes" },
+  triplex: { name: "Triplex", value: "Triplex", slug: "triplex-homes" },
+};
+
+export const basementType = {
+  "Separate Entrance": "Separate Entrance",
+  Walkout: "Walk-Out",
+  "Finished Basement": "Finished",
+};
+
+export const roads = {
+  "Public Transit": "Public Transit",
+  Highway: "Highway",
+};
+
+export const homeText = {
+  "Semi Detached": "Semi Detached Homes",
+  Detached: "Detached Homes",
+  "Town House": "Town Homes",
+  Condos: "Condos",
 };

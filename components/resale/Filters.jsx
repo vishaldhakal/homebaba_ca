@@ -236,11 +236,6 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
         </div>
       </div>
 
-      {/* <div className="rounded-full">
-        <MoreFilter
-          {...{ washroomCountOptions, additonalFilterChange, filterState }}
-        />
-      </div> */}
       <IndividualFilterButton
         name="Basement"
         options={Object.keys(basementType)}

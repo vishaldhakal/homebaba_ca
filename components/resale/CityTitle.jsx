@@ -43,7 +43,7 @@ const CityTitle = async ({
     );
   };
   return (
-    <>
+    <div className="px-1">
       <h1
         className={`font-extrabold text-3xl text-center sm:text-left pt-2 sm:pt-0`}
       >
@@ -55,7 +55,7 @@ const CityTitle = async ({
         {saleLeaseVal?.toLowerCase() == "lease" ? "Rent or Lease" : "sale"}.
         Prices from $1 to $5,000,000. Open houses available.
       </h2>
-    </>
+    </div>
   );
 };
 

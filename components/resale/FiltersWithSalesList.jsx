@@ -182,9 +182,9 @@ const FiltersWithSalesList = ({
 
   return (
     <>
-      <div className="">
+      <div>
         <div
-          className="flex sticky top-[1rem] z-50 bg-white items-center w-full flex-wrap overflow-visible justify-center sm:justify-normal"
+          className="flex sticky top-0 md:pb-2 z-50 bg-white items-center w-full flex-wrap overflow-visible justify-center sm:justify-normal"
           id="filter"
         >
           <Filters {...{ filterState, setFilterState, fetchFilteredData }} />

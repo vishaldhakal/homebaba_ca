@@ -31,7 +31,7 @@ export const IndividualFilterButton = ({
             className={`mx-[2px] px-2 sm:px-3 h-8 border-[#b2b2b2] border-[1px] tracking-[0.01125] cursor-pointer text-nowrap flex justify-center items-center rounded-full hover:shadow-lg text-xs font-semibold text-gray-700
               ${
                 activeFilter.includes(option)
-                  ? `border-black bg-[#fcdaf4] text-black`
+                  ? `border-black bg-[#ffe3e3] text-black`
                   : ""
               }`}
             onClick={() => handleClick(name, option)}
