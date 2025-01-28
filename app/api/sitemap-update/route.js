@@ -1,25 +1,33 @@
-import { getAllListings, getAllCities, getAllStaticPages, getAdditionalRoutes } from '../../../lib/api';
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import {
+  getAllListings,
+  getAllCities,
+  getAllStaticPages,
+  getAdditionalRoutes,
+} from "../../../lib/api";
+import { writeFile } from "fs/promises";
+import path from "path";
 
-const BASE_URL = 'https://homebaba.ca';
-const SITEMAP_PATH = path.join(process.cwd(), 'public', 'sitemap.xml');
+const BASE_URL = "https://homebaba.ca";
+const SITEMAP_PATH = path.join(process.cwd(), "public", "sitemap.xml");
 
 // Function to ensure URL is properly formatted and escaped for XML
 function formatUrl(path) {
   if (!path) return BASE_URL;
-  
+
   // Clean the path
-  const cleanPath = path.toString()
-    .replace(/&/g, 'and')  // Replace & with 'and'
-    .replace(/[<>"']/g, '') // Remove XML special characters
-    .replace(/\s+/g, '-')   // Replace spaces with hyphens
-    .replace(/[^\w\-\/]/g, '')  // Remove any other special characters
+  const cleanPath = path
+    .toString()
+    .replace(/&/g, "and") // Replace & with 'and'
+    .replace(/[<>"']/g, "") // Remove XML special characters
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/[^\w\-\/]/g, "") // Remove any other special characters
     .trim();
-    
+
   // Ensure proper URL format
-  const fullUrl = `${BASE_URL}${cleanPath.startsWith('/') ? '' : '/'}${cleanPath}`;
-  return fullUrl.replace(/([^:]\/)\/+/g, '$1'); // Remove duplicate slashes except after protocol
+  const fullUrl = `${BASE_URL}${
+    cleanPath.startsWith("/") ? "" : "/"
+  }${cleanPath}`;
+  return fullUrl.replace(/([^:]\/)\/+/g, "$1"); // Remove duplicate slashes except after protocol
 }
 
 // Function to format date for XML
@@ -58,8 +66,14 @@ function generateSiteMap(staticPages, cities, listings, additionalRoutes) {
         </url>`);
 
       // Add sub-pages for each city
-      const subPages = ['condos', 'pre-construction', 'townhomes', 'detached', 'price-range'];
-      subPages.forEach(subPage => {
+      const subPages = [
+        "condos",
+        "pre-construction",
+        "townhomes",
+        "detached",
+        "price-range",
+      ];
+      subPages.forEach((subPage) => {
         xmlItems.push(`
           <url>
             <loc>${formatUrl(`${slug}/${subPage}`)}</loc>
@@ -84,7 +98,7 @@ function generateSiteMap(staticPages, cities, listings, additionalRoutes) {
     });
 
     // Add additional routes
-    additionalRoutes.forEach(route => {
+    additionalRoutes.forEach((route) => {
       // Add main route
       xmlItems.push(`
         <url>
@@ -96,7 +110,7 @@ function generateSiteMap(staticPages, cities, listings, additionalRoutes) {
 
       // Add subpages if they exist
       if (Array.isArray(route.subpages)) {
-        route.subpages.forEach(subpage => {
+        route.subpages.forEach((subpage) => {
           xmlItems.push(`
             <url>
               <loc>${formatUrl(`${route.path}/${subpage}`)}</loc>
@@ -113,12 +127,14 @@ function generateSiteMap(staticPages, cities, listings, additionalRoutes) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-              http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">${xmlItems.join('')}
+              http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">${xmlItems.join(
+                ""
+              )}
 </urlset>`;
 
     return sitemap;
   } catch (error) {
-    console.error('Error generating sitemap XML:', error);
+    console.error("Error generating sitemap XML:", error);
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -133,62 +149,69 @@ function generateSiteMap(staticPages, cities, listings, additionalRoutes) {
 
 export async function GET(req) {
   try {
-    console.log('Starting sitemap generation...');
+    console.log("Starting sitemap generation...");
 
     // Get all data with proper error handling
-    const [staticPages, cities, listings, additionalRoutes] = await Promise.all([
-      getAllStaticPages().catch(error => {
-        console.error('Error fetching static pages:', error);
-        return [];
-      }),
-      getAllCities().catch(error => {
-        console.error('Error fetching cities:', error);
-        return [];
-      }),
-      getAllListings().catch(error => {
-        console.error('Error fetching listings:', error);
-        return [];
-      }),
-      getAdditionalRoutes().catch(error => {
-        console.error('Error fetching additional routes:', error);
-        return [];
-      })
-    ]);
+    const [staticPages, cities, listings, additionalRoutes] = await Promise.all(
+      [
+        getAllStaticPages().catch((error) => {
+          console.error("Error fetching static pages:", error);
+          return [];
+        }),
+        getAllCities().catch((error) => {
+          console.error("Error fetching cities:", error);
+          return [];
+        }),
+        getAllListings().catch((error) => {
+          console.error("Error fetching listings:", error);
+          return [];
+        }),
+        getAdditionalRoutes().catch((error) => {
+          console.error("Error fetching additional routes:", error);
+          return [];
+        }),
+      ]
+    );
 
-    console.log('Data fetched successfully');
+    console.log("Data fetched successfully");
     console.log(`Static pages: ${staticPages.length}`);
     console.log(`Cities: ${cities.length}`);
     console.log(`Listings: ${listings.length}`);
     console.log(`Additional routes: ${additionalRoutes.length}`);
 
     // Generate and validate the sitemap
-    const sitemap = generateSiteMap(staticPages, cities, listings, additionalRoutes);
-    
+    const sitemap = generateSiteMap(
+      staticPages,
+      cities,
+      listings,
+      additionalRoutes
+    );
+
     // Log the URL count
     const urlCount = (sitemap.match(/<url>/g) || []).length;
     console.log(`Generated sitemap with ${urlCount} URLs`);
-    
+
     // Write sitemap to file
-    await writeFile(SITEMAP_PATH, sitemap, 'utf8');
-    console.log('Sitemap written to:', SITEMAP_PATH);
-    
+    await writeFile(SITEMAP_PATH, sitemap, "utf8");
+    console.log("Sitemap written to:", SITEMAP_PATH);
+
     // Return the response with appropriate headers
     return new Response(sitemap, {
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=1800'
-      }
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=1800",
+      },
     });
   } catch (error) {
-    console.error('Sitemap generation failed:', error);
+    console.error("Sitemap generation failed:", error);
     const emptySitemap = generateSiteMap([], [], [], []);
-    await writeFile(SITEMAP_PATH, emptySitemap, 'utf8');
-    
+    await writeFile(SITEMAP_PATH, emptySitemap, "utf8");
+
     return new Response(emptySitemap, {
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=1800'
-      }
+        "Content-Type": "application/xml",
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=1800",
+      },
     });
   }
 }
