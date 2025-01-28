@@ -117,13 +117,6 @@ export default async function Home() {
       <FeaturedProjects />
       <StatsSection />
       <CitiesSection />
-      <Testimonial
-        testimonialText="The deal I just closed was with a buyer from Homebaba—the very first person I connected with. I lead a team of six and have made Homebaba an essential tool for everyone on my team."
-        authorName="Angela Yang"
-        authorPosition="Broker of record"
-        authorRole="Anchor New Homes Inc. Brokerage"
-        companyLogo="/testmonials/A.png"
-      />
       <HomebabaPromo />
       <CallToAction />
       <div className="my-10 md:my-32"></div>
