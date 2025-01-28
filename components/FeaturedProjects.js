@@ -21,6 +21,29 @@ const FeaturedProjects = () => {
   };
 
   useEffect(() => {
+    // Listen for property type selection
+    const handlePropertyTypeSelected = (event) => {
+      const selectedFilter = event.detail.filter;
+      if (selectedFilter !== "Featured") {
+        setFilter(selectedFilter);
+      }
+    };
+
+    window.addEventListener("propertyTypeSelected", handlePropertyTypeSelected);
+
+    // Check URL for initial tab
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get("tab");
+    if (tabParam && filters.includes(tabParam)) {
+      setFilter(tabParam);
+    }
+
+    return () => {
+      window.removeEventListener("propertyTypeSelected", handlePropertyTypeSelected);
+    };
+  }, []);
+
+  useEffect(() => {
     fetchListings();
   }, [filter]);
 

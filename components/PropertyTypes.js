@@ -33,23 +33,29 @@ const PropertyTypes = () => {
   const router = useRouter();
 
   const handlePropertyClick = (filter) => {
-    router.push(`/?filter=${filter}`, undefined, { shallow: true }).then(() => {
-      setTimeout(() => {
-        const listingsSection = document.getElementById("featured-listings");
-        if (listingsSection) {
-          console.log(listingsSection);
-          const headerOffset = 80;
-          const elementPosition = listingsSection.getBoundingClientRect().top;
-          const offsetPosition =
-            elementPosition + window.pageYOffset - headerOffset;
+    // Scroll to the featured listings section
+    const listingsSection = document.getElementById("featured-listings");
+    if (listingsSection) {
+      const headerOffset = 80;
+      const elementPosition = listingsSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        }
-      }, 100);
-    });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+
+      // Set the active tab in the URL
+      if (filter !== "Featured") {
+        router.push(`/?tab=${filter}`, undefined, { shallow: true });
+      }
+
+      // Dispatch a custom event to notify FeaturedProjects
+      const event = new CustomEvent("propertyTypeSelected", {
+        detail: { filter },
+      });
+      window.dispatchEvent(event);
+    }
   };
 
   return (

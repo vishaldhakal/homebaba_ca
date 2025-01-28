@@ -5,6 +5,23 @@ import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import BlogCard from "@/components/BlogCard";
 
+// Generate metadata for the page
+export async function generateMetadata({ params }) {
+  const post = await getBlogPost(params.slug);
+  
+  if (!post) {
+    return {
+      title: "Blog Post Not Found | Homebaba",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  return {
+    title: post.meta_title || post.title,
+    description: post.meta_description || post.excerpt,
+  };
+}
+
 async function getBlogPost(slug) {
   try {
     const res = await fetch(`https://api.homebaba.ca/api/posts/?slug=${slug}`, {

@@ -61,7 +61,20 @@ const SearchBar = ({
           )}`
         );
         const data = await response.json();
-        setSearchResults(data);
+        console.log("Search API response:", data);
+        console.log("Projects from API:", data.projects);
+        
+        // Transform projects to ensure they have the right properties
+        const transformedData = {
+          ...data,
+          projects: data.projects?.map(project => ({
+            ...project,
+            slug: project.slug || project.project_slug,
+            city_name: project.city_name || project.city?.name
+          }))
+        };
+        console.log("Transformed projects:", transformedData.projects);
+        setSearchResults(transformedData);
       } catch (error) {
         console.error("Search error:", error);
       } finally {
@@ -79,33 +92,23 @@ const SearchBar = ({
     }
   }, []);
 
-  const handleSelect = (type, item) => {
+  const handleSelect = (value, item) => {
     setOpen(false);
+    console.log("Selected:", value, item);
 
-    const newSearch = {
-      type,
-      id: item.id,
-      name: item.name,
-      icon: item.icon,
-      subtext: item.subtext,
-    };
-
-    const updatedSearches = [
-      newSearch,
-      ...recentSearches
-        .filter((search) => search.id !== item.id)
-        .slice(0, MAX_RECENT_SEARCHES - 1),
-    ];
-
-    setRecentSearches(updatedSearches);
-    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updatedSearches));
-
-    if (type === "cities") {
-      router.push(`/${item.name.split(",")[0].toLowerCase()}`);
-    } else if (type === "projects") {
-      router.push(`/pre-construction-homes/${item.slug}`);
-    } else if (type === "developers") {
-      router.push(`/developer/${item.slug}`);
+    if (value.startsWith("city-")) {
+      const city = value.replace("city-", "");
+      router.push(`/${city.split(",")[0].toLowerCase()}`);
+    } else if (value.startsWith("project-")) {
+      if (item && item.city && item.slug) {
+        const citySlug = item.city.toLowerCase();
+        console.log("Navigating to:", `/${citySlug}/${item.slug}`);
+        router.push(`/${citySlug}/${item.slug}`);
+      } else {
+        console.error("Missing project data:", item);
+      }
+    } else if (value.startsWith("developer-")) {
+      router.push(`/developers/${item.slug}`);
     }
   };
 
@@ -148,35 +151,14 @@ const SearchBar = ({
               <>
                 <CommandEmpty>No results found.</CommandEmpty>
 
-                {!searchQuery && recentSearches.length > 0 && (
-                  <CommandGroup
-                    heading="Recent Searches"
-                    className="text-start"
-                  >
-                    {recentSearches.map((item) => (
-                      <CommandItem
-                        key={`${item.type}-${item.id}`}
-                        value={item.name}
-                        className="flex flex-col items-start p-2"
-                        onSelect={() => handleSelect(item.type, item)}
-                      >
-                        <div className="flex items-start gap-2">
-                          <span>{item.icon}</span>
-                          <span>{item.name}</span>
-                        </div>
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                )}
-
                 {searchResults.cities?.length > 0 && (
                   <CommandGroup heading="Cities" className="text-start">
                     {searchResults.cities.map((item) => (
                       <CommandItem
                         key={item.id}
-                        value={item.name}
+                        value={`city-${item.name}`}
                         className="flex flex-col items-start p-2"
-                        onSelect={() => handleSelect("cities", item)}
+                        onSelect={(value) => handleSelect(value, item)}
                       >
                         <div className="flex items-start gap-2">
                           <span>{item.icon}</span>
@@ -192,14 +174,19 @@ const SearchBar = ({
                     {searchResults.projects.map((item) => (
                       <CommandItem
                         key={item.id}
-                        value={item.name}
+                        value={`project-${item.project_name || item.name}`}
                         className="flex flex-col items-start p-2"
-                        onSelect={() => handleSelect("projects", item)}
+                        onSelect={(value) => handleSelect(value, item)}
                       >
                         <div className="flex items-start gap-2">
                           <span>{item.icon}</span>
-                          <span>{item.name}</span>
+                          <span>{item.project_name || item.name}</span>
                         </div>
+                        {item.city_name && (
+                          <span className="text-xs text-gray-500 mt-1">
+                            {item.city_name}
+                          </span>
+                        )}
                       </CommandItem>
                     ))}
                   </CommandGroup>
@@ -210,9 +197,9 @@ const SearchBar = ({
                     {searchResults.developers.map((item) => (
                       <CommandItem
                         key={item.id}
-                        value={item.name}
+                        value={`developer-${item.name}`}
                         className="flex flex-col items-start p-2"
-                        onSelect={() => handleSelect("developers", item)}
+                        onSelect={(value) => handleSelect(value, item)}
                       >
                         <div className="flex items-start gap-2">
                           <span>{item.icon}</span>

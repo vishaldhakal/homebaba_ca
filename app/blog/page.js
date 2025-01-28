@@ -4,6 +4,11 @@ import Heading from "@/components/design/Heading";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
+export const metadata = {
+  title: "Homebaba Blogs | Real Estate Insights",
+  description: "Homebaba Insights is a blog for all new construction homes. We provide knowledge on industry news and trends, real estate tech, and many more.",
+};
+
 export const revalidate = 3600;
 
 const categories = [
@@ -95,7 +100,7 @@ export default async function BlogListing() {
           Looking to buy a New Home?
         </h1>
         <p className="text-gray-600 text-center text-sm md:text-base">
-          Don't know where to start? Contact Homebaba now!
+          Don’t know where to start? Contact Homebaba now!
         </p>
       </div>
       <ContactForm />

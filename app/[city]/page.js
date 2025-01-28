@@ -17,19 +17,17 @@ export async function generateMetadata({ params }) {
   return {
     title: `Top ${cityData.data.totalCount} ${capitalizeFirstLetter(
       params.city
-    )} New Construction Homes & Condos`,
-    description: `Looking for Pre construction in ${capitalizeFirstLetter(
+    )} New Construction Homes, Condos & Townhomes`,
+    description: `${cityData.data.totalCount}+ Pre construction homes for sale in ${capitalizeFirstLetter(
       params.city
-    )}? Discover ${
-      cityData.data.totalCount
-    } New Homes and Condo Developments. Get early access to details and floor plans now.`,
+    )}. Find New construction townhomes, single detached homes & condos. Check out price, plans, builders and availability on homebaba.`,
     openGraph: {
       title: `${capitalizeFirstLetter(
         params.city
-      )} New Construction Homes & Condos`,
-      description: `Discover new construction homes in ${capitalizeFirstLetter(
+      )} New Construction Homes, Condos & Townhomes`,
+      description: `${cityData.data.totalCount}+ Pre construction homes for sale in ${capitalizeFirstLetter(
         params.city
-      )}`,
+      )}. Find New construction townhomes, single detached homes & condos. Check out price, plans, builders and availability on homebaba.`,
       images: [cityData.data.results[0]?.images[0] || "/noimage.webp"],
     },
   };
@@ -203,6 +201,38 @@ export default async function CityPage({
               </div>
             </div>
           )}
+
+          {/* Featured Listings Section */}
+          {featuredListings && featuredListings.data?.results?.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold mb-4">Featured Listings in {capitalizeFirstLetter(params.city)}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {featuredListings.data.results.map((listing, index) => (
+                  <ListingCard
+                    key={listing.id}
+                    listing={listing}
+                    city={params.city}
+                    index={null}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Main Listings Section */}
+          <div className="mt-8">
+            <h2 className="text-2xl font-bold mb-4">New Construction Listings in {capitalizeFirstLetter(params.city)}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {cityData.data.results.map((listing, index) => (
+                <ListingCard
+                  key={listing.id}
+                  listing={listing}
+                  city={params.city}
+                  index={index + 1}
+                />
+              ))}
+            </div>
+          </div>
 
           {/* Quick links at the bottom */}
           <QuickLinks cityName={params.city} />
