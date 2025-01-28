@@ -176,6 +176,12 @@ const Navbar = () => {
             options={buyOpts}
             width="auto"
           />
+          <Link
+            href="/new-construction-homes"
+            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
+          >
+            Pre Construction
+          </Link>
           <button
             onClick={() => setShowAnticipated(true)}
             className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors flex items-center gap-1 whitespace-nowrap"
@@ -185,12 +191,6 @@ const Navbar = () => {
               New
             </span>
           </button>
-          <Link
-            href="/new-construction-homes"
-            className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
-          >
-            New Construction
-          </Link>
           <Link
             href="/blog"
             className="text-[12px] xl:text-[12px] text-gray-600 hover:text-black transition-colors whitespace-nowrap"
@@ -253,6 +253,14 @@ const Navbar = () => {
                       className="!justify-start text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors py-2"
                     />
                   </div>
+                  <Link
+                    href="/new-construction-homes"
+                    onClick={() => setIsOpen(false)}
+                    className="px-6 py-4 text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                  >
+                    Pre Construction
+                  </Link>
+
                   <button
                     onClick={() => {
                       setIsOpen(false);
@@ -265,13 +273,6 @@ const Navbar = () => {
                       New
                     </span>
                   </button>
-                  <Link
-                    href="/new-construction-homes"
-                    onClick={() => setIsOpen(false)}
-                    className="px-6 py-4 text-lg font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                  >
-                    New Construction
-                  </Link>
                   <Link
                     href="/contact-us"
                     onClick={() => setIsOpen(false)}
