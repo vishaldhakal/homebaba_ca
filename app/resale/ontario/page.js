@@ -15,8 +15,6 @@ const FiltersWithSalesList = dynamic(
   }
 );
 
-export const revalidate = 3600;
-
 export const metadata = {
   title: "Ontario Properties | Homebaba.ca",
   description:
