@@ -129,27 +129,22 @@ const SideContactForm = ({ showBookingType = true, address }) => {
     <div className="sticky top-20 z-0 w-full rounded-md bg-very-light-gray flex items-center sm:pt-2 sm:mt-0 shadow-2xl">
       <div className="bg-white rounded-[10px] shadow-large p-3 sm:p-4 w-full">
         <div className="flex items-center justify-center gap-20 sm:gap-4 mb-3 sm:mb-3">
+          <div className="w-[90px] h-[90px] sm:w-[80px] sm:h-[80px] relative">
+            <div className="w-full h-full rounded-tl-[20px] rounded-tr-[20px] rounded-bl-[20px] overflow-hidden">
+              <img
+                src="/milan-2.png"
+                alt="Default Agent"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
           <div className="mt-2">
             <h2 className="text-[16px] sm:text-2xl font-bold text-black leading-none text-center">
-              Contact Us
+              Book a Showing
             </h2>
-            {/* <div className="flex items-center flex-row justify-center">
-              <span className="text-xs sm:text-sm font-bold">homebaba</span>
-              <Image
-                src="/canadaleaf.svg"
-                alt="Maple Leaf Icon for Logo"
-                width={12}
-                height={12}
-                className="hidden md:block"
-              />
-              <Image
-                src="/canadaleaf.svg"
-                alt="Maple Leaf Icon for Logo"
-                width={15}
-                height={15}
-                className="block md:hidden"
-              />
-            </div> */}
+            <p className="text-md text-[#2C2C2C] flex items-center text-center justify-center">
+              Check Out this home!
+            </p>
           </div>
         </div>
 
