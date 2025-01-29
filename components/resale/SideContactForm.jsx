@@ -133,7 +133,7 @@ const SideContactForm = ({ showBookingType = true, address }) => {
             <h2 className="text-[16px] sm:text-2xl font-bold text-black leading-none text-center">
               Contact Us
             </h2>
-            <div className="flex items-center flex-row justify-center">
+            {/* <div className="flex items-center flex-row justify-center">
               <span className="text-xs sm:text-sm font-bold">homebaba</span>
               <Image
                 src="/canadaleaf.svg"
@@ -149,7 +149,7 @@ const SideContactForm = ({ showBookingType = true, address }) => {
                 height={15}
                 className="block md:hidden"
               />
-            </div>
+            </div> */}
           </div>
         </div>
 
