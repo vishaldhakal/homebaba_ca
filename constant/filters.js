@@ -218,6 +218,7 @@ export const houseType = {
   town: { name: "Townhomes", value: "Att/Row/Townhouse", slug: "town-house" },
   duplex: { name: "Duplex", value: "Duplex", slug: "duplex-homes" },
   triplex: { name: "Triplex", value: "Triplex", slug: "triplex-homes" },
+  condo: { name: "Condo", value: "Condo Apartment", slug: "condo" },
 };
 
 export const basementType = {
@@ -235,5 +236,5 @@ export const homeText = {
   "Semi Detached": "Semi Detached Homes",
   Detached: "Detached Homes",
   "Town House": "Townhomes",
-  Condos: "Condos",
+  Condo: "Condos",
 };

@@ -73,6 +73,16 @@ const Navbar = () => {
         cityVal: cityName || null,
       }),
     },
+    {
+      name:
+        "Condos for Sale" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "condo",
+        saleLeaseVal: "sale",
+        cityVal: cityName || null,
+      }),
+    },
   ];
 
   const rentOpts = [
@@ -122,6 +132,16 @@ const Navbar = () => {
         `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
       link: generateURL({
         houseTypeVal: "triplex",
+        saleLeaseVal: "lease",
+        cityVal: cityName || null,
+      }),
+    },
+    {
+      name:
+        "Condos for Lease" +
+        `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
+      link: generateURL({
+        houseTypeVal: "condo",
         saleLeaseVal: "lease",
         cityVal: cityName || null,
       }),
