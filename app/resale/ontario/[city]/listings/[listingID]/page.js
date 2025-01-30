@@ -124,7 +124,7 @@ const page = async ({ params }) => {
             <section className="padding-top w-full text-sm flex flex-col items-center justify-center gy-2 relative">
               <div className="hidden sm:block relative w-full">
                 <Gallery data={imageURLs} />
-                <div className="space-x-2 order-2 sm:order-1 absolute bottom-2 left-2">
+                {/* <div className="space-x-2 order-2 sm:order-1 absolute bottom-2 left-2">
                   <button className="bg-resale-primary-color p-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content rounded-md border-gray-500 border-[1px]">
                     <TimeAgo
                       modificationTimestamp={main_data.OriginalEntryTimestamp}
@@ -133,7 +133,7 @@ const page = async ({ params }) => {
                   <button className="bg-resale-primary-color p-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content rounded-md border-gray-500 border-[1px]">
                     <span>{main_data.PropertySubType}</span>
                   </button>
-                </div>
+                </div> */}
               </div>
               {/* Carousel is only for mobile. */}
               <Carousel urls={imageURLs} />

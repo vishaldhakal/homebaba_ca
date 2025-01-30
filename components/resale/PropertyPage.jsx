@@ -79,8 +79,20 @@ const PropertyPage = ({ main_data }) => {
               isMobileView ? "gap-3" : "gap-0"
             }`}
           >
-            <div className="flex flex-col space-y-2">
-              <h3 className="text-4xl font-semibold">{price}</h3>
+            <div className="flex flex-col space-y-2 w-full">
+              <div className="flex justify-between w-full items-center">
+                <h3 className="text-4xl font-semibold">{price}</h3>
+                <div className="space-x-2">
+                  <button className="bg-resale-primary-color py-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content font-semibold rounded-full px-3 border-black border-[1px]">
+                    <TimeAgo
+                      modificationTimestamp={main_data.OriginalEntryTimestamp}
+                    />
+                  </button>
+                  <button className="bg-resale-primary-color py-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content font-semibold rounded-full px-3 border-black border-[1px]">
+                    <span>{main_data.PropertySubType}</span>
+                  </button>
+                </div>
+              </div>
               {/* <button onClick={sendNotes}>Go!</button> */}
               <div className="flex flex-col h-full">
                 <h1 className=" mb-1 text-sm">

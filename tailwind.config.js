@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         "primary-green": "#EE4266",
+        "resale-primary-color": "#ffe3e3",
         "light-lime": "#e1f6b2",
         "primary-red": "#eb7e6c",
         "medium-black": "#222222",
