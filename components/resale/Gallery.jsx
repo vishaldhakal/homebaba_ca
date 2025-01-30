@@ -7,7 +7,7 @@ const GallerySkeleton = () => (
     <div className="grid grid-rows-3 sm:grid-rows-2 grid-cols-4 gap-2 w-full">
       {[...Array(5)].map((_, index) => (
         <Skeleton
-          className={`overflow-hidden rounded-[10px] ${
+          className={`overflow-hidden rounded-[10px] bg-gray-200 ${
             index === 0
               ? "row-span-2 col-span-4 sm:col-span-2 h-[240px] sm:h-[520px] w-full"
               : "h-[100px] sm:h-[255px] w-full"

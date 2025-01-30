@@ -23,7 +23,7 @@ const MarketDataButton = ({ city, propertyType }) => {
         <ChartNoAxesCombined className="w-3 h-3 mr-1" />
         {/* </div> */}
       </DialogTrigger>
-      <DialogContent className="z-[9999]">
+      <DialogContent className="z-[9999] bg-white">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">
             <div className="flex items-center">
@@ -33,7 +33,7 @@ const MarketDataButton = ({ city, propertyType }) => {
               </h2>
             </div>
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="bg-white">
             <Statistics city={city} propertyType={propertyType} />
           </DialogDescription>
         </DialogHeader>

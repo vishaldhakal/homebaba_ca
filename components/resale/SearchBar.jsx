@@ -71,23 +71,23 @@ const ResaleSearchBar = ({
   const containerClasses = `
     relative w-full max-w-2xl mx-auto
     transition-all duration-200 ease-in-out
-    ${small ? "max-w-md" : ""}
+    ${small ? "max-w-md" : "mx-2"}
   `;
 
   const inputWrapperClasses = `
     flex items-center w-full overflow-hidden
-    bg-white transition-all duration-200
+    bg-white transition-all duration-200 mt-2
     ${
       displaySuggestions
         ? "rounded-xl shadow-lg"
         : "rounded-xl shadow-md hover:shadow-lg"
     }
-    ${!small ? "border-2" : "border"}
-    ${displaySuggestions ? "border-blue-400" : "border-gray-300"}
+    ${!small ? "border-[1px]" : "border-[1px]"}
+    ${displaySuggestions ? "border-blue-400" : "border-black"}
   `;
 
   const inputClasses = `
-    w-full px-4 ${small ? "py-2" : "py-3"}
+    w-[95%] px-4 ${small ? "py-2" : "py-5"}
     text-gray-700 bg-transparent
     focus:outline-none
     placeholder:text-gray-400
@@ -118,7 +118,7 @@ const ResaleSearchBar = ({
         />
         <div className={searchIconClasses}>
           <CgSearch
-            size={small ? "1.2rem" : "1.75rem"}
+            size={small ? "1.2rem" : "1.25rem"}
             className="transition-transform duration-200 hover:scale-110"
           />
         </div>

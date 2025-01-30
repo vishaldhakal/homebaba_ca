@@ -10,6 +10,7 @@ import Favorite from "./Favorite";
 import { isLocalStorageAvailable } from "@/helpers/checkLocalStorageAvailable";
 import { getImageUrls } from "@/app/_resale-api/getSalesData";
 import { Skeleton } from "../ui/skeleton";
+import SignInVOW from "./SignInVOW";
 
 const ResaleCard = ({
   curElem,
@@ -35,12 +36,6 @@ const ResaleCard = ({
     e.target.onerror = null;
     e.target.src = `/noimage.webp`;
   };
-
-  // const streetAndMLS = curElem.StreetName
-  //   ? `${curElem.StreetNumber}-${curElem.StreetName?.replace(" ", "-")}-${
-  //       curElem.StreetSuffix
-  //     }-${curElem.ListingKey}`
-  //   : curElem.ListingKey;
 
   const streetAndMLS = (() => {
     const parts = [];
@@ -286,3 +281,82 @@ const ResaleCard = ({
 };
 
 export default ResaleCard;
+
+export const LockedResaleCard = ({ curElem, setSignedIn }) => {
+  const [loadingImage, setLoadingImage] = useState(false);
+  const [imgUrl, setImgUrl] = useState(null);
+
+  const handleImageError = (e) => {
+    e.target.onerror = null;
+    e.target.src = `/noimage.webp`;
+  };
+
+  const streetAndMLS = (() => {
+    const parts = [];
+
+    if (curElem.StreetNumber) {
+      parts.push(curElem.StreetNumber.replace("/", "-"));
+    }
+
+    if (curElem.StreetName) {
+      const streetName = curElem.StreetName.trim().replace(/ /g, "-");
+      parts.push(streetName);
+    }
+
+    if (curElem.StreetSuffix) {
+      parts.push(curElem.StreetSuffix);
+    }
+
+    if (curElem.ListingKey) {
+      parts.push(curElem.ListingKey);
+    }
+    return parts.filter(Boolean).join("-");
+  })();
+  useEffect(() => {
+    setLoadingImage(true);
+    getImageUrls({ MLS: curElem.ListingKey, thumbnailOnly: true }).then(
+      (urls) => {
+        setImgUrl(urls[0]);
+        setLoadingImage(false);
+      }
+    );
+  }, []);
+  return (
+    <div className="lg:px-0 h-full w-full">
+      <div className={`flex flex-col overflow-hidden relative`}>
+        <div className={`${"h-52 sm:h-80"} overflow-hidden relative`}>
+          <div
+            className={`${"h-52 sm:h-80"} sm:h-80 relative z-10 rounded-t-2xl`}
+          >
+            {loadingImage ? (
+              <Skeleton className="object-cover w-full h-full rounded-t-2xl" />
+            ) : imgUrl ? (
+              <img
+                className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110 rounded-t-2xl blur-[2px]"
+                src={imgUrl}
+                width="900"
+                height="800"
+                alt="property image"
+                onError={(e) => {
+                  console.log("Trigerring error");
+                  handleImageError(e);
+                }}
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col justify-center items-center">
+                <img src="/icons/no-photo.png" className="w-10 h-10" />
+                <p>No Image Found</p>
+              </div>
+            )}
+            <SignInVOW setSignedIn={setSignedIn} />
+            {/* <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div> */}
+          </div>
+        </div>
+      </div>
+      <Skeleton className={`w-36 h-4 mt-2 bg-gray-100`}></Skeleton>
+      <Skeleton className={`sm:w-56 h-4 mt-2 bg-gray-100`}></Skeleton>
+      <Skeleton className={`w-18 h-4 mt-2 bg-gray-100`}></Skeleton>
+      <Skeleton className={`w-18 h-4 mt-2 bg-gray-100`}></Skeleton>
+    </div>
+  );
+};

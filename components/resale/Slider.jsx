@@ -3,13 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 //ICONS
 // import PropertyCard from "./PropertyCard";
 import useDeviceView from "@/helpers/useDeviceView";
-import ResaleCard from "./ResaleCard";
+import ResaleCard, { LockedResaleCard } from "./ResaleCard";
 // import PreconstructionCard from "./PreconstructionCard";
 import CreateSchema from "@/helpers/CreateSchema";
 import { Skeleton } from "../ui/skeleton";
 
 import { isLocalStorageAvailable } from "@/helpers/checkLocalStorageAvailable";
 import SignInVOW from "./SignInVOW";
+import { getImageUrls } from "@/app/_resale-api/getSalesData";
 
 // type: resale/commercial
 // data: array of json properties
@@ -95,7 +96,9 @@ const Slider = ({ data, type }) => {
   );
 };
 
-export const SliderSkeleton = () => {
+export const SliderSkeleton = ({ data, setSignedIn }) => {
+  const imageUrls = [];
+
   return (
     <div className="relative flex justify-center">
       {/* <Skeleton className="btns flex justify-between">
@@ -115,26 +118,13 @@ export const SliderSkeleton = () => {
         </button>
       </Skeleton> */}
       <div
-        className={`w-full grid grid-rows-1 grid-cols-2 sm:grid-cols-4 overflow-x-hidden grid-nowrap justify-between sm:py-3 gap-x-4 auto-rows-[minmax(100px,_auto)]`}
+        className={`w-full grid grid-rows-1 grid-cols-2 sm:grid-cols-5 overflow-x-hidden grid-nowrap justify-between sm:py-3 gap-x-4 auto-rows-[minmax(100px,_auto)]`}
       >
-        {[...Array(4)].map((_, index) => {
+        {data?.map((obj, index) => {
           //manual removal, to be removed later
           return (
             <div className="my-2 sm:my-0 row-auto" key={index}>
-              {
-                <>
-                  <div className="relative h-80 w-18 flex justify-center items-center">
-                    <img
-                      src="/city-images/brampton.jpg"
-                      className="object-cover blur-md"
-                    />
-                    <SignInVOW />
-                  </div>
-                  <Skeleton className={`w-36 h-4 mt-2`}></Skeleton>
-                  <Skeleton className={`w-18 h-4 mt-2`}></Skeleton>
-                  <Skeleton className={`w-18 h-4 mt-2`}></Skeleton>
-                </>
-              }
+              <LockedResaleCard curElem={obj} setSignedIn={setSignedIn} />
             </div>
           );
         })}

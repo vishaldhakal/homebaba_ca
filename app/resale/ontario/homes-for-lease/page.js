@@ -34,7 +34,7 @@ export async function generateMetadata({ params }, parent) {
       images: "/favicon.ico",
     },
     title: [
-      `100+ ${formattedCity} Detached, Semi detached & Townhomes for lease`,
+      `100+ Ontario Detached, Semi detached & Townhomes for lease`,
       ,
       "New Listings",
       "Homebaba.ca",

@@ -39,6 +39,7 @@ export const getStatistics = async ({ city, propertyType, sold = false }) => {
             ? process.env.BEARER_TOKEN_FOR_API
             : process.env.BEARER_TOKEN_FOR_VOW,
         },
+        cache: "force-cache",
         next: {
           revalidate: 172800,
         },

@@ -51,7 +51,7 @@ const Dropdown = ({ name, options, width = "25rem", text }) => {
         className={`absolute left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10 min-w-[200px] transform origin-top transition-all duration-200 ${
           options.length > 6
             ? "grid grid-cols-1 sm:grid-cols-3 sm:min-w-[600px]"
-            : "w-[250px]"
+            : "w-fit"
         } ${
           shown
             ? "opacity-100 translate-y-0"

@@ -85,7 +85,7 @@ const Carousel = ({ urls }) => {
       </div>
       <div
         ref={stickyRef}
-        className={`w-full flex justify-center top-[6rem] bg-white sticky z-[999] sm:hidden scroll-smooth transition-all duration-300 ${
+        className={`w-full flex justify-center top-[6rem] bg-white sticky z-50 sm:hidden scroll-smooth transition-all duration-300 ${
           isSticky ? "py-1" : "py-2"
         }`}
       >

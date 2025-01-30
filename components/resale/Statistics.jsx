@@ -61,7 +61,7 @@ const Statistics = ({ city, propertyType }) => {
   }, [city]);
 
   return !loading ? (
-    <div className="relative max-w-[90%] mx-auto">
+    <div className="relative max-w-[90%] mx-auto bg-white">
       <div
         className="absolute inset-0"
         // style={{

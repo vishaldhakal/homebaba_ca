@@ -17,7 +17,11 @@ const UnlockableCards = ({ data }) => {
   useEffect(() => {
     setSignedIn(isSignedIn());
   });
-  return signedIn ? <Slider data={data} /> : <SliderSkeleton />;
+  return signedIn ? (
+    <Slider data={data} />
+  ) : (
+    <SliderSkeleton data={data} setSignedIn={setSignedIn} />
+  );
 };
 
 export default UnlockableCards;

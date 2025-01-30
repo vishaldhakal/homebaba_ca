@@ -182,7 +182,7 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
                 Object.values(houseType).find((val) => val.value == null).name
               }
               name="type"
-              value={filterState.type || "House Type"}
+              value={filterState.type || []}
               setFilterState={setFilterState}
               handleFilterChange={handleFilterChange}
               isMulti={false}

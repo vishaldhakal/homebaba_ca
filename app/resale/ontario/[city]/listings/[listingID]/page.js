@@ -52,7 +52,7 @@ const page = async ({ params }) => {
   );
   const oldSoldData = await getSalesData(
     INITIAL_OFFSET,
-    INITIAL_LIMIT,
+    5,
     formattedSlug,
     main_data?.PropertyType,
     true
@@ -125,12 +125,12 @@ const page = async ({ params }) => {
               <div className="hidden sm:block relative w-full">
                 <Gallery data={imageURLs} />
                 <div className="space-x-2 order-2 sm:order-1 absolute bottom-2 left-2">
-                  <button className="bg-black p-1 text-white text-xs font-bold mt-1 mb-2 sm:my-0 w-fit-content rounded-md">
+                  <button className="bg-resale-primary-color p-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content rounded-md border-gray-500 border-[1px]">
                     <TimeAgo
                       modificationTimestamp={main_data.OriginalEntryTimestamp}
                     />
                   </button>
-                  <button className="bg-black p-1 text-white text-xs font-bold mt-1 mb-2 sm:my-0 w-fit-content rounded-md">
+                  <button className="bg-resale-primary-color p-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content rounded-md border-gray-500 border-[1px]">
                     <span>{main_data.PropertySubType}</span>
                   </button>
                 </div>

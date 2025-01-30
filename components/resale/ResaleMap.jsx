@@ -26,7 +26,7 @@ const ResaleMap = ({ address }) => {
   });
   return (
     position.length == 2 && (
-      <div>
+      <div className="">
         <MapContainer
           center={position}
           zoom={14}

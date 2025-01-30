@@ -185,11 +185,11 @@ const PropertyPage = ({ main_data }) => {
           align="left"
         />
       </div>
-      {/* {main_data.UnparsedAddress && (
+      {main_data.UnparsedAddress && (
         <div className={isMobileView ? `mt-12 col-12` : `mt-24 col-12`}>
           <ResaleMap address={main_data.UnparsedAddress || null} />
         </div>
-      )} */}
+      )}
       <div className={isMobileView ? `mt-14 col-12` : `mt-24 col-12`}>
         <h2 className="font-bold pb-3 text-lg sm:text-2xl pt-3">
           <Image
