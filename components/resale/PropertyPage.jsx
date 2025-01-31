@@ -82,7 +82,7 @@ const PropertyPage = ({ main_data }) => {
             <div className="flex flex-col space-y-2 w-full">
               <div className="flex justify-between w-full items-center">
                 <h3 className="text-4xl font-semibold">{price}</h3>
-                <div className="space-x-2">
+                <div className="space-x-2 hidden sm:block">
                   <button className="bg-resale-primary-color py-1 text-black text-xs mt-1 mb-2 sm:my-0 w-fit-content font-semibold rounded-full px-3 border-black border-[1px]">
                     <TimeAgo
                       modificationTimestamp={main_data.OriginalEntryTimestamp}

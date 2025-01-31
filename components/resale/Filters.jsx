@@ -141,7 +141,7 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
       : priceRangesLeaseProperties;
 
   return (
-    <div className="bg-white flex">
+    <div className="bg-white flex flex-col sm:flex-row">
       <div
         className={`justify-start gap-0 gap-md-0 sm:my-2 flex flex-nowrap bg-white overflow-visible ${
           navbar
@@ -223,20 +223,22 @@ const Filters = ({ filterState, setFilterState, fetchFilteredData }) => {
           {...{ washroomCountOptions, additonalFilterChange, filterState }}
         />
       </div> */}
-      <IndividualFilterButton
-        name="Basement"
-        options={Object.keys(basementType)}
-        value={null}
-        handleFilterChange={handleFilterChange}
-        filterObj={basementType}
-      />
-      <IndividualFilterButton
-        name="Roads"
-        options={Object.keys(roads)}
-        value={null}
-        handleFilterChange={handleFilterChange}
-        filterObj={roads}
-      />
+      <div className="flex">
+        <IndividualFilterButton
+          name="Basement"
+          options={Object.keys(basementType)}
+          value={null}
+          handleFilterChange={handleFilterChange}
+          filterObj={basementType}
+        />
+        <IndividualFilterButton
+          name="Roads"
+          options={Object.keys(roads)}
+          value={null}
+          handleFilterChange={handleFilterChange}
+          filterObj={roads}
+        />
+      </div>
     </div>
   );
 };

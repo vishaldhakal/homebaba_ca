@@ -192,16 +192,18 @@ const FiltersWithSalesList = ({
 
   return (
     <div className="relative">
-      <div className="sticky top-16 sm:top-[3.5rem] h-12 z-50 bg-white">
+      <div className="sticky top-16 sm:top-[3.5rem] h-20 sm:h-12 z-50 bg-white">
         <div
           className={`relative flex ${
-            isFilterOpen ? "h-screen" : "h-12"
+            isFilterOpen ? "h-screen" : "h-20 sm:h-12"
           } items-start w-full flex-wrap justify-start sm:justify-normal overflow-y-hidden overflow-x-scroll sm:overflow-auto`}
           id="filter"
         >
           <div className="flex flex-row bg-white items-center">
             <Filters {...{ filterState, setFilterState, fetchFilteredData }} />
-            <MarketDataButton city={city} />
+            <div className="hidden sm:block">
+              <MarketDataButton city={city} />
+            </div>
           </div>
         </div>
       </div>
@@ -250,6 +252,9 @@ const FiltersWithSalesList = ({
           <p>No Records Found</p>
         </div>
       )}
+      <div className="sm:hidden fixed bottom-2 right-2 z-[999]">
+        <MarketDataButton city={city} />
+      </div>
     </div>
   );
 };

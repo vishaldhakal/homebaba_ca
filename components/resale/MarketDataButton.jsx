@@ -14,12 +14,12 @@ const MarketDataButton = ({ city, propertyType }) => {
   return (
     <Dialog>
       <DialogTrigger
-        className={`mx-[2px] px-2 sm:px-3 h-8 border-[#b2b2b2] border-[1px] tracking-[0.01125] cursor-pointer text-nowrap flex justify-center items-center rounded-full hover:shadow-lg text-xs font-semibold
+        className={`mx-[2px] px-2 sm:px-3 h-8 border-[#b2b2b2] border-[1px] tracking-[0.01125] cursor-pointer text-nowrap flex justify-center items-center rounded-full hover:shadow-lg text-xs font-semibold shadow-lg
              bg-[#ffe3e3] text-black
              `}
       >
         {/* <div className="p-4 rounded-lg flex flex-col space-y-4 justify-center"> */}
-        Market Data
+        View Market Data
         <ChartNoAxesCombined className="w-3 h-3 mr-1" />
         {/* </div> */}
       </DialogTrigger>
