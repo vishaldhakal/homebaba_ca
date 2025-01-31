@@ -77,41 +77,43 @@ const Statistics = ({ city, propertyType }) => {
         <h2 className="tracking-wider font-light uppercase text-4xl text-red-500">
           {city}
         </h2>
-        <p className="tracking-tighter font-thin uppercase text-3xl mt-2">
+        <p className="tracking-tighter font-thin uppercase text-2xl sm:text-3xl mt-2">
           {lastMonthName}, {new Date().getFullYear()}
         </p>
       </div>
       {/* <h1 className="font-bold my-4 text-3xl">Property Statistics one month</h1> */}
-      <table className="min-w-full bg-white border border-gray-300 my-10">
+      <table className="min-w-full bg-white border border-gray-300 my-10 ">
         <thead>
           <tr className="bg-gray-200 text-gray-800 uppercase text-sm leading-normal">
-            <th className="py-3 px-6 border-b border-gray-300 text-left">
+            <th className="py-3 sm:px-6 px-3  border-b border-gray-300 text-left">
               Property Type
             </th>
-            <th className="py-3 px-6 border-b border-gray-300 text-left">
+            <th className="py-3 sm:px-6 px-3  border-b border-gray-300 text-left">
               Average Price
             </th>
-            <th className="py-3 px-6 border-b border-gray-300 text-left">
+            <th className="py-3 sm:px-6 px-3  border-b border-gray-300 text-left">
               Total Count
             </th>
           </tr>
         </thead>
-        <tbody className="text-gray-600 text-sm font-light">
+        <tbody className="text-gray-600 font-light text-xs sm:text-base">
           {Object.entries(propertyStats).map(([propertyType, stats]) => (
             <tr
               key={propertyType}
               className="border-b border-gray-300 hover:bg-gray-100"
             >
-              <td className="py-3 px-6 text-left">{propertyType}</td>
-              <td className="py-3 px-6 text-left">
+              <td className="py-3 sm:px-6 px-3  text-left">{propertyType}</td>
+              <td className="py-3 sm:px-6 px-3  text-left">
                 {formatCurrency(stats.average.toFixed(2))}
               </td>
-              <td className="py-3 px-6 text-left">{stats.totalCount}</td>
+              <td className="py-3 sm:px-6 px-3  text-left">
+                {stats.totalCount}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <ul className="mt-8 text-lg list-disc list-inside">
+      <ul className="sm:mt-8 text-lg list-disc list-inside text-left">
         {/* Last month's data */}
         <li className="mb-2">
           <span className="font-semibold uppercase text-sm tracking-wider">

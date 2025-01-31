@@ -25,7 +25,7 @@ const MarketDataButton = ({ city, propertyType }) => {
       </DialogTrigger>
       <DialogContent className="z-[9999] bg-white">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">
+          <DialogTitle className="text-xl sm:text-2xl font-bold">
             <div className="flex items-center">
               <img src="/canadaleaf.svg" className="w-4 h-4 mr-2"></img>
               <h2 className="tracking-wide font-semibold uppercase text-lg">
