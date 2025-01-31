@@ -111,12 +111,12 @@ const PropertyPage = ({ main_data }) => {
                 <p className="text-left text-sm tracking-wide"></p>
               </div>
               <div className="space-x-2 block sm:hidden">
-                <button className="bg-black p-1 text-white text-xs font-bold mt-1 sm:my-0 w-fit-content rounded-md">
+                <button className="bg-resale-primary-color py-1 text-black text-xs sm:my-0 w-fit-content font-semibold rounded-full px-3 border-black border-[1px]">
                   <TimeAgo
                     modificationTimestamp={main_data.OriginalEntryTimestamp}
                   />
                 </button>
-                <button className="bg-black p-1 text-white text-xs font-bold mt-1 sm:my-0 w-fit-content rounded-md">
+                <button className="bg-resale-primary-color py-1 text-black text-xs sm:my-0 w-fit-content font-semibold rounded-full px-3 border-black border-[1px]">
                   <span>{main_data.PropertySubType}</span>
                 </button>
               </div>
