@@ -26,10 +26,18 @@ const lastDayLastMonth = () => {
 
 export const getStatistics = async ({ city, propertyType, sold = false }) => {
   try {
-    let filterClause = `contains(City,'${city}') and OriginalEntryTimestamp ge ${firstDayLastMonth()} and OriginalEntryTimestamp le ${lastDayLastMonth()} and TransactionType eq 'For Sale' `;
+    let filterClause;
+    if (city) {
+      filterClause = `contains(City,'${city}') and OriginalEntryTimestamp ge ${firstDayLastMonth()} and OriginalEntryTimestamp le ${lastDayLastMonth()} and TransactionType eq 'For Sale' `;
+    } else {
+      filterClause = `OriginalEntryTimestamp ge ${firstDayLastMonth()} and OriginalEntryTimestamp le ${lastDayLastMonth()} and TransactionType eq 'For Sale' `;
+    }
     if (propertyType) {
       filterClause += ` and PropertySubType eq '${propertyType}'`;
     }
+    console.log(
+      `${BASE_URL}/odata/Property?$count=true&$filter=${filterClause}&$select=ListPrice`
+    );
     const response = await fetch(
       `${BASE_URL}/odata/Property?$count=true&$filter=${filterClause}&$select=ListPrice`,
       {
@@ -48,6 +56,8 @@ export const getStatistics = async ({ city, propertyType, sold = false }) => {
     const data = await response.json();
     const totalPrice = data.value.reduce((acc, obj) => acc + obj.ListPrice, 0);
     const totalCount = await data["@odata.count"];
+    console.log("NEWDATA");
+    console.log(totalCount);
     const avg = totalPrice / totalCount;
     return { totalCount, avg };
   } catch (err) {

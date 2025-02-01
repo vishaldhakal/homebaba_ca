@@ -75,10 +75,13 @@ const Statistics = ({ city, propertyType }) => {
 
       <div className="my-2">
         <h2 className="tracking-wider font-light uppercase text-4xl text-red-500">
-          {city}
+          {city || "Ontario"}
         </h2>
         <p className="tracking-tighter font-thin uppercase text-2xl sm:text-3xl mt-2">
-          {lastMonthName}, {new Date().getFullYear()}
+          {lastMonthName},{" "}
+          {new Date(
+            new Date().setMonth(new Date().getMonth() - 1)
+          ).getFullYear()}
         </p>
       </div>
       {/* <h1 className="font-bold my-4 text-3xl">Property Statistics one month</h1> */}
