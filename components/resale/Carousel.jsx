@@ -85,7 +85,7 @@ const Carousel = ({ urls }) => {
       </div>
       <div
         ref={stickyRef}
-        className={`w-full flex justify-center top-[6rem] bg-white sticky z-50 sm:hidden scroll-smooth transition-all duration-300 ${
+        className={`w-full flex justify-center top-[5rem] bg-white sticky z-50 sm:hidden scroll-smooth transition-all duration-300 ${
           isSticky ? "py-1" : "py-2"
         }`}
       >
@@ -106,7 +106,7 @@ const Carousel = ({ urls }) => {
               key={index}
               className={`flex-shrink-0 cursor-pointer rounded-lg overflow-hidden transition-all duration-300 ${
                 currentIndex === index ? "ring-2 ring-blue-500" : ""
-              } ${isSticky ? "w-14 h-14" : "w-20 h-20"}`}
+              } ${isSticky ? "w-8 h-8" : "w-16 h-16"}`}
               onClick={() => goToSlide(index)}
             >
               <img

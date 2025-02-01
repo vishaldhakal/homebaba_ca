@@ -1,3 +1,4 @@
+import { houseType } from "@/constant";
 import { generateURL } from "@/helpers/generateResaleURL";
 import Link from "next/link";
 import { useState } from "react";
@@ -36,11 +37,21 @@ export const IndividualLinkedFilterButton = ({
             // onClick={() => handleClick(name, option)}
             // style={{ border: "2px solid #e5e7eb" }}
           >
+            {console.log(option, city, type)}
+            {console.log(
+              generateURL({
+                saleLeaseVal: option,
+                cityVal: city,
+                houseTypeVal: type,
+              })
+            )}
             <Link
               href={generateURL({
                 saleLeaseVal: option,
                 cityVal: city,
-                houseTypeVal: type,
+                houseTypeVal: Object.values(houseType).find(
+                  (object) => object.value == type
+                )?.name,
               })}
             >
               {option}
