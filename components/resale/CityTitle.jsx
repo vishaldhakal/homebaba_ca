@@ -50,7 +50,7 @@ const CityTitle = async ({
       </h1>
       <h2 className="text-sm mb-2 mt-1 text-center sm:text-left">
         {console.log(requiredType)}
-        {capitalizeFirstLetter(city)}{" "}
+        {capitalizeFirstLetter(city) || "Ontario"}{" "}
         {requiredType ? homeText[requiredType] : "homes"} for{" "}
         {saleLeaseVal?.toLowerCase() == "lease" ? "Rent or Lease" : "sale"}.
         Prices from $1 to $5,000,000. Open houses available.

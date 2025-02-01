@@ -107,7 +107,7 @@ const page = async ({ params }) => {
 
   return (
     <>
-      <div className="flex justify-center min-[2000px]:max-w-[65%] mx-auto">
+      <div className="flex justify-center sm:max-w-[90%] min-[2000px]:max-w-[65%] mx-auto">
         <div>
           <script
             key={main_data.ListingKey}
@@ -117,7 +117,7 @@ const page = async ({ params }) => {
             }}
           />
           <div className="pt-md-3 pt-0 ">
-            <div className="sticky top-[3.7rem] z-[1000]">
+            <div className="sticky top-[3.7rem] z-[500]">
               <Breadcrumbs items={breadcrumbItems} />
               {/* <Thumbnails setCurrentImageIndex={setCurrentImageIndex} /> */}
             </div>
