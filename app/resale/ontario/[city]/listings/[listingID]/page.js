@@ -52,7 +52,7 @@ const page = async ({ params }) => {
   );
   const oldSoldData = await getSalesData(
     INITIAL_OFFSET,
-    5,
+    4,
     formattedSlug,
     main_data?.PropertyType,
     true
