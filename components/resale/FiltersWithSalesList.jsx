@@ -201,9 +201,9 @@ const FiltersWithSalesList = ({
         >
           <div className="flex flex-row bg-white items-center">
             <Filters {...{ filterState, setFilterState, fetchFilteredData }} />
-            <div className="hidden sm:block">
+            {/* <div className="hidden sm:block">
               <MarketDataButton city={city} />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -252,9 +252,9 @@ const FiltersWithSalesList = ({
           <p>No Records Found</p>
         </div>
       )}
-      <div className="sm:hidden fixed bottom-2 right-2 z-[999]">
+      {/* <div className="sm:hidden fixed bottom-2 right-2 z-[999]">
         <MarketDataButton city={city} />
-      </div>
+      </div> */}
     </div>
   );
 };

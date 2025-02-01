@@ -37,14 +37,6 @@ export const IndividualLinkedFilterButton = ({
             // onClick={() => handleClick(name, option)}
             // style={{ border: "2px solid #e5e7eb" }}
           >
-            {console.log(option, city, type)}
-            {console.log(
-              generateURL({
-                saleLeaseVal: option,
-                cityVal: city,
-                houseTypeVal: type,
-              })
-            )}
             <Link
               href={generateURL({
                 saleLeaseVal: option,

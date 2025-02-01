@@ -64,7 +64,6 @@ export const getSalesData = async (
     if (listingType) {
       filterQuery += ` and PropertySubType eq ${listingType}`;
     }
-    console.log(url);
     const res = await fetch(url, options);
     const data = await res.json();
     return data.value;
@@ -76,7 +75,6 @@ export const getSalesData = async (
 
 export const getFilteredRetsData = async (queryParams) => {
   // const lowriseOnly = `TypeOwnSrch='.S.',TypeOwnSrch='.D.',TypeOwnSrch='.A.',TypeOwnSrch='.J.',TypeOwnSrch='.K.'`;
-  console.log(queryParams);
   try {
     //all the necessary queries possible
     let selectQuery = `${
@@ -146,7 +144,6 @@ export const getFilteredRetsData = async (queryParams) => {
         `?$filter=${selectQuery} ${rangeQuery}&$skip=${skipQuery}&$top=${limitQuery}&$orderby=OriginalEntryTimestamp desc`
       );
     }
-    console.log(url);
     const options = {
       method: "GET",
       headers: {
@@ -154,7 +151,6 @@ export const getFilteredRetsData = async (queryParams) => {
       },
       // cache: "no-store",
     };
-    console.log(url);
     const res = await fetch(url, options);
 
     const data = await res.json();
