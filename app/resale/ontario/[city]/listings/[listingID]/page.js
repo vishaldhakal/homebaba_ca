@@ -138,7 +138,7 @@ const page = async ({ params }) => {
               {/* Carousel is only for mobile. */}
               <Carousel urls={imageURLs} />
               <div className=" w-full flex justify-center pt-0 sm:pt-4 relative">
-                <div className="grid sm:grid-cols-9 grid-cols-1 justify-between sm:justify-between w-full sm:gap-x-8 gap-y-12 sm:gap-y-0 relative max-w-[90%] sm:max-w-[65%]">
+                <div className="grid sm:grid-cols-9 grid-cols-1 justify-between sm:justify-between w-full sm:gap-x-8 gap-y-12 sm:gap-y-0 relative max-w-[90%] sm:max-w-[75%]">
                   <div className={`sm:col-span-6 col-span-9`}>
                     <PropertyPage {...{ main_data }} />
 
