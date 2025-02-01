@@ -75,7 +75,7 @@ const HomeOverview = ({ main_data }) => {
           </div>
           <div className="col-5 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pl-0">
             <p className="cardd-subtitle_bg-black">
-              {main_data.ApproxSquareFootage}
+              {main_data.BuildingAreaTotal}
             </p>
           </div>
         </div>
@@ -129,7 +129,7 @@ const HomeOverview = ({ main_data }) => {
           id="collapseExample"
         >
           {/* Interior */}
-          <h5 className="py-2  pt-5">Interior</h5>
+          <h5 className="py-2  pt-5 font-medium">Interior</h5>
           <div
             className={`grid grid-cols-2  md:grid-cols-4 w-100 ${
               isMobileView ? "flex-wrap" : "flex-nowrap "
@@ -197,13 +197,13 @@ const HomeOverview = ({ main_data }) => {
             </div>
             <div className="col-5 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pl-0">
               <p className="cardd-subtitle_bg-black">
-                {main_data.LaundryLevel}
+                {main_data.LaundryFeatures.join(", ")}
               </p>
             </div>
           </div>
 
           {/* Exterior */}
-          <h5 className="py-2  pt-5">Exterior</h5>
+          <h5 className="py-2  pt-5 font-medium">Exterior</h5>
           <div
             className={`grid grid-cols-2  grid-cols-md-4 w-100 ${
               isMobileView ? "flex-wrap" : "flex-nowrap "
@@ -213,14 +213,16 @@ const HomeOverview = ({ main_data }) => {
               <p className="cardd-subtitle_bg-black ">Construction materials</p>
             </div>
             <div className="col-5 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pl-0">
-              <p className="cardd-subtitle_bg-black">{main_data.Exterior1}</p>
+              <p className="cardd-subtitle_bg-black">
+                {main_data.ConstructionMaterials.join(", ")}
+              </p>
             </div>
             <div className="col-7 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pr-0">
               <p className="cardd-subtitle_bg-black ">Other structures</p>
             </div>
             <div className="col-5 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pl-0">
               <p className="cardd-subtitle_bg-black">
-                {main_data.OtherStructures1}
+                {main_data.OtherStructures.join(", ")}
               </p>
             </div>
           </div>
@@ -282,16 +284,10 @@ const HomeOverview = ({ main_data }) => {
                 {main_data.GarageType ? "Yes" : "No"}
               </p>
             </div>
-            <div className="col-7 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pr-0">
-              <p className="cardd-subtitle_bg-black ">Drive</p>
-            </div>
-            <div className="col-5 col-md border-b-[0.1px] border-gray-200 py-2 md:py-3 pl-0">
-              <p className="cardd-subtitle_bg-black">{main_data.Drive}</p>
-            </div>
           </div>
 
           {/* Amenities / Utilities */}
-          <h5 className="py-2  pt-5">Amenities / Utilities</h5>
+          <h5 className="py-2  pt-5 font-medium">Amenities / Utilities</h5>
           <div
             className={`grid grid-cols-2 md:grid-cols-4 w-100 ${
               isMobileView ? "flex-wrap" : "flex-nowrap "
