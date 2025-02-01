@@ -2,7 +2,7 @@ import { houseType, saleLease } from "@/constant";
 import { isLocalStorageAvailable } from "./checkLocalStorageAvailable";
 const houseTypeLinkObj = {};
 Object.values(houseType).forEach((elem) => {
-  houseTypeLinkObj[elem.name.toLowerCase()] = elem.slug;
+  if (elem.value) houseTypeLinkObj[elem.name.toLowerCase()] = elem.slug;
 });
 export const generateURL = ({
   cityVal,

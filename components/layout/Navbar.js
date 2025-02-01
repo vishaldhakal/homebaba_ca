@@ -48,7 +48,7 @@ const Navbar = () => {
         "Townhomes for Sale" +
         `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
       link: generateURL({
-        houseTypeVal: "town house",
+        houseTypeVal: "townhomes",
         saleLeaseVal: "sale",
         cityVal: cityName || null,
       }),
@@ -111,7 +111,7 @@ const Navbar = () => {
         "Townhomes for Lease" +
         `${cityName ? ` in ${capitalizeFirstLetter(cityName)}` : ""}`,
       link: generateURL({
-        houseTypeVal: "town house",
+        houseTypeVal: "Townhomes",
         saleLeaseVal: "lease",
         cityVal: cityName || null,
       }),
