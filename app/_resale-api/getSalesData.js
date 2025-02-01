@@ -199,12 +199,14 @@ export const getImageUrls = async ({ MLS, thumbnailOnly = false }) => {
   }
 };
 
-export const fetchDataFromMLS = async (listingID) => {
+export const fetchDataFromMLS = async (listingID, soldData = false) => {
   try {
     const options = {
       method: "GET",
       headers: {
-        Authorization: process.env.BEARER_TOKEN_FOR_API,
+        Authorization: !soldData
+          ? process.env.BEARER_TOKEN_FOR_API
+          : process.env.BEARER_TOKEN_FOR_VOW,
       },
     };
     const queriesArray = [`$filter=ListingKey eq '${listingID}'`];

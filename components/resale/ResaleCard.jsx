@@ -17,6 +17,7 @@ const ResaleCard = ({
   small = false,
   showDecreasedPrice = false,
   isHotListing,
+  soldData,
 }) => {
   // const [address, setAddress] = useState("");
   const [loadingImage, setLoadingImage] = useState(false);
@@ -109,6 +110,7 @@ const ResaleCard = ({
         href={generateURL({
           cityVal: curElem.City,
           listingIDVal: streetAndMLS,
+          soldData: soldData,
         })}
         className="text-black"
       >
@@ -349,6 +351,10 @@ export const LockedResaleCard = ({ curElem, setSignedIn }) => {
               </div>
             )}
             <SignInVOW setSignedIn={setSignedIn} />
+            <div className="bg-white text-black absolute bottom-5 mx-5 rounded-md p-2">
+              Local MLS®️ rules require you to log in and accept their terms of
+              use to view certain listing data.
+            </div>
             {/* <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-50"></div> */}
           </div>
         </div>

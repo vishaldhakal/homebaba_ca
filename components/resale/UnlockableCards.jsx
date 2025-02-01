@@ -18,7 +18,7 @@ const UnlockableCards = ({ data }) => {
     setSignedIn(isSignedIn());
   });
   return signedIn ? (
-    <Slider data={data} />
+    <Slider data={data} soldData={true} />
   ) : (
     <SliderSkeleton data={data} setSignedIn={setSignedIn} />
   );

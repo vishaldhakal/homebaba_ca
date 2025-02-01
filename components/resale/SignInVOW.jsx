@@ -30,10 +30,11 @@ const SignInVOW = ({ setSignedIn }) => {
     <Dialog className="" open={open} onClick={(e) => e.stopPropagation()}>
       <DialogTrigger
         onClick={() => setOpen(true)}
-        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-black bg-black text-white border-2 rounded-full px-3 py-1 hover:scale-110 text-[0.5rem] sm:text-md"
+        className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 border-black bg-black text-white border-2 rounded-full px-3 py-1 hover:scale-110 text-[0.5rem] sm:text-sm"
       >
         Sign in to view
       </DialogTrigger>
+
       <DialogDescription className="">
         <DialogContent className="bg-white">
           <DialogHeader
