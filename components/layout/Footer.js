@@ -77,12 +77,7 @@ const Footer = () => {
             <div className="mt-3">
               <h5 className="font-bold text-gray-900 mb-3">Company</h5>
               <div className="flex flex-col space-y-4">
-                <Link
-                  href="/home"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Work with us
-                </Link>
+                
                 <Link
                   href="/blogs"
                   className="text-gray-600 hover:text-gray-900"
@@ -90,7 +85,7 @@ const Footer = () => {
                   Blogs
                 </Link>
                 <Link
-                  href="#"
+                  href="contact-us"
                   className="text-gray-600 hover:text-gray-900"
                 >
                   Contact us
