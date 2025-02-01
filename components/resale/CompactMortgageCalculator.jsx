@@ -97,7 +97,7 @@ export default function CompactMortgageCalculator({
           Calculate your monthly mortgage payments based on the home value,
         </p>
         {/* <div className="mb-10"></div> */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
           <div className="grid grid-cols-1 gap-4">
             <FloatingLabelInput
               id="hvalue"
@@ -193,6 +193,7 @@ export default function CompactMortgageCalculator({
                         },
                       ]}
                       innerRadius={68}
+                      outerRadius={80}
                       labelRadius={100}
                       colorScale={["rgb(82 170 146)", "rgb(82 130 146)"]}
                     />

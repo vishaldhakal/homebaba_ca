@@ -56,8 +56,6 @@ export const getStatistics = async ({ city, propertyType, sold = false }) => {
     const data = await response.json();
     const totalPrice = data.value.reduce((acc, obj) => acc + obj.ListPrice, 0);
     const totalCount = await data["@odata.count"];
-    console.log("NEWDATA");
-    console.log(totalCount);
     const avg = totalPrice / totalCount;
     return { totalCount, avg };
   } catch (err) {

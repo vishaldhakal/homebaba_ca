@@ -14,7 +14,6 @@ const ResaleMap = ({ address }) => {
       .then((decodedObj) => {
         const latitude = decodedObj.features[0].properties.lat;
         const longitude = decodedObj.features[0].properties.lon;
-        console.log(latitude, longitude);
         setPosition([latitude, longitude]);
       });
   }, []);
