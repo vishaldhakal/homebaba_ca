@@ -14,7 +14,7 @@ import { getImageUrls } from "@/app/_resale-api/getSalesData";
 
 // type: resale/commercial
 // data: array of json properties
-const Slider = ({ data, type }) => {
+const Slider = ({ data, type, soldData = false }) => {
   const scrollRef = useRef(null); //used to hold scroll value
   const cardRef = useRef(null); //used to hold card width value
   const { isMobileView } = useDeviceView();
@@ -84,7 +84,7 @@ const Slider = ({ data, type }) => {
                         __html: JSON.stringify(CreateSchema(curElem)),
                       }}
                     />
-                    <ResaleCard curElem={curElem} />
+                    <ResaleCard curElem={curElem} soldData={soldData} />
                   </>
                 }
               </div>

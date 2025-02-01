@@ -11,6 +11,7 @@ export const generateURL = ({
   listingIDVal = null,
   embeddedSite = false,
   useLocalStorage = true,
+  soldData = false,
 }) => {
   const filterState =
     useLocalStorage &&
@@ -33,9 +34,9 @@ export const generateURL = ({
       ?.toLowerCase();
   null;
   if (listingIDVal && city)
-    return `/resale/ontario/${city}/listings/${encodeURIComponent(
-      listingIDVal
-    )}`;
+    return `/resale/ontario/${city}/listings/${
+      soldData ? "sold/" : ""
+    }${encodeURIComponent(listingIDVal)}`;
   let finalLink = `/resale/ontario`;
 
   if (city) finalLink += "/" + city;

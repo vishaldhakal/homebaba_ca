@@ -43,12 +43,13 @@ const page = async ({ params }) => {
   const parts = listingID.split("-");
   const lastPart = parts[parts.length - 1];
   const listingIDValue = lastPart;
-  let main_data = await fetchDataFromMLS(listingIDValue); //always a single object inside the array
+  let main_data = await fetchDataFromMLS(listingIDValue, true); //always a single object inside the array
   const newSalesData = await getSalesData(
     INITIAL_OFFSET,
     INITIAL_LIMIT,
     formattedSlug,
-    main_data?.PropertyType
+    main_data?.PropertyType,
+    true
   );
   const oldSoldData = await getSalesData(
     INITIAL_OFFSET,
