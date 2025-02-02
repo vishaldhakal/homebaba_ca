@@ -12,6 +12,7 @@ import Script from "next/script";
 import MaldivesVacation from "@/components/MaldivesVacation";
 import HomebabaAdvantage from "@/components/HomebabaAdvantage";
 import CityLinks from "@/components/CityLinks";
+import FeaturedResaleListings from "@/components/resale/FeaturedResaleListings";
 
 // Metadata configuration
 export const metadata = {
@@ -117,6 +118,7 @@ export default async function Home() {
       <FeaturedProjects />
       <StatsSection />
       <CitiesSection />
+      <FeaturedResaleListings />
       <HomebabaPromo />
       <CallToAction />
       <div className="my-10 md:my-32"></div>
