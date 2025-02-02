@@ -13,8 +13,8 @@ export const sendEmail = async ({ content, page = null, title = null }) => {
   }
   console.log("sending...");
   const { data, error } = await resend.emails.send({
-    from: "lowrise <info@homebaba.ca>",
-    to: ["contact@homebaba.ca", "apargtm@gmail.com"],
+    from: "info@homebaba.ca",
+    to: ["contact@homebaba.ca"],
     subject: `Inquiry from ${page || "property"} in lowrise`,
     html: `<h1>${
       title || `Inquiry from ${page} page`
