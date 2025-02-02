@@ -219,8 +219,11 @@ export async function generateMetadata({ params }, parent) {
   const parts = listingID.split("-");
   const lastPart = parts[parts.length - 1];
   const listingIDValue = lastPart;
-  const main_data = await fetchDataFromMLS(listingIDValue);
-  const imageURLs = await getImageUrls({ MLS: main_data?.ListingKey });
+  const main_data = await fetchDataFromMLS(listingIDValue, true);
+  const imageURLs = await getImageUrls({
+    MLS: main_data?.ListingKey,
+    soldData: true,
+  });
   return {
     ...parent,
     alternates: {

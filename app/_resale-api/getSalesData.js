@@ -43,6 +43,7 @@ export const getSalesData = async (
       city && `contains(City,'${city || ""}') and `
     }TransactionType eq 'For Sale'`;
     // const lowriseOnly = `TypeOwnSrch='.S.',TypeOwnSrch='.D.',TypeOwnSrch='.A.',TypeOwnSrch='.J.',TypeOwnSrch='.K.'`;
+    if (soldData) filterQuery += " and StandardStatus eq 'Closed'";
     const queriesArray = [
       `$filter=${filterQuery}`,
       `$skip=${offset}`,
@@ -167,12 +168,18 @@ export const getFilteredRetsData = async (queryParams) => {
   }
 };
 
-export const getImageUrls = async ({ MLS, thumbnailOnly = false }) => {
+export const getImageUrls = async ({
+  MLS,
+  thumbnailOnly = false,
+  soldData = false,
+}) => {
   if (MLS) {
     const options = {
       method: "GET",
       headers: {
-        Authorization: process.env.BEARER_TOKEN_FOR_API,
+        Authorization: !soldData
+          ? process.env.BEARER_TOKEN_FOR_API
+          : process.env.BEARER_TOKEN_FOR_VOW,
       },
       // cache: "no-store",
     };

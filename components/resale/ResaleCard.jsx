@@ -72,12 +72,14 @@ const ResaleCard = ({
       setIsFavorite(true);
     }
     setLoadingImage(true);
-    getImageUrls({ MLS: curElem.ListingKey, thumbnailOnly: true }).then(
-      (urls) => {
-        setImgUrl(urls[0]);
-        setLoadingImage(false);
-      }
-    );
+    getImageUrls({
+      MLS: curElem.ListingKey,
+      thumbnailOnly: true,
+      soldData: true,
+    }).then((urls) => {
+      setImgUrl(urls[0]);
+      setLoadingImage(false);
+    });
   }, []);
 
   const toggleFavorite = (e) => {
