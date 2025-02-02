@@ -4,7 +4,7 @@ import React from "react";
 
 const CityCard = ({ name, imageUrl }) => (
   <Link href={generateURL({ cityVal: name })}>
-    <div className="relative overflow-hidden rounded-lg shadow-lg group cursor-pointer">
+    <div className="relative overflow-hidden rounded-xl shadow-lg group cursor-pointer">
       <img
         src={imageUrl}
         alt={`${name} cityscape`}

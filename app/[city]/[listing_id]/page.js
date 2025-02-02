@@ -1,5 +1,6 @@
 import Gallery from "@/components/listing/Gallery";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Link from "next/link";
 import SocialMediaShare from "@/components/SocialMediaShare";
 import ListingInfo from "@/components/listing/ListingInfo";
 import SidebarContact from "@/components/listing/SidebarContact";
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/accordion";
 import ContactForm from "@/components/ContactForm";
 import Image from "next/image";
+import ListingCard from "@/components/ListingCard";
 
 async function getListingData(listingId) {
   const response = await fetch(
@@ -174,6 +176,32 @@ export default async function ListingPage({ params }) {
               <ContactForm />
             </div>
           </div>
+          {/* Add Related Listings Section after FAQ */}
+          {house_detail.related1 && house_detail.related1.length > 0 && (
+            <div className="max-w-7xl mx-auto px-4 mt-40 mb-20">
+              <div className="flex justify-between items-center mb-8">
+                <Link
+                  href={`/${params.city}`}
+                  className="text-2xl md:text-3xl font-bold text-gray-900 border-b-2 border-gray-300 hover:border-gray-800 transition-all duration-300 cursor-pointer"
+                >
+                  See similar preconstruction homes in {params.city}
+                </Link>
+                <Link href={`/${params.city}`} className="text-gray-600 mt-2">
+                  View All
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-2 md:gap-2">
+                {house_detail.related1.map((listing) => (
+                  <ListingCard
+                    key={listing.id}
+                    listing={listing}
+                    city={params.city}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </main>
