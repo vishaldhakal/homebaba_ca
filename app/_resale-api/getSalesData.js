@@ -194,7 +194,11 @@ export const getImageUrls = async ({ MLS, thumbnailOnly = false }) => {
       );
       jsonResponse = await response.json();
     }
-    const urls = jsonResponse.value.map((data) => data.MediaURL);
+    const urls = jsonResponse.value
+      .sort(
+        (a, b) => (b.PreferredPhotoYN === true) - (a.PreferredPhotoYN === true)
+      )
+      .map((data) => data.MediaURL);
     return urls;
   }
 };
