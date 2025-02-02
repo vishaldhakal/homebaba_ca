@@ -28,6 +28,9 @@ const Footer = () => {
     { name: "Waterloo", link: "/waterloo" },
   ].sort((a, b) => a.name.localeCompare(b.name));
 
+  let todaysutc = new Date().toUTCString();
+  let year_now = new Date().getFullYear();
+
   const socialLinks = [
     {
       icon: "/icons/facebook.svg",
@@ -77,7 +80,6 @@ const Footer = () => {
             <div className="mt-3">
               <h5 className="font-bold text-gray-900 mb-3">Company</h5>
               <div className="flex flex-col space-y-4">
-                
                 <Link
                   href="/blogs"
                   className="text-gray-600 hover:text-gray-900"
@@ -180,7 +182,50 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
+        <div className="mt-16 pt-8 border-t border-gray-200 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center space-y-10">
+            <div className="flex flex-col space-y-4">
+              <img src="/trebb.png" alt="TREBB Logo" className="w-28 mx-auto" />
+              <p className="text-xs text-gray-500 max-w-2xl text-left">
+                Toronto Real Estate Board (TRREB); All information deemed
+                reliable but not guaranteed. All properties are subject to prior
+                sale, change or withdrawal. Neither listing broker(s) or
+                information provider(s) shall be responsible for any
+                typographical errors, misinformation, misprints and shall be
+                held totally harmless. Listing(s) information is provided for
+                consumer's personal, non-commercial use and may not be used for
+                any purpose other than to identify prospective properties
+                consumers may be interested in purchasing. The data relating to
+                real estate for sale on this website comes in part from the
+                Internet Data Exchange program of the Multiple Listing Service.
+                Real estate listings held by brokerage firms other than Dolphin
+                Realty Inc. may be marked with the Internet Data Exchange logo
+                and detailed information about those properties will include the
+                name of the listing broker(s) when required by the MLS.
+                Copyright ©2025 All rights reserved. Last Updated: {todaysutc}{" "}
+                UTC
+              </p>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <img src="/crea.png" alt="TREBB Logo" className="w-28 mx-auto" />
+              <p className="text-xs text-gray-500 max-w-2xl text-left">
+                The listing data displayed is deemed reliable but is not
+                guaranteed accurate by CREA®. Data last updated on {todaysutc}{" "}
+                UTC The trademarks REALTOR®, REALTORS®; and the REALTOR® logo
+                are controlled by The Canadian Real Estate Association (CREA®)
+                and identify real estate professionals who are members of CREA®.
+                Used under license. The trademarks MLS®, Multiple Listing
+                Service® and the associated logos are owned by The Canadian Real
+                Estate Association (CREA®) and identify the quality of services
+                provided by real estate professionals who are members of CREA®.
+                Used under license.
+              </p>
+            </div>
+          </div>
+          {/* <p className="text-sm text-center mt-10">
+            ©2025 Copyright Homebaba.ca All Rights Reserved
+          </p> */}
+        </div>
         <div>
           <h6 className="text-center mt-10 font-black  text-2xl md:text-4xl border-b border-gray-200 inline-block w-full pb-3">
             Our Trusted <span className="text-red-600">Platform Network</span>
