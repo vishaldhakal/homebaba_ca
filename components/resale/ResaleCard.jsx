@@ -120,13 +120,13 @@ const ResaleCard = ({
               <div
                 className={`${
                   small ? "h-44" : "h-52 sm:h-80"
-                } sm:h-80 relative z-10 rounded-t-2xl`}
+                } sm:h-80 relative z-10 rounded-t-2xl rounded-b-2xl overflow-hidden`}
               >
                 {loadingImage ? (
-                  <Skeleton className="object-cover w-full h-full rounded-t-2xl" />
+                  <Skeleton className="object-cover w-full h-full rounded-t-2xl rounded-b-2xl bg-gray-200" />
                 ) : imgUrl ? (
                   <img
-                    className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110 rounded-t-2xl"
+                    className="object-cover w-full h-full transition-all duration-200 transform group-hover:scale-110 rounded-b-2xl hover:rounded-b-2xl rounded-t-2xl"
                     src={imgUrl}
                     width="900"
                     height="800"

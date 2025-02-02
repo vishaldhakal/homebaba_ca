@@ -7,7 +7,6 @@ const citiesWithProvinces = [
   { city: "Welland", province: "Ontario" },
   { city: "Windsor", province: "Ontario" },
   { city: "Woodstock", province: "Ontario" },
-  // Add more cities here
   { city: "Ajax", province: "Ontario" },
   { city: "Whitby", province: "Ontario" },
   { city: "Courtice", province: "Ontario" },
@@ -21,6 +20,12 @@ const citiesWithProvinces = [
   { city: "Newmarket", province: "Ontario" },
   { city: "Barrie", province: "Ontario" },
   { city: "East Gwillimbury", province: "Ontario" },
+  { city: "Milton", province: "Ontario" },
+  { city: "Oakville", province: "Ontario" },
+  { city: "Vaughan", province: "Ontario" },
+  { city: "Etobicoke", province: "Ontario" },
+  { city: "Edmonton", province: "Ontario" },
+  { city: "Mississauga", province: "Ontario" },
 ];
 export const allCities = [
   { city: "Barrie", province: "Ontario" },
