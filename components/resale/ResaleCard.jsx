@@ -351,7 +351,7 @@ export const LockedResaleCard = ({ curElem, setSignedIn }) => {
               </div>
             )}
             <SignInVOW setSignedIn={setSignedIn} />
-            <div className="bg-white text-black absolute bottom-5 mx-5 rounded-md p-2">
+            <div className="bg-white text-black absolute bottom-2 mx-2 rounded-md p-1 border-2 border-black text-xs sm:text-md">
               Local MLS®️ rules require you to log in and accept their terms of
               use to view certain listing data.
             </div>

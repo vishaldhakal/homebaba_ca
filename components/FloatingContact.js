@@ -41,7 +41,7 @@ export default function FloatingContact() {
           priority
         />
         <div className="phone-deal-text">
-          <div className="deal-title">Send Me Info</div>
+          <div className="deal-title">Book a showing</div>
         </div>
       </div>
     </Link>
