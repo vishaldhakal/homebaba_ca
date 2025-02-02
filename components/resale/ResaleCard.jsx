@@ -22,7 +22,9 @@ const ResaleCard = ({
   // const [address, setAddress] = useState("");
   const [loadingImage, setLoadingImage] = useState(false);
   const [imgUrl, setImgUrl] = useState(null);
-  const price = Number(curElem.ListPrice).toLocaleString("en-US", {
+  const price = Number(
+    !soldData ? curElem.ListPrice : curElem.ClosePrice
+  ).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0,
@@ -180,9 +182,15 @@ const ResaleCard = ({
                   )}
                 </h2>
                 <div className="text-xs font-medium text-blackmb-1 sm:mb-0">
-                  <TimeAgo
-                    modificationTimestamp={curElem.OriginalEntryTimestamp}
-                  />
+                  {!soldData ? (
+                    <TimeAgo
+                      modificationTimestamp={curElem.OriginalEntryTimestamp}
+                    />
+                  ) : (
+                    <TimeAgo
+                      modificationTimestamp={curElem.SoldEntryTimestamp}
+                    />
+                  )}
                 </div>
               </div>
               {/* <p className="mb-0 fs-mine text-limit font-md pb-0">

@@ -43,17 +43,23 @@ export const getSalesData = async (
       city && `contains(City,'${city || ""}') and `
     }TransactionType eq 'For Sale'`;
     // const lowriseOnly = `TypeOwnSrch='.S.',TypeOwnSrch='.D.',TypeOwnSrch='.A.',TypeOwnSrch='.J.',TypeOwnSrch='.K.'`;
-    if (soldData) filterQuery += " and StandardStatus eq 'Closed'";
+    if (soldData) filterQuery += " and MlsStatus eq 'Sold'";
     const queriesArray = [
       `$filter=${filterQuery}`,
       `$skip=${offset}`,
       `$top=${limit}`,
     ];
 
+    if (soldData) {
+      queriesArray.push(`$orderby=SoldEntryTimestamp desc`);
+    } else {
+      queriesArray.push(`$orderby=OriginalEntryTimestamp desc`);
+    }
     const url = residential.properties.replace(
       "$query",
       `?${queriesArray.join("&")}`
     );
+    console.log(url);
     const options = {
       method: "GET",
       headers: {
