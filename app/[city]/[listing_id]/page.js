@@ -27,30 +27,30 @@ function createSchema(property) {
   return {
     "@context": "https://schema.org",
     "@type": "RealEstateListing",
-    "name": property.project_name,
-    "description": property.description,
-    "url": `https://homebaba.ca/${property.city}/${property.listing_id}`,
-    "address": {
+    name: property.project_name,
+    description: property.description,
+    url: `https://homebaba.ca/${property.city}/${property.listing_id}`,
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": property.city,
-      "addressRegion": "CA",
-      "addressCountry": "CA"
+      addressLocality: property.city,
+      addressRegion: "CA",
+      addressCountry: "CA",
     },
-    "price": property.price,
-    "numberOfRooms": property.bedrooms,
-    "numberOfBathroomsTotal": property.bathrooms,
-    "floorSize": {
+    price: property.price,
+    numberOfRooms: property.bedrooms,
+    numberOfBathroomsTotal: property.bathrooms,
+    floorSize: {
       "@type": "QuantitativeValue",
-      "value": property.area,
-      "unitText": "SQFT"
+      value: property.area,
+      unitText: "SQFT",
     },
-    "image": property.images?.[0] || "",
-    "offers": {
+    image: property.images?.[0] || "",
+    offers: {
       "@type": "Offer",
-      "price": property.price,
-      "priceCurrency": "CAD",
-      "availability": "https://schema.org/InStock"
-    }
+      price: property.price,
+      priceCurrency: "CAD",
+      availability: "https://schema.org/InStock",
+    },
   };
 }
 

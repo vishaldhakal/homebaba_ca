@@ -26,6 +26,7 @@ async function getCityData(cityName, range) {
 export default async function PriceRangePage({ params }) {
   const validRanges = [
     "0-500k",
+    "0-800k",
     "500k-600k",
     "600k-700k",
     "700k-800k",
@@ -80,6 +81,7 @@ export default async function PriceRangePage({ params }) {
             {metadata.subtitle}
           </h2>
         </div>
+        <div className="mt-4"></div>
 
         <FilteredListings
           cityName={params.city}
@@ -114,6 +116,7 @@ function formatPriceRange(range) {
 export async function generateMetadata({ params }) {
   const validRanges = [
     "0-500k",
+    "0-800k",
     "500k-600k",
     "600k-700k",
     "700k-800k",
